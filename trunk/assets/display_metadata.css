@@ -1,0 +1,33 @@
+#trasweb-metadata-metabox .trasweb-metadata-metabox__inner{
+    background-color: #fff;
+    max-height: 800px;
+    overflow-y: auto;
+    padding: 0;
+}
+
+#trasweb_metadata_metabox__container.postbox.closed {
+    margin-bottom: 0;
+}
+
+#trasweb-metadata-metabox table {
+    border-collapse: collapse;
+}
+
+#trasweb-metadata-metabox td, #trasweb-metadata-metabox th {
+    border: 1px solid #e2e4e7;
+    font-size: 0.95em;
+    vertical-align: baseline;
+    padding: 4px 5px;
+}
+
+#trasweb-metadata-metabox td.meta_key {
+    background-color: #f3f4f5;
+    font-weight: 600;
+}
+
+#trasweb-metadata-metabox td.meta_value {
+    background-color: #fff;
+    overflow-x: auto;
+    word-wrap: break-word;
+    width: 100%;
+}
