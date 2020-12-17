@@ -33,6 +33,10 @@ final class Plugin {
 	 * @return void
 	 */
 	public function __invoke(): void {
+		if( !current_user_can('administrator') ) {
+			return ;
+		}
+
 		$this->bootstrap();
 
 		$metabox = MetaboxFactory::get_current_metabox( $this->screen_vars );
