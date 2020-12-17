@@ -11,10 +11,8 @@ use const ARRAY_A;
 final class Post extends Metabox {
 
 	protected const TITLE       = 'Post information';
-
-	protected const HEADER_FILE = '';
-
-	protected const FOOTER_FILE = '';
+	protected const HEADER_FILE    = Plugin::VIEWS_PATH . '/nothing.php';
+	protected const FOOTER_FILE    = Plugin::VIEWS_PATH . '/nothing.php';
 
 	/**
 	 * Register a metabox in order to display it later.
