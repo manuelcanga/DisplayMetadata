@@ -1,4 +1,4 @@
-#trasweb-metadata-metabox .trasweb-metadata-metabox__inner{
+#trasweb-metadata-metabox .trasweb-metadata-metabox__inner {
     background-color: #fff;
     max-height: 800px;
     overflow-y: auto;
@@ -7,6 +7,11 @@
 
 #trasweb_metadata_metabox__container.postbox.closed {
     margin-bottom: 0;
+}
+
+#trasweb-metadata-metabox button {
+    cursor: move;
+    pointer-events: none;
 }
 
 #trasweb-metadata-metabox table {
