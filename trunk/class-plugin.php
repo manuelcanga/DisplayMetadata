@@ -15,6 +15,7 @@ final class Plugin {
 	public const VIEWS_PATH           = self::PATH . '/views';
 	public const ASSETS_PATH          = self::PATH . '/assets';
 	public const METABOX_FILE_PATTERN = self::PATH . '/Metabox/class-%s.php';
+	public const NEEDED_CAPABILITY    = 'display_metadata_metabox';
 
 	private $screen_vars;
 
@@ -33,8 +34,8 @@ final class Plugin {
 	 * @return void
 	 */
 	public function __invoke(): void {
-		if( !current_user_can('administrator') ) {
-			return ;
+		if ( !current_user_can( 'administrator' ) && !\current_user_can( self::NEEDED_CAPABILITY ) ) {
+			return;
 		}
 
 		$this->bootstrap();
