@@ -68,7 +68,7 @@ final class Plugin {
 	 */
 	final private function register_metabox_autoload(): void {
 		spl_autoload_register( function ( $class_name ) {
-			if ( strpos( $class_name, self::NAMESPACE ) ) {
+			if ( 0 !== strpos( $class_name, self::NAMESPACE ) ) {
 				return;
 			}
 

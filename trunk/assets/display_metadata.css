@@ -1,3 +1,8 @@
+#trasweb_metadata_metabox {
+    display: block;
+    overflow-x: scroll;
+}
+
 #trasweb-metadata-metabox .trasweb-metadata-metabox__inner {
     background-color: #fff;
     max-height: 800px;
@@ -19,7 +24,7 @@
 }
 
 #trasweb-metadata-metabox td, #trasweb-metadata-metabox th {
-    border: 1px solid #e2e4e7;
+    border: 1px solid #7e8993;
     font-size: 0.95em;
     vertical-align: baseline;
     padding: 4px 5px;
@@ -35,4 +40,5 @@
     overflow-x: auto;
     word-wrap: break-word;
     width: 100%;
+    max-width: 45wv;
 }
