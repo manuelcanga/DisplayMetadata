@@ -13,7 +13,6 @@ abstract class Metabox {
 	protected const ASSETS_FILE    = Plugin::VIEWS_PATH . '/assets.php';
 	protected const HEADER_FILE    = Plugin::VIEWS_PATH . '/header.php';
 	protected const TITLE          = '';
-	protected const META_LIST_FILE = Plugin::VIEWS_PATH . '/meta_list.php';
 	protected const FOOTER_FILE    = Plugin::VIEWS_PATH . '/footer.php';
 
 	/**
@@ -77,11 +76,11 @@ abstract class Metabox {
 	 * @return void
 	 */
 	final public function display(): void {
-		$metabox_title = static::TITLE;
-
+		$metabox_title   = static::TITLE;
 		$item_properties = $this->get_item_properties();
 		$item_metadata   = $this->get_item_metadata();
 		$item_vars       = [ 'Properties' => $item_properties, 'Metadata' => $item_metadata ];
+		$metadata_list   = Vars_Iterator::from_vars_list( $item_vars );
 
 		require static::METABOX_FILE;
 	}

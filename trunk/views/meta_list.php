@@ -1,28 +1,10 @@
-<?php
-$depth = isset($depth)? $depth : 1;
-?>
 <table>
    <tbody>
    <?php
-   foreach ( $item_vars as $key => $value ): ?>
-   <tr class="depth_<?= $depth ?>">
-      <td class="meta_key"><?= $key ?></td>
-      <td class="meta_value">
-		  <?php
-		  /** @TODO ITERATOR */
-		  $value = maybe_unserialize( $value );
-		  if ( is_array( $value ) ) {
-			  (function() use($depth, $value) {
-				  $depth++;
-				  $item_vars = $value;
-				  ksort( $item_vars );
-				  include static::META_LIST_FILE;
-			  })();
-		  } else {
-			  echo is_null( $value ) ? 'NULL' : htmlentities( $value );
-		  }
-		  ?>
-      </td>
+   foreach ( $metadata_list as $meta_key => $meta_value ): ?>
+   <tr class="depth_<?= $metadata_list->get_depth() ?>">
+      <td class="meta_key"><?= $meta_key ?></td>
+      <td class="meta_value"><?= $meta_value  ?></td>
       </tr><?php
    endforeach;
    ?>

@@ -1,7 +1,5 @@
 <?php
-
 use Trasweb\Plugins\DisplayMetadata\Plugin;
-
 ?>
 
 <style>

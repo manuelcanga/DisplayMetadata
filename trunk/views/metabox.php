@@ -5,7 +5,7 @@
 	<?php include static::HEADER_FILE; ?>
 
    <div class="trasweb-metadata-metabox__content">
-	   <?php include static::META_LIST_FILE; ?>
+	   <?= $metadata_list ?>
    </div>
 
 	<?php include static::FOOTER_FILE; ?>

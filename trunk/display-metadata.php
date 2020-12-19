@@ -23,7 +23,7 @@ if ( !is_admin() ) {
 	return;
 }
 
-( function () {
+( static function () {
 	require_once __DIR__ . '/class-plugin.php';
 
 	${'display-metadata'} = new Plugin( $_GET ?: [] );
