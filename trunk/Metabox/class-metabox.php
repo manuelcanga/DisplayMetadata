@@ -3,17 +3,22 @@
 namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 
 use Trasweb\Plugins\DisplayMetadata\Plugin;
+use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
 
 /**
  * This class manages `Display Metadata` metaboxes.
  */
 abstract class Metabox {
 
-	protected const METABOX_FILE   = Plugin::VIEWS_PATH . '/metabox.php';
-	protected const ASSETS_FILE    = Plugin::VIEWS_PATH . '/assets.php';
-	protected const HEADER_FILE    = Plugin::VIEWS_PATH . '/header.php';
-	protected const TITLE          = '';
-	protected const FOOTER_FILE    = Plugin::VIEWS_PATH . '/footer.php';
+	protected const METABOX_FILE = Plugin::VIEWS_PATH . '/metabox.php';
+
+	protected const ASSETS_FILE  = Plugin::VIEWS_PATH . '/assets.php';
+
+	protected const HEADER_FILE  = Plugin::VIEWS_PATH . '/header.php';
+
+	protected const TITLE        = '';
+
+	protected const FOOTER_FILE  = Plugin::VIEWS_PATH . '/footer.php';
 
 	/**
 	 * @var string $item_id ID from user, post or term.
@@ -76,10 +81,13 @@ abstract class Metabox {
 	 * @return void
 	 */
 	final public function display(): void {
-		$metabox_title   = static::TITLE;
+		$metabox_title   = __( static::TITLE, PLUGIN_NAME );
 		$item_properties = $this->get_item_properties();
 		$item_metadata   = $this->get_item_metadata();
-		$item_vars       = [ 'Properties' => $item_properties, 'Metadata' => $item_metadata ];
+		$item_vars       = [
+			__( 'Properties', PLUGIN_NAME ) => $item_properties,
+			__( 'Metadata', PLUGIN_NAME )   => $item_metadata,
+		];
 		$metadata_list   = Vars_Iterator::from_vars_list( $item_vars );
 
 		require static::METABOX_FILE;
