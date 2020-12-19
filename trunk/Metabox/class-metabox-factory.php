@@ -5,7 +5,7 @@ namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 /**
  * This class instances typed metabox classes.
  */
-class MetaboxFactory {
+class Metabox_Factory {
 
 	private const NONE_ID                         = 0;
 	private const DEFAULT_METABOX                 = __NAMESPACE__ . '\None';

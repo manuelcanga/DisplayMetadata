@@ -2,7 +2,7 @@
 
 namespace Trasweb\Plugins\DisplayMetadata;
 
-use Trasweb\Plugins\DisplayMetadata\Metabox\MetaboxFactory;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Factory;
 use function define;
 
 /**
@@ -40,7 +40,7 @@ final class Plugin {
 
 		$this->bootstrap();
 
-		$metabox = MetaboxFactory::get_current_metabox( $this->screen_vars );
+		$metabox = Metabox_Factory::get_current_metabox( $this->screen_vars );
 		$metabox->register();
 	}
 
@@ -72,7 +72,7 @@ final class Plugin {
 				return;
 			}
 
-			$file_name = strtolower( trim( strrchr( $class_name, '\\' ), '\\' ) );
+			$file_name = strtolower( str_replace('_', '-', trim( strrchr( $class_name, '\\' ), '\\' ) ) );
 			require sprintf( self::METABOX_FILE_PATTERN, $file_name );
 		}, $throw_exception = false );
 	}
