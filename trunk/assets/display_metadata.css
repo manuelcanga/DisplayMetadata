@@ -8,6 +8,8 @@
     max-height: 800px;
     overflow-y: auto;
     padding: 0;
+    display: block;
+    width: 100%;
 }
 
 #trasweb_metadata_metabox__container.postbox.closed {
@@ -17,10 +19,18 @@
 #trasweb-metadata-metabox button {
     cursor: move;
     pointer-events: none;
+    float: right;
 }
 
 #trasweb-metadata-metabox table {
     border-collapse: collapse;
+    display: block;
+    width: 100%;
+}
+
+#trasweb-metadata-metabox td.meta_value table {
+    box-sizing: border-box;
+    padding: 13px 6px;
 }
 
 #trasweb-metadata-metabox td, #trasweb-metadata-metabox th {
@@ -40,5 +50,4 @@
     overflow-x: auto;
     word-wrap: break-word;
     width: 100%;
-    max-width: 45wv;
 }
