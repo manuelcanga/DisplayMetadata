@@ -2,11 +2,11 @@
 
 
 <div id="trasweb-metadata-metabox">
-	<?php include static::HEADER_FILE; ?>
+    <?php include static::HEADER_FILE; ?>
 
    <div class="trasweb-metadata-metabox__content">
-	   <?= $metadata_list ?>
+       <?= $metadata_list ?>
    </div>
 
-	<?php include static::FOOTER_FILE; ?>
+    <?php include static::FOOTER_FILE; ?>
 </div>
