@@ -37,8 +37,7 @@ class Metadata_Iterator extends ArrayIterator {
 	 * @return $this|mixed|string
 	 */
 	public function current() {
-		$meta_value = parent::current();
-		$meta_value = maybe_unserialize( $meta_value );
+		$meta_value = maybe_unserialize( parent::current() );
 
 		//Sometimes, unserialize returns objects
 		if ( \is_object( $meta_value ) ) {
