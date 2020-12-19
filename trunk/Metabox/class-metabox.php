@@ -11,13 +11,9 @@ use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
 abstract class Metabox {
 
 	protected const METABOX_FILE = Plugin::VIEWS_PATH . '/metabox.php';
-
 	protected const ASSETS_FILE  = Plugin::VIEWS_PATH . '/assets.php';
-
 	protected const HEADER_FILE  = Plugin::VIEWS_PATH . '/header.php';
-
 	protected const TITLE        = '';
-
 	protected const FOOTER_FILE  = Plugin::VIEWS_PATH . '/footer.php';
 
 	/**
@@ -81,14 +77,17 @@ abstract class Metabox {
 	 * @return void
 	 */
 	final public function display(): void {
-		$metabox_title   = __( static::TITLE, PLUGIN_NAME );
+		$metabox_title = __( static::TITLE, PLUGIN_NAME );
+
 		$item_properties = $this->get_item_properties();
 		$item_metadata   = $this->get_item_metadata();
-		$item_vars       = [
+
+		$item_vars = [
 			__( 'Properties', PLUGIN_NAME ) => $item_properties,
 			__( 'Metadata', PLUGIN_NAME )   => $item_metadata,
 		];
-		$metadata_list   = Metadata_Iterator::from_vars_list( $item_vars );
+
+		$metadata_list = Metadata_Iterator::from_vars_list( $item_vars );
 
 		require static::METABOX_FILE;
 	}
