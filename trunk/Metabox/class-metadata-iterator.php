@@ -5,7 +5,12 @@ namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 use ArrayIterator;
 use Trasweb\Plugins\DisplayMetadata\Plugin;
 
-class Vars_Iterator extends ArrayIterator {
+/**
+ * Iterator for metadata list.
+ *
+ * @package Trasweb\Plugins\DisplayMetadata\Metabox
+ */
+class Metadata_Iterator extends ArrayIterator {
 
 	protected const META_LIST_VIEW = Plugin::VIEWS_PATH . '/meta_list.php';
 
@@ -38,7 +43,7 @@ class Vars_Iterator extends ArrayIterator {
 		if ( is_array( $meta_value ) ) {
 			ksort( $meta_value );
 
-			return Vars_Iterator::from_vars_list( $meta_value, $this->depth + 1 );
+			return Metadata_Iterator::from_vars_list( $meta_value, $this->depth + 1 );
 		}
 
 		if ( is_null( $meta_value ) ) {
@@ -51,9 +56,9 @@ class Vars_Iterator extends ArrayIterator {
 	/**
 	 * Current depth.
 	 *
-	 * @return mixed
+	 * @return integer
 	 */
-	private function get_depth(): int {
+	public function get_depth(): int {
 		return (int) $this->depth;
 	}
 

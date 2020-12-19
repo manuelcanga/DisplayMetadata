@@ -88,7 +88,7 @@ abstract class Metabox {
 			__( 'Properties', PLUGIN_NAME ) => $item_properties,
 			__( 'Metadata', PLUGIN_NAME )   => $item_metadata,
 		];
-		$metadata_list   = Vars_Iterator::from_vars_list( $item_vars );
+		$metadata_list   = Metadata_Iterator::from_vars_list( $item_vars );
 
 		require static::METABOX_FILE;
 	}
