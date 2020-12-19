@@ -40,6 +40,11 @@ class Metadata_Iterator extends ArrayIterator {
 		$meta_value = parent::current();
 		$meta_value = maybe_unserialize( $meta_value );
 
+		//Sometimes, unserialize returns objects
+		if ( \is_object( $meta_value ) ) {
+			$meta_value = \json_decode( \json_encode( $meta_value ), true );
+		}
+
 		if ( is_array( $meta_value ) ) {
 			ksort( $meta_value );
 
