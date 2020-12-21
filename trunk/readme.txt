@@ -8,7 +8,7 @@ Stable tag: 0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Shows metadata( fields, custom fields and protected metas ) in a metabox for posts( any CPT ), terms( any taxonomy ) and users. Metadata are displayed for humans( organized and unserialized ). This metabox only will be displayed per either administrator users or users with `display_metadata_metabox` capability.
+Shows metas( fields, custom fields and protected metas ) in a metabox for posts( any CPT ), terms( any taxonomy ) and users. Metas are displayed for humans( organized and unserialized ). This metabox only will be displayed per either administrator users or users with `display_metadata_metabox` capability.
 
 == Description ==
 
@@ -45,7 +45,7 @@ If you’re interested in contributing to Display Metadata, head to the [Display
 == Changelog ==
 More detailed changes in [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
 
-= 0.1 / 2020-01-24 =
+= 0.1 / 2020-01-21 =
 
 * Initial release.
 
