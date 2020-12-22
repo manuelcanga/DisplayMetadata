@@ -33,7 +33,7 @@ If you’re interested in contributing to Display Metadata, head to the [Display
 == Screenshots ==
 
 1. You can see post( from any CPT ) properties, custom fields and protected meta from a post metabox.
-2. Yu can see term( from any taxonoy ) properties, custom fields and protected meta.
+2. You can see term( from any taxonoy ) properties, custom fields and protected meta.
 3. Finally, You also can see user properties, custom fields and protected meta.
 
 == Installation ==
