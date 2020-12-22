@@ -13,6 +13,7 @@ class Metabox_Factory {
 		'post'    => __NAMESPACE__ . '\Post',
 		'tag_ID'  => __NAMESPACE__ . '\Term',
 		'user_id' => __NAMESPACE__ . '\User',
+		'c'       => __NAMESPACE__ . '\Comment',
 	];
 
 	/**

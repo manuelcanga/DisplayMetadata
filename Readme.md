@@ -18,13 +18,13 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 ## Summary
 
-Shows metas( fields, custom fields and protected metas ) in a metabox for posts( any CPT ), terms( any taxonomy ) and users. Metas are displayed for humans( organized and unserialized ). This metabox only will be displayed per either administrator users or users with `display_metadata_metabox` capability.
+Shows metas( fields, custom fields and protected metas ) in a metabox for posts( any CPT ), terms( any taxonomy ), comments and users. Metas are displayed for humans( organized and unserialized ). This metabox only will be displayed per either administrator users or users with `display_metadata_metabox` capability.
 
 ## Description
 
 As a developer you normally need know about a value of some meta( or properties ) of a post, term o user.
 
-As a sysadmin maybe you need know about which meta are created in posts/terms/users in order to remove which are unnecessary.
+As a sysadmin maybe you need know about which meta are created in posts/terms/comments/users in order to remove which are unnecessary.
 
 As a plugin author you need check if you plugin is adding  meta rightly.
 
@@ -44,7 +44,7 @@ This plugin is inspired on [David Navia's](https://profiles.wordpress.org/davidn
 1. Search for **Display Metadata** and click the *Search Plugins* button.
 1. Click the *Install Now* link for this plugin.
 1. Click the *Activate Plugin* button.
-1. **Now, this plugin add a new metabox on editing form of posts( any CPT ), terms( any taxonomy ) and users**.
+1. **Now, this plugin add a new metabox on editing form of posts( any CPT ), terms( any taxonomy ), comments and users**.
 
 ## Changelog
 More detailed changes in [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
@@ -53,7 +53,15 @@ More detailed changes in [Display Metadata GitHub Repository](https://github.com
 
 * Initial release.
 
+#### 0.2 / xxxx-xx-xx
+
+* Support to comment metadata.
+
 ## Upgrade Notice
 
 #### 0.1
 First version. Install it
+
+#### 0.2
+
+Support to comment metadata.
