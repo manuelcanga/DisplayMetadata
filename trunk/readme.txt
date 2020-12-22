@@ -22,6 +22,10 @@ As a theme author you need know about which meta is available in order to can us
 
 In all these cases( and others ), you can use Display Meta plugin.
 
+== Thanks ==
+
+This plugin is inspired on [David Navia's](https://profiles.wordpress.org/davidnaviaweb/) code and [JS Morisset's](https://profiles.wordpress.org/jsmoriss/) plugins.
+
 == Send me bugs or improvements ==
 
 If you’re interested in contributing to Display Metadata, head to the [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
