@@ -44,6 +44,7 @@ This plugin is inspired on [David Navia's](https://profiles.wordpress.org/davidn
 1. Search for **Display Metadata** and click the *Search Plugins* button.
 1. Click the *Install Now* link for this plugin.
 1. Click the *Activate Plugin* button.
+1. **Now, this plugin add a new metabox on editing form of posts( any CPT ), terms( any taxonomy ) and users**.
 
 ## Changelog
 More detailed changes in [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
