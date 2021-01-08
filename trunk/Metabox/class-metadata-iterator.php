@@ -57,12 +57,21 @@ class Metadata_Iterator extends ArrayIterator {
 		return htmlentities( (string) $meta_value );
 	}
 
+	public function get_attributes(): string {
+		$attrs[] = ( 1 === $this->get_depth() ) ? "meta_headers" : 'meta_item';
+		$attrs[] = 'depth_' . $this->get_depth();
+		$attrs[] = ( !is_array( parent::current() ) && !is_serialized( parent::current() )  ) ? 'meta_scalar' : 'meta_array';
+
+
+		return implode( ' ', $attrs );
+	}
+
 	/**
 	 * Current depth.
 	 *
 	 * @return integer
 	 */
-	public function get_depth(): int {
+	private function get_depth(): int {
 		return (int) $this->depth;
 	}
 
