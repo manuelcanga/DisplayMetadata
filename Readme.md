@@ -60,6 +60,7 @@ More detailed changes in [Display Metadata GitHub Repository](https://github.com
 
 * Support to comment metadata.
 * Support to copy meta keys / values to clipboard.
+* Make clickable links.
 
 ## Upgrade Notice
 

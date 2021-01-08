@@ -54,7 +54,7 @@ class Metadata_Iterator extends ArrayIterator {
 			return 'NULL';
 		}
 
-		return htmlentities( (string) $meta_value );
+		return make_clickable( htmlentities( (string) $meta_value ) );
 	}
 
 	public function get_attributes(): string {
