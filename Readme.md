@@ -10,7 +10,7 @@ Tested up to: 5.6
 
 Requires PHP: 7.2
 
-Stable tag: 0.1
+Stable tag: 0.2
 
 License: GPLv3 or later
 
@@ -49,11 +49,11 @@ This plugin is inspired on [David Navia's](https://profiles.wordpress.org/davidn
 ## Changelog
 More detailed changes in [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
 
-#### 0.1 / 2020-01-21
+#### 0.1 / 2020-12-21
 
 * Initial release.
 
-#### 0.2 / xxxx-xx-xx
+#### 0.2 / 2021-01-14
 
 * Support to comment metadata.
 
