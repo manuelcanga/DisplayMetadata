@@ -40,8 +40,12 @@
     padding: 4px 5px;
 }
 
+#trasweb-metadata-metabox .depth_2:hover > td.meta_key, #trasweb-metadata-metabox .depth_2:hover > td.meta_value {
+    background: #dbdbdb;
+}
+
 #trasweb-metadata-metabox td.meta_key {
-    background-color: #f3f4f5;
+    background-color: #f1f1f1;
     font-weight: 600;
 }
 
