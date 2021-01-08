@@ -40,7 +40,7 @@
     padding: 4px 5px;
 }
 
-#trasweb-metadata-metabox .depth_2:hover > td.meta_key, #trasweb-metadata-metabox .depth_2:hover > td.meta_value {
+#trasweb-metadata-metabox .depth_2:hover td.meta_key, #trasweb-metadata-metabox .depth_2:hover td.meta_value {
     background: #dbdbdb;
 }
 
@@ -49,9 +49,51 @@
     font-weight: 600;
 }
 
+#trasweb-metadata-metabox .meta_item > td.meta_key:hover{
+    position: relative;
+    background-clip: padding-box; /* fix bug with borders in position relative */
+}
+
+#trasweb-metadata-metabox .meta_item > td.meta_key:hover:after {
+    width: 90px;
+    height: 15px;
+    display: inline-block;
+    position: absolute;
+    content: "Click to copy key";
+    background-color: #555;
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px;
+    z-index: 1;
+    top: -34px;
+    left: 0;
+    text-align: center;
+}
+
 #trasweb-metadata-metabox td.meta_value {
     background-color: #fff;
     overflow-x: auto;
     word-wrap: break-word;
     width: 100%;
+}
+
+#trasweb-metadata-metabox .meta_scalar > td.meta_value:hover{
+    position: relative;
+    background-clip: padding-box; /* fix bug with borders in position relative */
+}
+
+#trasweb-metadata-metabox .meta_scalar > td.meta_value:hover:after {
+    width: 100px;
+    height: 15px;
+    display: inline-block;
+    position: absolute;
+    content: "Click to copy value";
+    background-color: #555;
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px;
+    z-index: 1;
+    top: -34px;
+    left: 45%;
+    text-align: center;
 }
