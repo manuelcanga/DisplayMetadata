@@ -34,7 +34,10 @@ In all these cases( and others ), you can use Display Meta plugin.
 
 ## Thanks
 
-This plugin is inspired on [David Navia's](https://profiles.wordpress.org/davidnaviaweb/) code and [JS Morisset's](https://profiles.wordpress.org/jsmoriss/) plugins.
+[Javier Esteban – @nobnob](https://profiles.wordpress.org/nobnob/) and [Yordan Soares – @yordansoares](https://profiles.wordpress.org/yordansoares/) for theirs translations.
+
+This plugin is inspired on [David Navia's](https://profiles.wordpress.org/davidnaviaweb/) code, [Post Meta Viewer](https://es.wordpress.org/plugins/post-meta-viewer/) and [JS Morisset's](https://profiles.wordpress.org/jsmoriss/) plugins.
+
 
 ## Installation
 
