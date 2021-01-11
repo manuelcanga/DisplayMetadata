@@ -28,7 +28,6 @@
     width: 100%;
 }
 
-
 #trasweb-metadata-metabox .meta_empty_array table {
     border: 1px solid #7e8993;
     box-sizing: border-box;
@@ -42,7 +41,7 @@
 
 #trasweb-metadata-metabox td, #trasweb-metadata-metabox th {
     border: 1px solid #7e8993;
-    font-size: 0.95em;
+    font-size: 1em;
     vertical-align: baseline;
     padding: 4px 5px;
 }
@@ -51,9 +50,16 @@
     background: #dbdbdb;
 }
 
+#trasweb-metadata-metabox .depth_1 > td.meta_key {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
 #trasweb-metadata-metabox td.meta_key {
     background-color: #f1f1f1;
     font-weight: 600;
+    color: #000;
+    letter-spacing: 1px;
 }
 
 #trasweb-metadata-metabox .meta_item > td.meta_key:hover{
@@ -83,6 +89,7 @@
     overflow-x: auto;
     word-wrap: break-word;
     width: 100%;
+    color: #333;
 }
 
 #trasweb-metadata-metabox .meta_scalar > td.meta_value:hover{
