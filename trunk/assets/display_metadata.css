@@ -28,6 +28,12 @@
     width: 100%;
 }
 
+#trasweb-metadata-metabox .meta_empty_array table {
+    border: 1px solid #7e8993;
+    box-sizing: border-box;
+    margin: 13px 6px;
+}
+
 #trasweb-metadata-metabox td.meta_value table {
     box-sizing: border-box;
     padding: 13px 6px;

@@ -52,15 +52,16 @@ This plugin is inspired on [David Navia's](https://profiles.wordpress.org/davidn
 ## Changelog
 More detailed changes in [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
 
-#### 0.1 / 2020-12-21
-
-* Initial release.
-
-#### 0.2 / 2021-01-14
+#### 0.2 / 2021-02-14
 
 * Support to comment metadata.
 * Support to copy meta keys / values to clipboard.
 * Make clickable links.
+* Allow showing empty array.
+
+#### 0.1 / 2020-12-21
+
+* Initial release.
 
 ## Upgrade Notice
 

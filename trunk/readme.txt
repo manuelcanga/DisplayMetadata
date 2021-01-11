@@ -51,21 +51,19 @@ If you’re interested in contributing to Display Metadata, head to the [Display
 == Changelog ==
 More detailed changes in [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
 
-= 0.1 / 2020-12-21 =
-
-* Initial release.
-
-= 0.2 / 2021-01-08
+= 0.2 / 2021-02-14
 
 * Support to comment metadata.
 * Support to copy meta keys / values to clipboard.
 * Make clickable links.
+* Allow showing empty array.
+
+= 0.1 / 2020-12-21 =
+
+* Initial release.
 
 == Upgrade Notice ==
 
 = 0.1 =
+
 First version. Install it
-
-= 0.2 =
-
-Support to comment metadata.

@@ -60,8 +60,8 @@ class Metadata_Iterator extends ArrayIterator {
 	public function get_attributes(): string {
 		$attrs[] = ( 1 === $this->get_depth() ) ? "meta_headers" : 'meta_item';
 		$attrs[] = 'depth_' . $this->get_depth();
-		$attrs[] = ( !is_array( parent::current() ) && !is_serialized( parent::current() )  ) ? 'meta_scalar' : 'meta_array';
-
+		$attrs[] = ( is_array( parent::current() ) && empty( parent::current() ) ) ? 'meta_empty_array' : '';
+		$attrs[] = ( !is_array( parent::current() ) && !is_serialized( parent::current() ) ) ? 'meta_scalar' : 'meta_array';
 
 		return implode( ' ', $attrs );
 	}
