@@ -28,6 +28,7 @@
     width: 100%;
 }
 
+
 #trasweb-metadata-metabox .meta_empty_array table {
     border: 1px solid #7e8993;
     box-sizing: border-box;
@@ -60,6 +61,7 @@
     background-clip: padding-box; /* fix bug with borders in position relative */
 }
 
+/** label for copy */
 #trasweb-metadata-metabox .meta_item > td.meta_key:hover:after {
     width: 90px;
     height: 15px;
@@ -88,6 +90,12 @@
     background-clip: padding-box; /* fix bug with borders in position relative */
 }
 
+/** Zebra style */
+#trasweb-metadata-metabox tr:nth-child(odd) > td.meta_value {
+    background-color: #f9f9f9;
+}
+
+/** label for copy */
 #trasweb-metadata-metabox .meta_scalar > td.meta_value:hover:after {
     width: 100px;
     height: 15px;
@@ -103,3 +111,4 @@
     left: 45%;
     text-align: center;
 }
+
