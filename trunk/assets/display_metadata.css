@@ -69,7 +69,7 @@
 
 /** label for copy */
 #trasweb-metadata-metabox .meta_item > td.meta_key:hover:after {
-    width: 90px;
+    width: 100px;
     height: 15px;
     display: inline-block;
     position: absolute;
@@ -79,9 +79,10 @@
     border-radius: 6px;
     padding: 5px;
     z-index: 1;
-    top: -34px;
+    top: -30px;
     left: 0;
     text-align: center;
+    font-size: 10px;
 }
 
 #trasweb-metadata-metabox td.meta_value {
@@ -117,5 +118,6 @@
     top: -34px;
     left: 45%;
     text-align: center;
+    font-size: 10px;
 }
 
