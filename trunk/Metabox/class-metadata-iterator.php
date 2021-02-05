@@ -89,12 +89,10 @@ class Metadata_Iterator extends ArrayIterator {
      */
     public function __toString()
     {
-        $metadata_list = $this;
-
         ob_start();
-        ( static function () {
+        ( static function ( Metadata_Iterator $metadata_list ) {
             include static::META_LIST_VIEW;
-        } )();
+        } )( $this );
 
         return \ob_get_clean() ?: '';
     }
