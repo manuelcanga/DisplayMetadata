@@ -15,18 +15,18 @@ namespace Trasweb\Plugins\DisplayMetadata;
  * Domain Path: /languages
 */
 
-if ( !defined( "ABSPATH" ) ) {
-	die( "Hello, World!" );
+if ( ! defined( 'ABSPATH' ) ) {
+    die( 'Hello, World!' );
 }
 
-if ( !is_admin() ) {
-	return;
+if ( ! is_admin() ) {
+    return;
 }
 
 ( static function () {
-	require_once __DIR__ . '/class-plugin.php';
+    include_once __DIR__ . '/class-plugin.php';
 
-	${'display-metadata'} = new Plugin( $_GET ?: [] );
+    ${'display-metadata'} = new Plugin( $_GET ?: [] );
 
-	add_action( 'admin_init', ${'display-metadata'} );
+    add_action( 'admin_init', ${'display-metadata'} );
 } )();

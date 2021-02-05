@@ -7,6 +7,6 @@
          <td class="meta_value"><?= $meta_value  ?></td>
       </tr><?php
    endforeach;
-   ?>
+    ?>
    </tbody>
 </table>

@@ -3,6 +3,7 @@
 namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 
 use Trasweb\Plugins\DisplayMetadata\Plugin;
+
 use const ARRAY_A;
 
 /**
@@ -10,63 +11,69 @@ use const ARRAY_A;
  */
 final class Post extends Metabox {
 
-	protected const TITLE       = 'Post information';
-	protected const HEADER_FILE    = Plugin::VIEWS_PATH . '/nothing.php';
-	protected const FOOTER_FILE    = Plugin::VIEWS_PATH . '/nothing.php';
+    protected const TITLE       = 'Post information';
 
-	/**
-	 * Register a metabox in order to display it later.
-	 *
-	 * @return void
-	 */
-	public function register(): void {
-		if ( !$this->can_be_registered() ) {
-			return;
-		}
+    protected const HEADER_FILE = Plugin::VIEWS_PATH . '/nothing.php';
 
-		add_meta_box(
-			'trasweb_metadata_metabox',     // Unique ID
-			static::TITLE,                // Box title
-			[ $this, 'display' ],              // Content callback
-			$this->get_accepted_cpt()          // Post type
-		);
-	}
+    protected const FOOTER_FILE = Plugin::VIEWS_PATH . '/nothing.php';
 
-	/**
-	 * Check if a metabox can be registered
-	 *
-	 * @return bool
-	 */
-	protected function can_be_registered(): bool {
-		$current_screen = Plugin::get_current_screen();
+    /**
+     * Register a metabox in order to display it later.
+     *
+     * @return void
+     */
+    public function register(): void
+    {
+        if ( ! $this->can_be_registered() ) {
+            return;
+        }
 
-		return 'post' === $current_screen->slug;
-	}
+        add_meta_box( 'trasweb_metadata_metabox',     // Unique ID
+            static::TITLE,                            // Box title
+            [ $this, 'display' ],                     // Content callback
+            $this->get_accepted_cpt()          // Post type
+        );
+    }
 
-	/**
-	 * Helepr: Retrieve list of post type with show-ui. This cpt are where the metabox will be displayed.
-	 *
-	 * @return array
-	 */
-	protected function get_accepted_cpt(): array {
-		return array_values( get_post_types( [ 'show_ui' => true ] ) ?: [] );
-	}
+    /**
+     * Check if a metabox can be registered
+     *
+     * @return boolean
+     */
+    protected function can_be_registered(): bool
+    {
+        $current_screen = Plugin::get_current_screen();
 
-	/**
-	 * Retrieve item properties/fields. E.g: ID, post_title, ...
-	 *
-	 * @return array
-	 */
-	protected function get_item_properties(): array {
-		return get_post( $this->item_id, ARRAY_A ) ?: [];
-	}
+        return 'post' === $current_screen->slug;
+    }
 
-	/**
-	 * Retrieve item metaata. E.g: _edit_lock
-	 *
-	 * @return array
-	 */
-	protected function get_item_metadata(): array {
-		return array_map( 'array_shift', get_post_meta( $this->item_id ) ?: [] );
-	}
+    /**
+     * Helepr: Retrieve list of post type with show-ui. This cpt are where the metabox will be displayed.
+     *
+     * @return array
+     */
+    protected function get_accepted_cpt(): array
+    {
+        return array_values( get_post_types( [ 'show_ui' => true ] ) ?: [] );
+    }
+
+    /**
+     * Retrieve item properties/fields. E.g: ID, post_title, ...
+     *
+     * @return array
+     */
+    protected function get_item_properties(): array
+    {
+        return get_post( $this->item_id, ARRAY_A ) ?: [];
+    }
+
+    /**
+     * Retrieve item metaata. E.g: _edit_lock
+     *
+     * @return array
+     */
+    protected function get_item_metadata(): array
+    {
+        return array_map( 'array_shift', get_post_meta( $this->item_id ) ?: [] );
+    }
 }
