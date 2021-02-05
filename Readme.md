@@ -53,7 +53,7 @@ In all these cases( and others ), you can use Display Meta plugin.
 ## Changelog
 More detailed changes in [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
 
-#### 0.2 / 2021-02-14
+#### 0.2 / 2021-02-05
 
 * Support to comment metadata.
 * Support to copy meta keys / values to clipboard.
