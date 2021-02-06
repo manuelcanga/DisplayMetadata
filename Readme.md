@@ -1,4 +1,4 @@
-# Display Metadata 
+# Display post meta, term meta, comment meta, and user meta
 
 Contributors: trasweb
 

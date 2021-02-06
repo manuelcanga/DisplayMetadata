@@ -1,4 +1,4 @@
-=== Display Metadata ===
+=== Display post meta, term meta, comment meta, and user meta ===
 Contributors: trasweb
 Tags: development, metabox, debug, metadata
 Requires at least: 4.9.0
@@ -11,6 +11,8 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Shows metas( fields, custom fields and protected metas ) in a metabox for posts( any CPT ), terms( any taxonomy ), comments and users. Metas are displayed for humans( organized and unserialized ). This metabox only will be displayed per either administrator users or users with `display_metadata_metabox` capability.
 
 == Description ==
+
+Shows metas( fields, custom fields and protected metas ) in a metabox for posts( any CPT ), terms( any taxonomy ), comments and users. Metas are displayed for humans( organized and unserialized ). This metabox only will be displayed per either administrator users or users with `display_metadata_metabox` capability.
 
 As a developer you normally need know about a value of some meta( or properties ) of a post, term o user.
 
