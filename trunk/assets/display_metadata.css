@@ -46,8 +46,9 @@
     padding: 4px 5px;
 }
 
-#trasweb-metadata-metabox .depth_2:hover td.meta_key, #trasweb-metadata-metabox .depth_2:hover td.meta_value {
+#trasweb-metadata-metabox .meta_item:not(.depth_1):hover > td.meta_key, #trasweb-metadata-metabox .meta_item.meta_scalar:not(.depth_1):hover > td.meta_value {
     background: #dbdbdb;
+    background-clip: padding-box; /* fix bug with borders in position relative */
 }
 
 #trasweb-metadata-metabox .depth_1 > td.meta_key {
@@ -87,13 +88,12 @@
 
 #trasweb-metadata-metabox td.meta_value {
     background-color: #fff;
-    overflow-x: auto;
     word-wrap: break-word;
     width: 100%;
     color: #333;
 }
 
-#trasweb-metadata-metabox .meta_scalar > td.meta_value:hover{
+#trasweb-metadata-metabox .meta_item > td.meta_value:hover{
     position: relative;
     background-clip: padding-box; /* fix bug with borders in position relative */
 }
