@@ -4,7 +4,7 @@ Tags: development, metabox, debug, metadata
 Requires at least: 4.9.0
 Tested up to: 5.7.2
 Requires PHP: 7.2
-Stable tag: 0.3
+Stable tag: 0.3.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -34,7 +34,7 @@ In all these cases( and others ), you can use Display Meta plugin.
 
 == Send me bugs or improvements ==
 
-If you’re interested in contributing to Display Metadata, head to the [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
+If you’re interested in contributing to Display Metadata, head to the [Display Metadata GitHub Repository](https://github.com/manuelcanga/DisplayMetadata/).
 
 == Screenshots ==
 
@@ -53,7 +53,7 @@ If you’re interested in contributing to Display Metadata, head to the [Display
 1. **Now, this plugin add a new metabox on editing form of posts( any CPT ), terms( any taxonomy ), comments and users**.
 
 == Changelog ==
-More detailed changes in [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
+More detailed changes in [Display Metadata GitHub Repository](https://github.com/manuelcanga/DisplayMetadata/).
 
 = 0.3 / 2021-07-17
 

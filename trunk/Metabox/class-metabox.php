@@ -86,7 +86,7 @@ abstract class Metabox {
      * @return mixed
      */
     protected function shift_metadata( $meta ) {
-        return $meta[1] ? $meta : $meta[0];
+        return isset( $meta[1] ) ? $meta : $meta[0];
     }
 
     /**

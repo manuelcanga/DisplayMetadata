@@ -51,7 +51,7 @@ In all these cases( and others ), you can use Display Meta plugin.
 1. **Now, this plugin add a new metabox on editing form of posts( any CPT ), terms( any taxonomy ), comments and users**.
 
 ## Changelog
-More detailed changes in [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
+More detailed changes in [Display Metadata GitHub Repository](https://github.com/manuelcanga/DisplayMetadata/).
 
 #### 0.3 / 2021-03-01
 
