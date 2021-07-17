@@ -2,9 +2,9 @@
 Contributors: trasweb
 Tags: development, metabox, debug, metadata
 Requires at least: 4.9.0
-Tested up to: 5.6
+Tested up to: 5.7.2
 Requires PHP: 7.2
-Stable tag: 0.2
+Stable tag: 0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -55,9 +55,12 @@ If you’re interested in contributing to Display Metadata, head to the [Display
 == Changelog ==
 More detailed changes in [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
 
-= 0.3 / 2021-03-01
+= 0.3 / 2021-07-17
 
 * Better hover
+* Better design
+* Fix bug with metas with the same key.
+
 
 = 0.2 / 2021-02-05
 
