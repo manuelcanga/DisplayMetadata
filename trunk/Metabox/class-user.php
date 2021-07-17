@@ -51,6 +51,6 @@ final class User extends Metabox {
 	 * @return array
 	 */
 	protected function get_item_metadata(): array {
-		return array_map('array_shift', get_user_meta( $this->item_id )?: [] );
+        return array_map( [ $this, 'shift_metadata' ],get_user_meta( $this->item_id )?: [] );
 	}
 }

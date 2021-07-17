@@ -3,7 +3,6 @@
 namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 
 use Trasweb\Plugins\DisplayMetadata\Plugin;
-
 use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
 
 /**
@@ -78,6 +77,17 @@ abstract class Metabox {
      * @return array
      */
     abstract protected function get_item_metadata(): array;
+
+    /**
+     * Shift metadata in order to avoid remove metas with equal key
+     *
+     * @param mixed $meta
+     *
+     * @return mixed
+     */
+    protected function shift_metadata( $meta ) {
+        return $meta[1] ? $meta : $meta[0];
+    }
 
     /**
      * Display metadata metabox.
