@@ -30,29 +30,37 @@
 
 #trasweb-metadata-metabox .meta_empty_array table {
     border: 1px solid #7e8993;
+    border-right: 0;
     box-sizing: border-box;
-    margin: 13px 6px;
+    margin: 13px 0 13px 0;
+    padding: 15px 0 15px 15px;
 }
 
-#trasweb-metadata-metabox td.meta_value table {
-    box-sizing: border-box;
-    padding: 13px 6px;
-}
 
 #trasweb-metadata-metabox td, #trasweb-metadata-metabox th {
     border: 1px solid #7e8993;
-    font-size: 1em;
+    border-right: 0;
+    font-size: 0.99em;
     vertical-align: baseline;
-    padding: 4px 5px;
+    padding: 4px 0 4px 5px;
 }
 
-#trasweb-metadata-metabox .depth_2:hover td.meta_key, #trasweb-metadata-metabox .depth_2:hover td.meta_value {
+#trasweb-metadata-metabox .meta_item:not(.depth_1):hover > td.meta_key, #trasweb-metadata-metabox .meta_item.meta_scalar:not(.depth_1):hover > td.meta_value {
     background: #dbdbdb;
+    background-clip: padding-box; /* fix bug with borders in position relative */
 }
 
 #trasweb-metadata-metabox .depth_1 > td.meta_key {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1em;
+}
+
+#trasweb-metadata-metabox .depth_1 > td.meta_value > table {
+    border-right: 1px solid #7e8993;
+}
+
+#trasweb-metadata-metabox .depth_1 table {
+	padding: 13px 0 13px 5px;
 }
 
 #trasweb-metadata-metabox td.meta_key {
@@ -60,6 +68,7 @@
     font-weight: 600;
     color: #000;
     letter-spacing: 1px;
+    padding-right: 3px;
 }
 
 #trasweb-metadata-metabox .meta_item > td.meta_key:hover{
@@ -87,13 +96,12 @@
 
 #trasweb-metadata-metabox td.meta_value {
     background-color: #fff;
-    overflow-x: auto;
     word-wrap: break-word;
     width: 100%;
     color: #333;
 }
 
-#trasweb-metadata-metabox .meta_scalar > td.meta_value:hover{
+#trasweb-metadata-metabox .meta_item > td.meta_value:hover{
     position: relative;
     background-clip: padding-box; /* fix bug with borders in position relative */
 }

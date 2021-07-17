@@ -1,16 +1,18 @@
-=== Display Metadata ===
+=== Display post meta, term meta, comment meta, and user meta ===
 Contributors: trasweb
 Tags: development, metabox, debug, metadata
 Requires at least: 4.9.0
-Tested up to: 5.6
+Tested up to: 5.7.2
 Requires PHP: 7.2
-Stable tag: 0.2
+Stable tag: 0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Shows metas( fields, custom fields and protected metas ) in a metabox for posts( any CPT ), terms( any taxonomy ), comments and users. Metas are displayed for humans( organized and unserialized ). This metabox only will be displayed per either administrator users or users with `display_metadata_metabox` capability.
 
 == Description ==
+
+Shows metas( fields, custom fields and protected metas ) in a metabox for posts( any CPT ), terms( any taxonomy ), comments and users. Metas are displayed for humans( organized and unserialized ). This metabox only will be displayed per either administrator users or users with `display_metadata_metabox` capability.
 
 As a developer you normally need know about a value of some meta( or properties ) of a post, term o user.
 
@@ -52,6 +54,13 @@ If you’re interested in contributing to Display Metadata, head to the [Display
 
 == Changelog ==
 More detailed changes in [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
+
+= 0.3 / 2021-07-17
+
+* Better hover
+* Better design
+* Fix bug with metas with the same key.
+
 
 = 0.2 / 2021-02-05
 

@@ -74,6 +74,6 @@ final class Post extends Metabox {
      */
     protected function get_item_metadata(): array
     {
-        return array_map( 'array_shift', get_post_meta( $this->item_id ) ?: [] );
+        return array_map( [ $this, 'shift_metadata' ], get_post_meta( $this->item_id ) ?: [] );
     }
 }

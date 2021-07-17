@@ -1,4 +1,4 @@
-# Display Metadata 
+# Display post meta, term meta, comment meta, and user meta
 
 Contributors: trasweb
 
@@ -6,11 +6,11 @@ Tags: development, metabox, debug, metadata
 
 Requires at least: 4.9.0
 
-Tested up to: 5.6
+Tested up to: 5.7.2
 
 Requires PHP: 7.2
 
-Stable tag: 0.2
+Stable tag: 0.3
 
 License: GPLv3 or later
 
@@ -52,6 +52,12 @@ In all these cases( and others ), you can use Display Meta plugin.
 
 ## Changelog
 More detailed changes in [Display Metadata GitHub Repository](https://github.com/trasweb/DisplayMetadata/).
+
+#### 0.3 / 2021-03-01
+
+* Better hover
+* Better design
+* Fix bug with metas with the same key.
 
 #### 0.2 / 2021-02-05
 
