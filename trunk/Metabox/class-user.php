@@ -17,10 +17,6 @@ final class User extends Metabox {
 	 * @return void
 	 */
 	public function register(): void {
-		if ( !$this->can_be_registered() ) {
-			return;
-		}
-
 		add_action( 'edit_user_profile', [ $this, 'display' ] );
 		add_action( 'show_user_profile', [ $this, 'display' ] );
 	}
@@ -30,7 +26,7 @@ final class User extends Metabox {
 	 *
 	 * @return bool
 	 */
-	protected function can_be_registered(): bool {
+	public function can_be_registered(): bool {
 		$current_screen = Plugin::get_current_screen();
 
 		return 'user-edit' === $current_screen->slug || 'profile' === $current_screen->slug;

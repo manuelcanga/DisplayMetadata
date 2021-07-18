@@ -20,10 +20,6 @@ final class Term extends Metabox {
      */
     public function register(): void
     {
-        if ( ! $this->can_be_registered() ) {
-            return;
-        }
-
         $term = $this->get_item_properties();
 
         if ( empty( $term[ 'term_id' ] ) ) {
@@ -38,7 +34,7 @@ final class Term extends Metabox {
      *
      * @return boolean
      */
-    protected function can_be_registered(): bool
+    public function can_be_registered(): bool
     {
         $current_screen = Plugin::get_current_screen();
 

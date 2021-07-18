@@ -62,7 +62,7 @@ abstract class Metabox {
      *
      * @return boolean
      */
-    abstract protected function can_be_registered(): bool;
+    abstract public function can_be_registered(): bool;
 
     /**
      * Retrieve item properties/fields. E.g: ID, post_title, ...

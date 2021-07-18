@@ -19,7 +19,7 @@ class None extends Metabox {
      *
      * @return array
      */
-    protected function can_be_registered(): bool
+    public function can_be_registered(): bool
     {
         return false;
     }

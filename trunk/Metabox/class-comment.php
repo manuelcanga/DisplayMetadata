@@ -20,10 +20,6 @@ final class Comment extends Metabox {
      */
     public function register(): void
     {
-        if ( ! $this->can_be_registered() ) {
-            return;
-        }
-
         add_action( 'add_meta_boxes_comment', [ $this, 'display' ] );
     }
 
@@ -32,7 +28,7 @@ final class Comment extends Metabox {
      *
      * @return boolean
      */
-    protected function can_be_registered(): bool
+    public function can_be_registered(): bool
     {
         $current_screen = Plugin::get_current_screen();
 

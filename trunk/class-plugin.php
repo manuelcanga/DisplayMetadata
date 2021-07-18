@@ -3,7 +3,6 @@
 namespace Trasweb\Plugins\DisplayMetadata;
 
 use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Factory;
-
 use function define;
 
 /**
@@ -84,7 +83,10 @@ final class Plugin {
         $this->bootstrap();
 
         $metabox = Metabox_Factory::get_current_metabox($this->screen_vars);
-        $metabox->register();
+
+	    if ( $metabox->can_be_registered() ) {
+		    $metabox->register();
+	    }
     }
 
     /**
