@@ -89,6 +89,23 @@ abstract class Metabox {
         return isset( $meta[1] ) ? $meta : maybe_unserialize( $meta[0] );
     }
 
+	/**
+	 * Generaate metadata to show.
+	 *
+	 * @return Metadata_Iterator
+	 */
+    protected function get_metadata_list(): Metadata_Iterator {
+	    $item_properties = $this->get_item_properties();
+	    $item_metadata = $this->get_item_metadata();
+
+	    $item_vars = [
+		    __( 'Properties', PLUGIN_NAME ) => $item_properties,
+		    __( 'Metadata', PLUGIN_NAME )   => $item_metadata,
+	    ];
+
+	     return Metadata_Iterator::from_vars_list( $item_vars );
+    }
+
     /**
      * Display metadata metabox.
      *
@@ -98,15 +115,7 @@ abstract class Metabox {
     {
         $metabox_title = __( static::TITLE, PLUGIN_NAME );
 
-        $item_properties = $this->get_item_properties();
-        $item_metadata = $this->get_item_metadata();
-
-        $item_vars = [
-            __( 'Properties', PLUGIN_NAME ) => $item_properties,
-            __( 'Metadata', PLUGIN_NAME )   => $item_metadata,
-        ];
-
-        $metadata_list = Metadata_Iterator::from_vars_list( $item_vars );
+	    $metadata_list = $this->get_metadata_list();
 
         include static::METABOX_FILE;
     }
