@@ -15,7 +15,6 @@ namespace Trasweb\Plugins\DisplayMetadata;
  * Domain Path: /languages
 */
 
-
 if ( ! defined( 'ABSPATH' ) ) {
     die( 'Hello, World!' );
 }

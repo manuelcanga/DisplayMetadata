@@ -54,6 +54,7 @@ class Metadata_Iterator extends ArrayIterator {
 	{
 		$meta_value = maybe_unserialize( parent::current() );
 
+		// Allow to see the meta keys as separated keys.
 		if ( 2 === $this->depth && isset( $meta_value[ 'meta_key' ] ) ) {
 			$meta_value = maybe_unserialize( $meta_value[ 'meta_value' ] );
 		}
