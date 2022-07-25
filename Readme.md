@@ -6,11 +6,11 @@ Tags: development, metabox, debug, metadata
 
 Requires at least: 4.9.0
 
-Tested up to: 5.7.2
+Tested up to: 6.0.1
 
 Requires PHP: 7.2
 
-Stable tag: 0.3
+Stable tag: 0.4.0
 
 License: GPLv3 or later
 
