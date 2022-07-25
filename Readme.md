@@ -10,7 +10,7 @@ Tested up to: 6.0.1
 
 Requires PHP: 7.2
 
-Stable tag: 0.4.0
+Stable tag: 0.4.1
 
 License: GPLv3 or later
 
@@ -52,6 +52,12 @@ In all these cases( and others ), you can use Display Meta plugin.
 
 ## Changelog
 More detailed changes in [Display Metadata GitHub Repository](https://github.com/manuelcanga/DisplayMetadata/).
+
+#### 0.4 / 2022-07-25
+
+* Fix warning with PHP 8.0
+* Test with WP 6.0.1 version.
+* Better meta names when keys are repeated.
 
 #### 0.3 / 2021-03-01
 
