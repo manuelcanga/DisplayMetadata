@@ -12,6 +12,11 @@ final class User extends Metabox {
 	protected const TITLE = 'User information';
 
 	/**
+	 * @var string Field name where meta is saved for item_id
+	 */
+	protected const FIELD_META_ID = 'user_id';
+
+	/**
 	 * Register a metabox in order to display it later.
 	 *
 	 * @return void
@@ -42,11 +47,13 @@ final class User extends Metabox {
 	}
 
 	/**
-	 * Retrieve item metaata. E.g: nickname, first_name, last_name, ...
+	 * Retrieve metadata table name for current WordPress
 	 *
-	 * @return array
+	 * @return string table name.
 	 */
-	protected function get_item_metadata(): array {
-        return array_map( [ $this, 'shift_metadata' ],get_user_meta( $this->item_id )?: [] );
+	protected function get_meta_table_name(): string {
+		global $wpdb;
+
+		return $wpdb->usermeta;
 	}
 }

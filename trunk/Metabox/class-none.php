@@ -43,4 +43,13 @@ class None extends Metabox {
     {
         return [];
     }
+
+	/**
+	 * Retrieve none.
+	 *
+	 * @return string
+	 */
+	protected function get_meta_table_name(): string {
+		return '';
+	}
 }

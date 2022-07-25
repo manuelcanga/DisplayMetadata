@@ -3,6 +3,7 @@
 namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 
 use Trasweb\Plugins\DisplayMetadata\Plugin;
+use const ARRAY_A;
 use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
 
 /**
@@ -19,6 +20,11 @@ abstract class Metabox {
     protected const TITLE        = '';
 
     protected const FOOTER_FILE  = Plugin::VIEWS_PATH . '/footer.php';
+
+	/**
+	 * @var string Field name where meta is saved for item_id
+	 */
+	protected const FIELD_META_ID = '';
 
     /**
      * @var string $item_id ID from user, post or term.
@@ -71,23 +77,33 @@ abstract class Metabox {
      */
     abstract protected function get_item_properties(): array;
 
-    /**
-     * Retrieve item metaata. E.g:
-     *
-     * @return array
-     */
-    abstract protected function get_item_metadata(): array;
+	/**
+	 * Retrieve metadata table name for current WordPress
+	 *
+	 * @return string table name.
+	 */
+	abstract protected function get_meta_table_name(): string;
 
-    /**
-     * Shift metadata in order to avoid remove metas with equal key
-     *
-     * @param mixed $meta
-     *
-     * @return mixed
-     */
-    protected function shift_metadata( $meta ) {
-        return isset( $meta[1] ) ? $meta : maybe_unserialize( $meta[0] );
-    }
+	/**
+	 * Retrieve metadatas from table name using field and current item value.
+	 *
+	 * @return array<meta_key: string, meta_value:string>
+	 */
+	protected function get_item_metadata(): array {
+		global $wpdb;
+
+		$table_name = $this->get_meta_table_name();
+		$field = static::FIELD_META_ID;
+		$value = (int)$this->item_id;
+
+		$query=<<<SQL
+SELECT meta_key, meta_value
+ FROM {$table_name}
+ WHERE {$field} = {$value}
+SQL;
+
+		return $wpdb->get_results( $query, ARRAY_A )?: [];
+	}
 
 	/**
 	 * Generaate metadata to show.
