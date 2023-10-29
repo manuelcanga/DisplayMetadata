@@ -55,7 +55,7 @@ final class Plugin {
      *
      * @return string
      */
-    final private static function get_page_now(): string
+    private static function get_page_now(): string
     {
         global $pagenow;
 
@@ -92,7 +92,7 @@ final class Plugin {
      *
      * @return void
      */
-    final private function bootstrap(): void
+    private function bootstrap(): void
     {
         define(self::NAMESPACE . '\PLUGIN_NAME', basename(self::PATH));
         define(self::NAMESPACE . '\PLUGIN_TITLE', __('Display metadata', PLUGIN_NAME));
@@ -110,7 +110,7 @@ final class Plugin {
      *
      * @return void
      */
-    final private function register_metabox_autoload(): void
+    private function register_metabox_autoload(): void
     {
         spl_autoload_register(static function ( $class_name ) {
             if ( 0 !== strpos($class_name, self::NAMESPACE) ) {
