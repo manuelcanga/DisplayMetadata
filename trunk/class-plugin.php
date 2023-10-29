@@ -119,6 +119,6 @@ final class Plugin {
 
             $file_name = strtolower(str_replace('_', '-', trim(strrchr($class_name, '\\'), '\\')));
             include sprintf(self::METABOX_FILE_PATTERN, $file_name);
-        }, $throw_exception = false);
+        });
     }
 }
