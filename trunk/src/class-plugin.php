@@ -6,7 +6,7 @@ use Trasweb\Plugins\DisplayMetadata\Framework\Autoload;
 use Trasweb\Plugins\DisplayMetadata\Framework\Screen;
 use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Factory;
 
-use function define;
+use function current_user_can;
 
 /**
  * Class Plugin. Initialize and configure plugin
@@ -17,7 +17,6 @@ final class Plugin {
     public const NAMESPACE = __NAMESPACE__;
     public const VIEWS_PATH = self::PATH . '/../views';
     public const ASSETS_PATH = self::PATH . '/../assets';
-    public const NEEDED_CAPABILITY = 'display_metadata_metabox';
 
     private $screen_vars;
 
@@ -58,13 +57,10 @@ final class Plugin {
      */
     public function __invoke(): void
     {
-        if ( ! current_user_can('administrator') && ! \current_user_can(self::NEEDED_CAPABILITY) ) {
-            return;
-        }
-
         $this->bootstrap();
         $this->register_metabox();
     }
+
 
     /**
      * Register metabox for current url.
@@ -86,9 +82,6 @@ final class Plugin {
      */
     private function bootstrap(): void
     {
-        define(self::NAMESPACE . '\PLUGIN_NAME', basename(self::PATH));
-        define(self::NAMESPACE . '\PLUGIN_TITLE', __('Display metadata', PLUGIN_NAME));
-
         // Fix for profile admin pages.
         if ( defined('IS_PROFILE_PAGE') && IS_PROFILE_PAGE ) {
             $this->screen_vars[ 'user_id' ] = get_current_user_id();

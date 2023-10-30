@@ -2,19 +2,21 @@
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 
+use Trasweb\Plugins\DisplayMetadata\Metabox\Type as MetaboxType;
+
 /**
  * This class instances typed metabox classes.
  */
 class Metabox_Factory {
-
-    private const NONE_ID = 0;
-
-    private const DEFAULT_METABOX = __NAMESPACE__ . '\None';
+    private const DEFAULT_METABOX = MetaboxType\None::class;
+    /**
+     * array<string, class-string>
+     */
     private const DEFAULT_METABOX_TYPES = [
-        'post'    => __NAMESPACE__ . '\Post',
-        'tag_ID'  => __NAMESPACE__ . '\Term',
-        'user_id' => __NAMESPACE__ . '\User',
-        'c'       => __NAMESPACE__ . '\Comment',
+        'post'    => MetaboxType\Post::class,
+        'tag_ID'  => MetaboxType\Term::class,
+        'user_id' => MetaboxType\User::class,
+        'c'       => MetaboxType\Comment::class,
     ];
     private array $metabox_types_by_screen_var_key;
     /**
@@ -39,12 +41,13 @@ class Metabox_Factory {
     /**
      * Screen vars should be numeric (they, which we use, are ids)
      *
-     * @param array $screen_vars
+     * @param array<string, mixed> $screen_vars
      *
-     * @return array
+     * @return array<string, int>
      */
-    private function check_screen_vars(array $screen_vars): array{
-        $screen_var_checker = fn($item_id)=> absint($item_id ?? 0);
+    private function check_screen_vars(array $screen_vars): array
+    {
+        $screen_var_checker = fn($item_id) => absint($item_id ?? 0);
 
         return array_filter(array_map($screen_var_checker, $screen_vars));
     }
@@ -52,9 +55,9 @@ class Metabox_Factory {
     /**
      * Metabox types should to be Metabox objects.
      *
-     * @param array $metabox_types
+     * @param array<string, mixed> $metabox_types
      *
-     * @return array
+     * @return <string, class-string>
      */
     private function check_metabox_types(array $metabox_types): array
     {
@@ -65,19 +68,23 @@ class Metabox_Factory {
 
     /**
      * Retrieve an instance according to screen_vars.
+     *
      * @return Metabox
      */
-    final public function get_current_metabox(): Metabox {
+    final public function get_current_metabox(): Metabox
+    {
+       $current_metabox = new (self::DEFAULT_METABOX)();
+
         foreach ( $this->metabox_types_by_screen_var_key as $item_id_key => $metabox_type ) {
             $item_id = $this->screen_vars[$item_id_key] ?? 0;
 
-            if ( ! $item_id ) {
-                continue;
+            if ($item_id) {
+                $current_metabox = new $metabox_type($item_id);
+                break;
             }
-
-            return $metabox_type::from_item_id($item_id);
         }
 
-        return (self::DEFAULT_METABOX)::from_item_id(self::NONE_ID);
+        return $current_metabox;
     }
+
 }

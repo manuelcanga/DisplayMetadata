@@ -27,6 +27,9 @@ if ( ! is_admin() ) {
     include_once __DIR__ . '/src/class-plugin.php';
     include_once __DIR__ . '/src/Framework/class-autoload.php';
 
+    define(__NAMESPACE__ . '\PLUGIN_NAME', basename(__DIR__));
+    define(__NAMESPACE__ . '\PLUGIN_TITLE', __('Display metadata', PLUGIN_NAME));
+
     ${'display-metadata'} = new Plugin( $_GET ?: [] );
 
     add_action( 'admin_init', ${'display-metadata'} );

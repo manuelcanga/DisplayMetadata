@@ -1,7 +1,8 @@
 <?php declare( strict_types = 1 );
 
-namespace Trasweb\Plugins\DisplayMetadata\Metabox;
+namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
 
+use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
 use Trasweb\Plugins\DisplayMetadata\Plugin;
 use const ARRAY_A;
 
@@ -39,6 +40,10 @@ final class Post extends Metabox {
      */
     public function can_be_registered(string $screen_slug): bool
     {
+        if(!parent::can_be_registered($screen_slug)){
+            return false;
+        }
+
         return 'post' === $screen_slug;
     }
 

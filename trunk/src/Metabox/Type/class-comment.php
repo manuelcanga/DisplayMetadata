@@ -1,21 +1,21 @@
 <?php declare( strict_types = 1 );
 
-namespace Trasweb\Plugins\DisplayMetadata\Metabox;
+namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
 
-use Trasweb\Plugins\DisplayMetadata\Plugin;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
 
 use const ARRAY_A;
 
 /**
- * This class manages `Display Metadata` term metabox.
+ * This class manages `Display Metadata` comment metabox.
  */
-final class Term extends Metabox {
+final class Comment extends Metabox {
 
-    protected const TITLE = 'Term information';
+    protected const TITLE = 'Comment information';
 	/**
 	 * @var string Field name where meta is saved for item_id
 	 */
-	protected const FIELD_META_ID = 'term_id';
+	protected const FIELD_META_ID = 'comment_id';
 
     /**
      * Register a metabox in order to display it later.
@@ -24,13 +24,7 @@ final class Term extends Metabox {
      */
     public function register(): void
     {
-        $term = $this->get_item_properties();
-
-        if ( empty( $term[ 'term_id' ] ) ) {
-            return;
-        }
-
-        add_action( $term[ 'taxonomy' ] . '_edit_form', [ $this, 'display' ] );
+        add_action( 'add_meta_boxes_comment', [ $this, 'display' ] );
     }
 
     /**
@@ -38,17 +32,21 @@ final class Term extends Metabox {
      */
     public function can_be_registered(string $screen_slug): bool
     {
-        return 'term' === $screen_slug;
+        if(!parent::can_be_registered($screen_slug)){
+            return false;
+        }
+
+        return 'comment' === $screen_slug;
     }
 
     /**
-     * Retrieve item properties/fields. E.g: term_id, name, ...
+     * Retrieve item properties/fields. E.g: comment_ID, comment_approved, ...
      *
      * @return array
      */
     protected function get_item_properties(): array
     {
-        return get_term( $this->item_id, '', ARRAY_A ) ?: [];
+        return get_comment( $this->item_id, ARRAY_A ) ?: [];
     }
 
 	/**
@@ -59,6 +57,6 @@ final class Term extends Metabox {
 	protected function get_meta_table_name(): string {
 		global $wpdb;
 
-		return $wpdb->termmeta;
+		return $wpdb->commentmeta;
 	}
 }

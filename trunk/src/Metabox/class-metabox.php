@@ -3,6 +3,7 @@
 namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 
 use Trasweb\Plugins\DisplayMetadata\Plugin;
+
 use const ARRAY_A;
 use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
 
@@ -10,6 +11,7 @@ use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
  * This class manages `Display Metadata` metaboxes.
  */
 abstract class Metabox {
+    protected const NEEDED_CAPABILITY = 'display_metadata_metabox';
 
     protected const METABOX_FILE = Plugin::VIEWS_PATH . '/metabox.php';
 
@@ -31,29 +33,19 @@ abstract class Metabox {
      */
     protected $item_id;
 
-    private function __construct()
+    /**
+     * Metabox constructor
+     *
+     * @return void
+     */
+    public function __construct(int $item_id = 0)
     {
-        // not direct instance, please
+        $this->item_id = $item_id;
     }
 
     private function __clone()
     {
         // not cloning please
-    }
-
-    /**
-     * Named constructor. Create an instance from an item id.
-     *
-     * @param integer $item_id
-     *
-     * @return static
-     */
-    final public static function from_item_id( int $item_id ): self
-    {
-        $metabox = new static();
-        $metabox->item_id = $item_id;
-
-        return $metabox;
     }
 
     /**
@@ -70,7 +62,10 @@ abstract class Metabox {
      *
      * @return boolean
      */
-    abstract public function can_be_registered(string $screen_slug): bool;
+    public function can_be_registered(string $screen_slug): bool
+    {
+        return current_user_can('administrator') || current_user_can(static::NEEDED_CAPABILITY);
+    }
 
     /**
      * Retrieve item properties/fields. E.g: ID, post_title, ...
