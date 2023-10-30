@@ -32,6 +32,11 @@ class Metadata_Iterator extends ArrayIterator {
 		return $iterator;
 	}
 
+    /**
+     * Retrieve meta name
+     *
+     * @return int|string|null
+     */
 	public function key()
 	{
 		$key = parent::key();
@@ -39,14 +44,14 @@ class Metadata_Iterator extends ArrayIterator {
 
 		// Allow to see the meta keys as separated keys.
 		if ( 2 === $this->depth && isset($value[ 'meta_key' ])  ) {
-			return $value[ 'meta_key' ];
+			$key= $value[ 'meta_key' ];
 		}
 
-		return $key;
+		return htmlentities((string)$key);
 	}
 
 	/**
-	 * Retrieve current value of current meta.
+	 * Retrieve meta value
 	 *
 	 * @return $this|mixed|string
 	 */
