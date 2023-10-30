@@ -3,6 +3,7 @@
 namespace Trasweb\Plugins\DisplayMetadata;
 
 use Trasweb\Plugins\DisplayMetadata\Framework\Autoload;
+use Trasweb\Plugins\DisplayMetadata\Framework\Screen;
 use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Factory;
 
 use function define;
@@ -37,37 +38,7 @@ final class Plugin {
      */
     final public static function get_current_screen(): \WP_Screen
     {
-        include_once ABSPATH . 'wp-admin/includes/post.php';
-        include_once ABSPATH . 'wp-admin/includes/class-wp-screen.php';
-
-        $pagenow = self::get_page_now();
-        $screen = \WP_Screen::get($pagenow);
-
-        $screen->slug = $screen->base ?: '';
-        $screen->base = strtok($screen->slug, '-') ?: '';
-        $screen->place = strtok('') ?: 'main';
-
-        return $screen;
-    }
-
-    /**
-     * Helper: Retrieve page now from request
-     *
-     * @return string
-     */
-    private static function get_page_now(): string
-    {
-        global $pagenow;
-
-        if ( ! $pagenow ) {
-            unset($pagenow);
-
-            $current_base_url = parse_url($_SERVER[ 'REQUEST_URI' ], PHP_URL_PATH) ?: '';
-
-            $pagenow = strrchr($current_base_url, '/') ?: $current_base_url;
-        }
-
-        return basename($pagenow, '.php');
+        return (new Screen())->get_current();
     }
 
     /**
