@@ -1,4 +1,4 @@
-<?php declare( strict_types = 1 );
+<?php declare(strict_types = 1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 
@@ -7,45 +7,77 @@ namespace Trasweb\Plugins\DisplayMetadata\Metabox;
  */
 class Metabox_Factory {
 
-	private const NONE_ID                         = 0;
+    private const NONE_ID = 0;
 
-	private const DEFAULT_METABOX                 = __NAMESPACE__ . '\None';
-
-    private array $metabox_types_by_screen_var_key;
-
+    private const DEFAULT_METABOX = __NAMESPACE__ . '\None';
     private const DEFAULT_METABOX_TYPES = [
-		'post'    => __NAMESPACE__ . '\Post',
-		'tag_ID'  => __NAMESPACE__ . '\Term',
-		'user_id' => __NAMESPACE__ . '\User',
-		'c'       => __NAMESPACE__ . '\Comment',
-	];
+        'post'    => __NAMESPACE__ . '\Post',
+        'tag_ID'  => __NAMESPACE__ . '\Term',
+        'user_id' => __NAMESPACE__ . '\User',
+        'c'       => __NAMESPACE__ . '\Comment',
+    ];
+    private array $metabox_types_by_screen_var_key;
+    /**
+     * @var array<string, int>
+     */
+    private array $screen_vars;
 
-    public function __construct(array $metabox_types_by_screen_var_key = self::DEFAULT_METABOX_TYPES)
-    {
-        $this->metabox_types_by_screen_var_key = $metabox_types_by_screen_var_key;
+    /**
+     * @param array $screen_vars Vars from query string.
+     *
+     * @param array $metabox_types_by_screen_var_key
+     * @return void
+     */
+    public function __construct(
+        array $screen_vars,
+        array $metabox_types_by_screen_var_key = self::DEFAULT_METABOX_TYPES
+    ) {
+        $this->screen_vars = $this->check_screen_vars($screen_vars);
+        $this->metabox_types_by_screen_var_key = $this->check_metabox_types($metabox_types_by_screen_var_key);
     }
 
-	/**
-	 * Retrieve an instance according to screen_vars.
-	 *
-	 * @param array $screen_vars Vars from query string.
-	 *
-	 * @return Metabox
-	 */
-    final public function get_current_metabox(array $screen_vars): Metabox
-	{
-		$screen_vars = array_filter( $screen_vars, 'is_numeric' );
+    /**
+     * Screen vars should be numeric (they, which we use, are ids)
+     *
+     * @param array $screen_vars
+     *
+     * @return array
+     */
+    private function check_screen_vars(array $screen_vars): array{
+        $screen_var_checker = fn($item_id)=> absint($item_id ?? 0);
 
-        foreach ($this->metabox_types_by_screen_var_key as $item_id_key => $metabox_type) {
-			if ( empty( $screen_vars[ $item_id_key ] ) || !is_a( $metabox_type, Metabox::class, $allow_string = true ) ) {
-				continue;
-			}
+        return array_filter(array_map($screen_var_checker, $screen_vars));
+    }
 
-			$item_id = absint( $screen_vars[ $item_id_key ] );
+    /**
+     * Metabox types should to be Metabox objects.
+     *
+     * @param array $metabox_types
+     *
+     * @return array
+     */
+    private function check_metabox_types(array $metabox_types): array
+    {
+        $type_checker = fn($metabox_type) => is_a($metabox_type, Metabox::class, allow_string: true);
 
-			return $metabox_type::from_item_id( $item_id );
-		}
+        return array_filter($metabox_types, $type_checker);
+    }
 
-		return ( self::DEFAULT_METABOX )::from_item_id( self::NONE_ID );
-	}
+    /**
+     * Retrieve an instance according to screen_vars.
+     * @return Metabox
+     */
+    final public function get_current_metabox(): Metabox {
+        foreach ( $this->metabox_types_by_screen_var_key as $item_id_key => $metabox_type ) {
+            $item_id = $this->screen_vars[$item_id_key] ?? 0;
+
+            if ( ! $item_id ) {
+                continue;
+            }
+
+            return $metabox_type::from_item_id($item_id);
+        }
+
+        return (self::DEFAULT_METABOX)::from_item_id(self::NONE_ID);
+    }
 }

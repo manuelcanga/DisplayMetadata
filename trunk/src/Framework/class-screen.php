@@ -8,13 +8,19 @@ namespace Trasweb\Plugins\DisplayMetadata\Framework;
  */
 class Screen
 {
+    private string $current_url;
+
     /**
      * @return void
      */
-    public function __construct()
+    public function __construct(?string $request_uri = null, bool $should_wp_screen_files_be_included = true)
     {
-        include_once ABSPATH . 'wp-admin/includes/post.php';
-        include_once ABSPATH . 'wp-admin/includes/class-wp-screen.php';
+        if ($should_wp_screen_files_be_included) {
+            include_once ABSPATH . 'wp-admin/includes/post.php';
+            include_once ABSPATH . 'wp-admin/includes/class-wp-screen.php';
+        }
+
+        $this->current_url = $request_uri ?? $_SERVER['REQUEST_URI'] ?? '/';
     }
 
     /**
@@ -23,8 +29,6 @@ class Screen
      * @return \WP_Screen
      */
     public function get_current(): \WP_Screen {
-
-
         $pagenow = $this->get_page_now();
         $screen = \WP_Screen::get($pagenow);
 
@@ -57,7 +61,7 @@ class Screen
         if ( ! $pagenow ) {
             unset($pagenow);
 
-            $current_base_url = parse_url($_SERVER[ 'REQUEST_URI' ], PHP_URL_PATH) ?: '';
+            $current_base_url = parse_url($this->current_url, PHP_URL_PATH) ?: '';
 
             $pagenow = strrchr($current_base_url, '/') ?: $current_base_url;
         }

@@ -42,6 +42,16 @@ final class Plugin {
     }
 
     /**
+     * Retrieve object of Metabox factory.
+     *
+     * @return Metabox_Factory
+     */
+    protected function get_metabox_factory(): Metabox_Factory
+    {
+        return new Metabox_Factory($this->screen_vars);
+    }
+
+    /**
      * Plugin Starts
      *
      * @return void
@@ -53,9 +63,18 @@ final class Plugin {
         }
 
         $this->bootstrap();
+        $this->register_metabox();
+    }
 
-        $metabox = (new Metabox_Factory())->get_current_metabox($this->screen_vars);
-        if ( $metabox->can_be_registered($this->get_current_screen_slug()) ) {
+    /**
+     * Register metabox for current url.
+     *
+     * @return void
+     */
+    public function register_metabox(): void
+    {
+        $metabox = $this->get_metabox_factory()->get_current_metabox();
+        if ($metabox->can_be_registered($this->get_current_screen_slug())) {
             $metabox->register();
         }
     }
