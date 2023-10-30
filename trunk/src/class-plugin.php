@@ -14,8 +14,8 @@ final class Plugin {
 
     public const PATH = __DIR__;
     public const NAMESPACE = __NAMESPACE__;
-    public const VIEWS_PATH = self::PATH . '/views';
-    public const ASSETS_PATH = self::PATH . '/assets';
+    public const VIEWS_PATH = self::PATH . '/../views';
+    public const ASSETS_PATH = self::PATH . '/../assets';
     public const NEEDED_CAPABILITY = 'display_metadata_metabox';
 
     private $screen_vars;
@@ -102,7 +102,7 @@ final class Plugin {
             $this->screen_vars[ 'user_id' ] = get_current_user_id();
         }
 
-        $autoload = new  Autoload(self::NAMESPACE, self::PATH.'/src');
+        $autoload = new  Autoload(self::NAMESPACE, self::PATH );
 
         spl_autoload_register([$autoload, 'find_class']);
     }
