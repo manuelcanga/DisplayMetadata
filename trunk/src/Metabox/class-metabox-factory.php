@@ -11,12 +11,19 @@ class Metabox_Factory {
 
 	private const DEFAULT_METABOX                 = __NAMESPACE__ . '\None';
 
-	private const METABOX_TYPES_BY_SCREEN_VAR_KEY = [
+    private array $metabox_types_by_screen_var_key;
+
+    private const DEFAULT_METABOX_TYPES = [
 		'post'    => __NAMESPACE__ . '\Post',
 		'tag_ID'  => __NAMESPACE__ . '\Term',
 		'user_id' => __NAMESPACE__ . '\User',
 		'c'       => __NAMESPACE__ . '\Comment',
 	];
+
+    public function __construct(array $metabox_types_by_screen_var_key = self::DEFAULT_METABOX_TYPES)
+    {
+        $this->metabox_types_by_screen_var_key = $metabox_types_by_screen_var_key;
+    }
 
 	/**
 	 * Retrieve an instance according to screen_vars.
@@ -25,11 +32,11 @@ class Metabox_Factory {
 	 *
 	 * @return Metabox
 	 */
-	final public static function get_current_metabox( array $screen_vars ): Metabox
+    final public function get_current_metabox(array $screen_vars): Metabox
 	{
 		$screen_vars = array_filter( $screen_vars, 'is_numeric' );
 
-		foreach ( self::METABOX_TYPES_BY_SCREEN_VAR_KEY as $item_id_key => $metabox_type ) {
+        foreach ($this->metabox_types_by_screen_var_key as $item_id_key => $metabox_type) {
 			if ( empty( $screen_vars[ $item_id_key ] ) || !is_a( $metabox_type, Metabox::class, $allow_string = true ) ) {
 				continue;
 			}
