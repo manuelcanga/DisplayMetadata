@@ -25,6 +25,7 @@ if ( ! is_admin() ) {
 
 ( static function () {
     include_once __DIR__ . '/class-plugin.php';
+    include_once __DIR__ . '/src/Framework/class-autoload.php';
 
     ${'display-metadata'} = new Plugin( $_GET ?: [] );
 
