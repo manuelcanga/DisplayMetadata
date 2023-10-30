@@ -15,7 +15,7 @@ final class Plugin {
     public const NAMESPACE = __NAMESPACE__;
     public const VIEWS_PATH = self::PATH . '/views';
     public const ASSETS_PATH = self::PATH . '/assets';
-    public const METABOX_FILE_PATTERN = self::PATH . '/Metabox/class-%s.php';
+    public const DEFAULT_METABOX_FILE_PATTERN = self::PATH . '/src/Metabox/class-%s.php';
     public const NEEDED_CAPABILITY = 'display_metadata_metabox';
 
     private $screen_vars;
@@ -102,7 +102,7 @@ final class Plugin {
             $this->screen_vars[ 'user_id' ] = get_current_user_id();
         }
 
-        $this->register_metabox_autoload();
+        $this->register_metabox_autoload(self::NAMESPACE, self::DEFAULT_METABOX_FILE_PATTERN);
     }
 
     /**
@@ -110,15 +110,15 @@ final class Plugin {
      *
      * @return void
      */
-    private function register_metabox_autoload(): void
+    private function register_metabox_autoload(string $namespace, string $metabox_file_pattern): void
     {
-        spl_autoload_register(static function ( $class_name ) {
-            if ( 0 !== strpos($class_name, self::NAMESPACE) ) {
+        spl_autoload_register(static function ( $class_name ) use($namespace, $metabox_file_pattern){
+            if ( 0 !== strpos($class_name, $namespace) ) {
                 return;
             }
 
             $file_name = strtolower(str_replace('_', '-', trim(strrchr($class_name, '\\'), '\\')));
-            include sprintf(self::METABOX_FILE_PATTERN, $file_name);
+            include sprintf($metabox_file_pattern , $file_name);
         });
     }
 }
