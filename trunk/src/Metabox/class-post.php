@@ -34,17 +34,13 @@ final class Post extends Metabox {
 		);
 	}
 
-	/**
-	 * Check if a metabox can be registered
-	 *
-	 * @return boolean
-	 */
-	public function can_be_registered(): bool
-	{
-		$current_screen = Plugin::get_current_screen();
-
-		return 'post' === $current_screen->slug;
-	}
+    /**
+     * @inheritDoc
+     */
+    public function can_be_registered(string $screen_slug): bool
+    {
+        return 'post' === $screen_slug;
+    }
 
 	/**
 	 * Helepr: Retrieve list of post type with show-ui. This cpt are where the metabox will be displayed.

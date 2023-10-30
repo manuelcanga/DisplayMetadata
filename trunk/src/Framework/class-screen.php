@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace Trasweb\Plugins\DisplayMetadata\Framework;
 
 /**
@@ -10,13 +9,21 @@ namespace Trasweb\Plugins\DisplayMetadata\Framework;
 class Screen
 {
     /**
+     * @return void
+     */
+    public function __construct()
+    {
+        include_once ABSPATH . 'wp-admin/includes/post.php';
+        include_once ABSPATH . 'wp-admin/includes/class-wp-screen.php';
+    }
+
+    /**
      * Retrieve a WP_Screen object based on current context in admin area.
      *
      * @return \WP_Screen
      */
     public function get_current(): \WP_Screen {
-        include_once ABSPATH . 'wp-admin/includes/post.php';
-        include_once ABSPATH . 'wp-admin/includes/class-wp-screen.php';
+
 
         $pagenow = $this->get_page_now();
         $screen = \WP_Screen::get($pagenow);
@@ -26,6 +33,16 @@ class Screen
         $screen->place = strtok('') ?: 'main';
 
         return $screen;
+    }
+
+    /**
+     * Retrieve current screen type
+     *
+     * @return string
+     */
+    public function get_current_screen_type(): string
+    {
+        return $this->get_current()->slug ?? '';
     }
 
     /**

@@ -66,9 +66,11 @@ abstract class Metabox {
     /**
      * Check if a metabox can be registered
      *
+     * @param string $screen_slug Slug from current admin url. @see \WP_Screen
+     *
      * @return boolean
      */
-    abstract public function can_be_registered(): bool;
+    abstract public function can_be_registered(string $screen_slug): bool;
 
     /**
      * Retrieve item properties/fields. E.g: ID, post_title, ...

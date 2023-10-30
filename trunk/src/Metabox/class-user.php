@@ -26,16 +26,13 @@ final class User extends Metabox {
 		add_action( 'show_user_profile', [ $this, 'display' ] );
 	}
 
-	/**
-	 * Check if a metabox can be registered
-	 *
-	 * @return bool
-	 */
-	public function can_be_registered(): bool {
-		$current_screen = Plugin::get_current_screen();
-
-		return 'user-edit' === $current_screen->slug || 'profile' === $current_screen->slug;
-	}
+    /**
+     * @inheritDoc
+     */
+    public function can_be_registered(string $screen_slug): bool
+    {
+        return 'user-edit' === $screen_slug || 'profile' === $screen_slug;
+    }
 
 	/**
 	 * Retrieve item properties/fields. E.g: ID, user_login, ...

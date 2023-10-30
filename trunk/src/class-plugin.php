@@ -32,13 +32,13 @@ final class Plugin {
     }
 
     /**
-     * Retrieve current screen.
+     * Retrieve current screen slug
      *
-     * @return \WP_Screen
+     * @return string
      */
-    final public static function get_current_screen(): \WP_Screen
+    protected function get_current_screen_slug(): string
     {
-        return (new Screen())->get_current();
+        return (new Screen())->get_current_screen_type();
     }
 
     /**
@@ -55,7 +55,7 @@ final class Plugin {
         $this->bootstrap();
 
         $metabox = (new Metabox_Factory())->get_current_metabox($this->screen_vars);
-        if ( $metabox->can_be_registered() ) {
+        if ( $metabox->can_be_registered($this->get_current_screen_slug()) ) {
             $metabox->register();
         }
     }

@@ -14,12 +14,11 @@ class None extends Metabox {
         // None
     }
 
+
     /**
-     * cannot can se registered
-     *
-     * @return array
+     * @inheritDoc
      */
-    public function can_be_registered(): bool
+    public function can_be_registered(string $screen_slug): bool
     {
         return false;
     }

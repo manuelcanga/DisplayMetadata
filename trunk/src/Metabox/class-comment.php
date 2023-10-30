@@ -28,15 +28,11 @@ final class Comment extends Metabox {
     }
 
     /**
-     * Check if a metabox can be registered
-     *
-     * @return boolean
+     * @inheritDoc
      */
-    public function can_be_registered(): bool
+    public function can_be_registered(string $screen_slug): bool
     {
-        $current_screen = Plugin::get_current_screen();
-
-        return 'comment' === $current_screen->slug;
+        return 'comment' === $screen_slug;
     }
 
     /**
