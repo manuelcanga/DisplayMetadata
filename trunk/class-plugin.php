@@ -83,7 +83,7 @@ final class Plugin {
 
         $this->bootstrap();
 
-        $metabox = Metabox_Factory::get_current_metabox($this->screen_vars);
+        $metabox = (new Metabox_Factory())->get_current_metabox($this->screen_vars);
         $metabox->register();
     }
 
