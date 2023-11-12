@@ -1,4 +1,5 @@
-<?php declare( strict_types = 1 );
+<?php
+declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata;
 
@@ -11,7 +12,8 @@ use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
 /**
  * Class Plugin. Initialize and configure plugin
  */
-final class Plugin {
+final class Plugin
+{
 
     public const PATH = __DIR__;
     public const NAMESPACE = __NAMESPACE__;
@@ -26,29 +28,9 @@ final class Plugin {
      *
      * @param array $screen_vars Params( normally $_GET ) from current screen.
      */
-    public function __construct( array $screen_vars )
+    public function __construct(array $screen_vars)
     {
         $this->screen_vars = $screen_vars;
-    }
-
-    /**
-     * Retrieve current screen slug
-     *
-     * @return string
-     */
-    protected function get_current_screen_slug(): string
-    {
-        return (new Screen())->get_current_screen_type();
-    }
-
-    /**
-     * Retrieve object of Metabox factory.
-     *
-     * @return Metabox_Factory
-     */
-    protected function get_metabox_factory(): Metabox_Factory
-    {
-        return new Metabox_Factory($this->screen_vars);
     }
 
     /**
@@ -62,6 +44,24 @@ final class Plugin {
         $this->register_metabox();
     }
 
+    /**
+     * Define basic of plugin in order to can be loaded.
+     *
+     * @return void
+     */
+    private function bootstrap(): void
+    {
+        // Fix for profile admin pages.
+        if (defined('IS_PROFILE_PAGE') && IS_PROFILE_PAGE) {
+            $this->screen_vars['user_id'] = get_current_user_id();
+        }
+
+        $autoload = new  Autoload(self::NAMESPACE, self::PATH);
+
+        spl_autoload_register([$autoload, 'find_class']);
+
+        add_action('trasweb_metabox_display', [$this, 'display_metabox'], 10, 2);
+    }
 
     /**
      * Register metabox for current url.
@@ -77,6 +77,26 @@ final class Plugin {
     }
 
     /**
+     * Retrieve object of Metabox factory.
+     *
+     * @return Metabox_Factory
+     */
+    protected function get_metabox_factory(): Metabox_Factory
+    {
+        return new Metabox_Factory($this->screen_vars);
+    }
+
+    /**
+     * Retrieve current screen slug
+     *
+     * @return string
+     */
+    protected function get_current_screen_slug(): string
+    {
+        return (new Screen())->get_current_screen_type();
+    }
+
+    /**
      * Display a metabox
      *
      * @param Model $metabox
@@ -87,24 +107,5 @@ final class Plugin {
     public function display_metabox(Model $metabox_model, string $metabox_type = 'simple-metabox')
     {
         (new Metabox_View($metabox_model))->display($metabox_type);
-    }
-
-    /**
-     * Define basic of plugin in order to can be loaded.
-     *
-     * @return void
-     */
-    private function bootstrap(): void
-    {
-        // Fix for profile admin pages.
-        if ( defined('IS_PROFILE_PAGE') && IS_PROFILE_PAGE ) {
-            $this->screen_vars[ 'user_id' ] = get_current_user_id();
-        }
-
-        $autoload = new  Autoload(self::NAMESPACE, self::PATH );
-
-        spl_autoload_register([$autoload, 'find_class']);
-
-        add_action('trasweb_metabox_display', [$this, 'display_metabox'], 10, 2);
     }
 }

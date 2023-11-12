@@ -1,4 +1,5 @@
-<?php declare( strict_types = 1 );
+<?php
+declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata;
 
@@ -15,22 +16,22 @@ namespace Trasweb\Plugins\DisplayMetadata;
  * Domain Path: /languages
 */
 
-if ( ! defined( 'ABSPATH' ) ) {
-    die( 'Hello, World!' );
+if (!defined('ABSPATH')) {
+    die('Hello, World!');
 }
 
-if ( ! is_admin() ) {
+if (!is_admin()) {
     return;
 }
 
-( static function () {
+(static function () {
     include_once __DIR__ . '/src/class-plugin.php';
     include_once __DIR__ . '/src/Framework/class-autoload.php';
 
     define(__NAMESPACE__ . '\PLUGIN_NAME', basename(__DIR__));
     define(__NAMESPACE__ . '\PLUGIN_TITLE', __('Display metadata', PLUGIN_NAME));
 
-    ${'display-metadata'} = new Plugin( $_GET ?: [] );
+    ${'display-metadata'} = new Plugin($_GET ?: []);
 
-    add_action( 'admin_init', ${'display-metadata'} );
-} )();
+    add_action('admin_init', ${'display-metadata'});
+})();

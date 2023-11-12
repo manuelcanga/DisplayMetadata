@@ -1,9 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Model;
 
 use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
+
+use function json_decode;
+use function json_encode;
 
 /**
  * Class User_Model
@@ -24,8 +28,9 @@ class User_Model extends Model
      *
      * @return array
      */
-    public function get_item_properties(): array {
-        return \json_decode( \json_encode( get_user_by('id', $this->item_id ) ), true );
+    public function get_item_properties(): array
+    {
+        return json_decode(json_encode(get_user_by('id', $this->item_id)), true);
     }
 
     /**
@@ -33,7 +38,8 @@ class User_Model extends Model
      *
      * @return string table name.
      */
-    protected function get_meta_table_name(): string {
+    protected function get_meta_table_name(): string
+    {
         global $wpdb;
 
         return $wpdb->usermeta;

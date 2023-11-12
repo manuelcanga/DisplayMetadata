@@ -1,4 +1,5 @@
-<?php declare( strict_types = 1 );
+<?php
+declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
 
@@ -7,7 +8,8 @@ use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
 /**
  * This is a NoOp class.
  */
-class None extends Metabox {
+class None extends Metabox
+{
     /**
      * Nothing to do.
      */
@@ -44,15 +46,6 @@ class None extends Metabox {
         return [];
     }
 
-	/**
-	 * Retrieve none.
-	 *
-	 * @return string
-	 */
-	protected function get_meta_table_name(): string {
-		return '';
-	}
-
     /**
      * Display metadata metabox.
      *
@@ -60,6 +53,15 @@ class None extends Metabox {
      */
     public function display(): void
     {
-       ;
+    }
+
+    /**
+     * Retrieve none.
+     *
+     * @return string
+     */
+    protected function get_meta_table_name(): string
+    {
+        return '';
     }
 }

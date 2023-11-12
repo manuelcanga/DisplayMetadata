@@ -24,14 +24,13 @@ trasweb_fit_metabox_width = function () {
                 td_value.style.maxWidth = (top_container.clientWidth - td_key.clientWidth - 15 /* padding */) + 'px';
             }
 
-            var event_data = { 'td_value': td_value, 'td_key': td_key, 'tr': main_tr_list[i] };
+            var event_data = {'td_value': td_value, 'td_key': td_key, 'tr': main_tr_list[i]};
             var event = new CustomEvent("meta_element_loaded", {detail: event_data});
 
             metadata_container.dispatchEvent(event);
         }
     }
 };
-
 
 
 /**
@@ -57,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return navigator.clipboard.writeText(this.innerText);
             });
 
-            if(e.detail.tr.classList.contains( 'meta_scalar') ) {
+            if (e.detail.tr.classList.contains('meta_scalar')) {
                 e.detail.td_value.addEventListener('click', function () {
                     return navigator.clipboard.writeText(this.innerText);
                 });

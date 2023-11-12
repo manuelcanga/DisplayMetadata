@@ -1,4 +1,5 @@
-<?php declare(strict_types = 1);
+<?php
+declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 
@@ -7,16 +8,17 @@ use Trasweb\Plugins\DisplayMetadata\Metabox\Type as MetaboxType;
 /**
  * This class instances typed metabox classes.
  */
-class Metabox_Factory {
+class Metabox_Factory
+{
     private const DEFAULT_METABOX = MetaboxType\None::class;
     /**
      * array<string, class-string>
      */
     private const DEFAULT_METABOX_TYPES = [
-        'post'    => MetaboxType\Post::class,
-        'tag_ID'  => MetaboxType\Term::class,
+        'post' => MetaboxType\Post::class,
+        'tag_ID' => MetaboxType\Term::class,
         'user_id' => MetaboxType\User::class,
-        'c'       => MetaboxType\Comment::class,
+        'c' => MetaboxType\Comment::class,
     ];
     private array $metabox_types_by_screen_var_key;
     /**
@@ -73,9 +75,9 @@ class Metabox_Factory {
      */
     final public function get_current_metabox(): Metabox
     {
-       $current_metabox = new (self::DEFAULT_METABOX)();
+        $current_metabox = new (self::DEFAULT_METABOX)();
 
-        foreach ( $this->metabox_types_by_screen_var_key as $item_id_key => $metabox_type ) {
+        foreach ($this->metabox_types_by_screen_var_key as $item_id_key => $metabox_type) {
             $item_id = $this->screen_vars[$item_id_key] ?? 0;
 
             if ($item_id) {

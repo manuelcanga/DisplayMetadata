@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox;
@@ -10,7 +11,7 @@ use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
  */
 abstract class Model
 {
-    protected const TITLE        = '';
+    protected const TITLE = '';
 
     /**
      * @var string Field name where meta is saved for item_id
@@ -36,6 +37,28 @@ abstract class Model
     abstract public function get_item_properties(): array;
 
     /**
+     * Retrieve metadatas from table name using field and current item value.
+     *
+     * @return array<meta_key: string, meta_value:string>
+     */
+    public function get_item_metadata(): array
+    {
+        global $wpdb;
+
+        $table_name = $this->get_meta_table_name();
+        $field = static::FIELD_META_ID;
+        $value = (int)$this->item_id;
+
+        $query = <<<SQL
+SELECT meta_key, meta_value
+ FROM {$table_name}
+ WHERE {$field} = {$value}
+SQL;
+
+        return $wpdb->get_results($query, ARRAY_A) ?: [];
+    }
+
+    /**
      * Retrieve metadata table name for current WordPress
      *
      * @return string table name.
@@ -43,32 +66,12 @@ abstract class Model
     abstract protected function get_meta_table_name(): string;
 
     /**
-     * Retrieve metadatas from table name using field and current item value.
-     *
-     * @return array<meta_key: string, meta_value:string>
-     */
-    public function get_item_metadata(): array {
-        global $wpdb;
-
-        $table_name = $this->get_meta_table_name();
-        $field = static::FIELD_META_ID;
-        $value = (int)$this->item_id;
-
-        $query=<<<SQL
-SELECT meta_key, meta_value
- FROM {$table_name}
- WHERE {$field} = {$value}
-SQL;
-
-        return $wpdb->get_results( $query, ARRAY_A )?: [];
-    }
-
-    /**
      * Retrieve titlte for current metabox
      *
      * @return string
      */
-    public function get_title(): string {
-        return __( static::TITLE, PLUGIN_NAME );
+    public function get_title(): string
+    {
+        return __(static::TITLE, PLUGIN_NAME);
     }
 }

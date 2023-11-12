@@ -1,17 +1,16 @@
-<?php declare( strict_types = 1 );
+<?php
+declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
 
 use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
-
-use const ARRAY_A;
-
 use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
 
 /**
  * This class manages `Display Metadata` term metabox.
  */
-final class Term extends Metabox {
+final class Term extends Metabox
+{
     /**
      * Metabox constructor
      *
@@ -32,23 +31,11 @@ final class Term extends Metabox {
     {
         $term = $this->get_model()->get_item_properties();
 
-        if ( empty( $term[ 'term_id' ] ) ) {
+        if (empty($term['term_id'])) {
             return;
         }
 
-        add_action( $term[ 'taxonomy' ] . '_edit_form', [ $this, 'display' ] );
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function can_be_registered(string $screen_slug): bool
-    {
-        if(!parent::can_be_registered($screen_slug)){
-            return false;
-        }
-
-        return 'term' === $screen_slug;
+        add_action($term['taxonomy'] . '_edit_form', [$this, 'display']);
     }
 
     /**
@@ -59,5 +46,17 @@ final class Term extends Metabox {
     public function get_model(): Model
     {
         return new Model\Term_Model($this->item_id);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function can_be_registered(string $screen_slug): bool
+    {
+        if (!parent::can_be_registered($screen_slug)) {
+            return false;
+        }
+
+        return 'term' === $screen_slug;
     }
 }

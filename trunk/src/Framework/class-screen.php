@@ -1,7 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Framework;
+
+use WP_Screen;
 
 /**
  * Class Screen
@@ -24,22 +27,6 @@ class Screen
     }
 
     /**
-     * Retrieve a WP_Screen object based on current context in admin area.
-     *
-     * @return \WP_Screen
-     */
-    public function get_current(): \WP_Screen {
-        $pagenow = $this->get_page_now();
-        $screen = \WP_Screen::get($pagenow);
-
-        $screen->slug = $screen->base ?: '';
-        $screen->base = strtok($screen->slug, '-') ?: '';
-        $screen->place = strtok('') ?: 'main';
-
-        return $screen;
-    }
-
-    /**
      * Retrieve current screen type
      *
      * @return string
@@ -47,6 +34,23 @@ class Screen
     public function get_current_screen_type(): string
     {
         return $this->get_current()->slug ?? '';
+    }
+
+    /**
+     * Retrieve a WP_Screen object based on current context in admin area.
+     *
+     * @return WP_Screen
+     */
+    public function get_current(): WP_Screen
+    {
+        $pagenow = $this->get_page_now();
+        $screen = WP_Screen::get($pagenow);
+
+        $screen->slug = $screen->base ?: '';
+        $screen->base = strtok($screen->slug, '-') ?: '';
+        $screen->place = strtok('') ?: 'main';
+
+        return $screen;
     }
 
     /**
@@ -58,7 +62,7 @@ class Screen
     {
         global $pagenow;
 
-        if ( ! $pagenow ) {
+        if (!$pagenow) {
             unset($pagenow);
 
             $current_base_url = parse_url($this->current_url, PHP_URL_PATH) ?: '';

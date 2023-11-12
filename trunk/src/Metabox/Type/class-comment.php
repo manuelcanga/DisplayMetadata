@@ -1,4 +1,5 @@
-<?php declare( strict_types = 1 );
+<?php
+declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
 
@@ -8,7 +9,8 @@ use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
 /**
  * This class manages `Display Metadata` comment metabox.
  */
-final class Comment extends Metabox {
+final class Comment extends Metabox
+{
     /**
      * Metabox constructor
      *
@@ -27,7 +29,7 @@ final class Comment extends Metabox {
      */
     public function register(): void
     {
-        add_action( 'add_meta_boxes_comment', [ $this, 'display' ] );
+        add_action('add_meta_boxes_comment', [$this, 'display']);
     }
 
     /**
@@ -35,7 +37,7 @@ final class Comment extends Metabox {
      */
     public function can_be_registered(string $screen_slug): bool
     {
-        if(!parent::can_be_registered($screen_slug)){
+        if (!parent::can_be_registered($screen_slug)) {
             return false;
         }
 

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Model;
@@ -10,7 +11,7 @@ use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
  */
 class Post_Model extends Model
 {
-    protected const TITLE       = 'Post information';
+    protected const TITLE = 'Post information';
 
     /**
      * @var string Field name where meta is saved for item_id
@@ -24,7 +25,7 @@ class Post_Model extends Model
      */
     public function get_item_properties(): array
     {
-        return get_post( $this->item_id, ARRAY_A ) ?: [];
+        return get_post($this->item_id, ARRAY_A) ?: [];
     }
 
 
@@ -33,7 +34,8 @@ class Post_Model extends Model
      *
      * @return string table name.
      */
-    protected function get_meta_table_name(): string {
+    protected function get_meta_table_name(): string
+    {
         global $wpdb;
 
         return $wpdb->postmeta;
