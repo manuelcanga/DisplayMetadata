@@ -44,7 +44,7 @@ final class Comment extends Metabox {
      *
      * @return array
      */
-    protected function get_item_properties(): array
+    public function get_item_properties(): array
     {
         return get_comment( $this->item_id, ARRAY_A ) ?: [];
     }

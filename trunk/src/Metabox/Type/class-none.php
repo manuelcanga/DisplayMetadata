@@ -16,7 +16,6 @@ class None extends Metabox {
         // None
     }
 
-
     /**
      * @inheritDoc
      */
@@ -30,7 +29,7 @@ class None extends Metabox {
      *
      * @return array
      */
-    protected function get_item_properties(): array
+    public function get_item_properties(): array
     {
         return [];
     }
@@ -40,7 +39,7 @@ class None extends Metabox {
      *
      * @return array
      */
-    protected function get_item_metadata(): array
+    public function get_item_metadata(): array
     {
         return [];
     }

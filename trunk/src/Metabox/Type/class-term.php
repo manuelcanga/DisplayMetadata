@@ -15,7 +15,7 @@ final class Term extends Metabox {
 	/**
 	 * @var string Field name where meta is saved for item_id
 	 */
-	protected const FIELD_META_ID = 'term_id';
+    public const FIELD_META_ID = 'term_id';
 
     /**
      * Register a metabox in order to display it later.
@@ -50,7 +50,7 @@ final class Term extends Metabox {
      *
      * @return array
      */
-    protected function get_item_properties(): array
+    public function get_item_properties(): array
     {
         return get_term( $this->item_id, '', ARRAY_A ) ?: [];
     }

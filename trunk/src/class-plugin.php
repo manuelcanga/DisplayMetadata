@@ -4,9 +4,9 @@ namespace Trasweb\Plugins\DisplayMetadata;
 
 use Trasweb\Plugins\DisplayMetadata\Framework\Autoload;
 use Trasweb\Plugins\DisplayMetadata\Framework\Screen;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
 use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Factory;
-
-use function current_user_can;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_VIew;
 
 /**
  * Class Plugin. Initialize and configure plugin
@@ -17,6 +17,7 @@ final class Plugin {
     public const NAMESPACE = __NAMESPACE__;
     public const VIEWS_PATH = self::PATH . '/../views';
     public const ASSETS_PATH = self::PATH . '/../assets';
+
 
     private $screen_vars;
 
@@ -76,6 +77,19 @@ final class Plugin {
     }
 
     /**
+     * Display a metabox
+     *
+     * @param Metabox $metabox
+     * @param string $metabox_type
+     *
+     * @return void
+     */
+    public function display_metabox(Metabox $metabox, string $metabox_type = 'simple-metabox')
+    {
+        (new Metabox_View($metabox))->display($metabox_type);
+    }
+
+    /**
      * Define basic of plugin in order to can be loaded.
      *
      * @return void
@@ -90,5 +104,7 @@ final class Plugin {
         $autoload = new  Autoload(self::NAMESPACE, self::PATH );
 
         spl_autoload_register([$autoload, 'find_class']);
+
+        add_action('trasweb_metabox_display', [$this, 'display_metabox'], 10, 2);
     }
 }

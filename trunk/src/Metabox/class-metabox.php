@@ -13,15 +13,7 @@ use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
 abstract class Metabox {
     protected const NEEDED_CAPABILITY = 'display_metadata_metabox';
 
-    protected const METABOX_FILE = Plugin::VIEWS_PATH . '/metabox.php';
-
-    protected const ASSETS_FILE  = Plugin::VIEWS_PATH . '/assets.php';
-
-    protected const HEADER_FILE  = Plugin::VIEWS_PATH . '/header.php';
-
     protected const TITLE        = '';
-
-    protected const FOOTER_FILE  = Plugin::VIEWS_PATH . '/footer.php';
 
 	/**
 	 * @var string Field name where meta is saved for item_id
@@ -72,7 +64,7 @@ abstract class Metabox {
      *
      * @return array
      */
-    abstract protected function get_item_properties(): array;
+    abstract public function get_item_properties(): array;
 
 	/**
 	 * Retrieve metadata table name for current WordPress
@@ -86,7 +78,7 @@ abstract class Metabox {
 	 *
 	 * @return array<meta_key: string, meta_value:string>
 	 */
-	protected function get_item_metadata(): array {
+	public function get_item_metadata(): array {
 		global $wpdb;
 
 		$table_name = $this->get_meta_table_name();
@@ -102,21 +94,13 @@ SQL;
 		return $wpdb->get_results( $query, ARRAY_A )?: [];
 	}
 
-	/**
-	 * Generaate metadata to show.
-	 *
-	 * @return Metadata_Iterator
-	 */
-    protected function get_metadata_list(): Metadata_Iterator {
-	    $item_properties = $this->get_item_properties();
-	    $item_metadata = $this->get_item_metadata();
-
-	    $item_vars = [
-		    __( 'Properties', PLUGIN_NAME ) => $item_properties,
-		    __( 'Metadata', PLUGIN_NAME )   => $item_metadata,
-	    ];
-
-	     return Metadata_Iterator::from_vars_list( $item_vars );
+    /**
+     * Retrieve titlte for current metabox
+     *
+     * @return string
+     */
+    public function get_title(): string {
+        return __( static::TITLE, PLUGIN_NAME );
     }
 
     /**
@@ -124,12 +108,8 @@ SQL;
      *
      * @return void
      */
-    final public function display(): void
+    public function display( ): void
     {
-        $metabox_title = __( static::TITLE, PLUGIN_NAME );
-
-	    $metadata_list = $this->get_metadata_list();
-
-        include static::METABOX_FILE;
+        do_action('trasweb_metabox_display', $this, 'metabox' );
     }
 }

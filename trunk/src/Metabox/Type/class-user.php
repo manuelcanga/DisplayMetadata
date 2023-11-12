@@ -14,7 +14,7 @@ final class User extends Metabox {
 	/**
 	 * @var string Field name where meta is saved for item_id
 	 */
-	protected const FIELD_META_ID = 'user_id';
+    public const FIELD_META_ID = 'user_id';
 
 	/**
 	 * Register a metabox in order to display it later.
@@ -43,7 +43,7 @@ final class User extends Metabox {
 	 *
 	 * @return array
 	 */
-	protected function get_item_properties(): array {
+	public function get_item_properties(): array {
 		return \json_decode( \json_encode( get_user_by('id', $this->item_id ) ), true );
 	}
 

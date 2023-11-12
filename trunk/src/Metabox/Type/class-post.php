@@ -10,12 +10,8 @@ use const ARRAY_A;
  * This class manages `Display Metadata` post metabox.
  */
 final class Post extends Metabox {
-
 	protected const TITLE       = 'Post information';
 
-	protected const HEADER_FILE = Plugin::VIEWS_PATH . '/nothing.php';
-
-	protected const FOOTER_FILE = Plugin::VIEWS_PATH . '/nothing.php';
 	/**
 	 * @var string Field name where meta is saved for item_id
 	 */
@@ -62,7 +58,7 @@ final class Post extends Metabox {
 	 *
 	 * @return array
 	 */
-	protected function get_item_properties(): array
+	public function get_item_properties(): array
 	{
 		return get_post( $this->item_id, ARRAY_A ) ?: [];
 	}
@@ -77,4 +73,14 @@ final class Post extends Metabox {
 
 		return $wpdb->postmeta;
 	}
+
+    /**
+     * Display metadata metabox.
+     *
+     * @return void
+     */
+    public function display(): void
+    {
+        do_action('trasweb_metabox_display', $this);
+    }
 }
