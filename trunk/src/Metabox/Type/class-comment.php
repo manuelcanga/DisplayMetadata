@@ -3,19 +3,22 @@
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
 
 use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
-
-use const ARRAY_A;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
 
 /**
  * This class manages `Display Metadata` comment metabox.
  */
 final class Comment extends Metabox {
-
-    protected const TITLE = 'Comment information';
-	/**
-	 * @var string Field name where meta is saved for item_id
-	 */
-	protected const FIELD_META_ID = 'comment_id';
+    /**
+     * Metabox constructor
+     *
+     * @return void
+     */
+    public function __construct(int $item_id = 0, ?Model $model = null)
+    {
+        $this->item_id = $item_id;
+        $this->model = $model ?? new Model\Comment_Model($item_id);
+    }
 
     /**
      * Register a metabox in order to display it later.
@@ -38,25 +41,4 @@ final class Comment extends Metabox {
 
         return 'comment' === $screen_slug;
     }
-
-    /**
-     * Retrieve item properties/fields. E.g: comment_ID, comment_approved, ...
-     *
-     * @return array
-     */
-    public function get_item_properties(): array
-    {
-        return get_comment( $this->item_id, ARRAY_A ) ?: [];
-    }
-
-	/**
-	 * Retrieve metadata table name for current WordPress
-	 *
-	 * @return string table name.
-	 */
-	protected function get_meta_table_name(): string {
-		global $wpdb;
-
-		return $wpdb->commentmeta;
-	}
 }

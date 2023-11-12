@@ -4,9 +4,9 @@ namespace Trasweb\Plugins\DisplayMetadata;
 
 use Trasweb\Plugins\DisplayMetadata\Framework\Autoload;
 use Trasweb\Plugins\DisplayMetadata\Framework\Screen;
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
 use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Factory;
 use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_VIew;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
 
 /**
  * Class Plugin. Initialize and configure plugin
@@ -79,14 +79,14 @@ final class Plugin {
     /**
      * Display a metabox
      *
-     * @param Metabox $metabox
+     * @param Model $metabox
      * @param string $metabox_type
      *
      * @return void
      */
-    public function display_metabox(Metabox $metabox, string $metabox_type = 'simple-metabox')
+    public function display_metabox(Model $metabox_model, string $metabox_type = 'simple-metabox')
     {
-        (new Metabox_View($metabox))->display($metabox_type);
+        (new Metabox_View($metabox_model))->display($metabox_type);
     }
 
     /**

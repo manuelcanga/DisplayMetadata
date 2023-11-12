@@ -13,27 +13,15 @@ use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
 abstract class Metabox {
     protected const NEEDED_CAPABILITY = 'display_metadata_metabox';
 
-    protected const TITLE        = '';
-
-	/**
-	 * @var string Field name where meta is saved for item_id
-	 */
-	protected const FIELD_META_ID = '';
+    /**
+     * @var Model Metabox database access.
+     */
+    protected Model $model;
 
     /**
      * @var string $item_id ID from user, post or term.
      */
     protected $item_id;
-
-    /**
-     * Metabox constructor
-     *
-     * @return void
-     */
-    public function __construct(int $item_id = 0)
-    {
-        $this->item_id = $item_id;
-    }
 
     private function __clone()
     {
@@ -60,56 +48,22 @@ abstract class Metabox {
     }
 
     /**
-     * Retrieve item properties/fields. E.g: ID, post_title, ...
-     *
-     * @return array
-     */
-    abstract public function get_item_properties(): array;
-
-	/**
-	 * Retrieve metadata table name for current WordPress
-	 *
-	 * @return string table name.
-	 */
-	abstract protected function get_meta_table_name(): string;
-
-	/**
-	 * Retrieve metadatas from table name using field and current item value.
-	 *
-	 * @return array<meta_key: string, meta_value:string>
-	 */
-	public function get_item_metadata(): array {
-		global $wpdb;
-
-		$table_name = $this->get_meta_table_name();
-		$field = static::FIELD_META_ID;
-		$value = (int)$this->item_id;
-
-		$query=<<<SQL
-SELECT meta_key, meta_value
- FROM {$table_name}
- WHERE {$field} = {$value}
-SQL;
-
-		return $wpdb->get_results( $query, ARRAY_A )?: [];
-	}
-
-    /**
-     * Retrieve titlte for current metabox
-     *
-     * @return string
-     */
-    public function get_title(): string {
-        return __( static::TITLE, PLUGIN_NAME );
-    }
-
-    /**
      * Display metadata metabox.
      *
      * @return void
      */
     public function display( ): void
     {
-        do_action('trasweb_metabox_display', $this, 'metabox' );
+        do_action('trasweb_metabox_display', $this->get_model(), 'metabox' );
+    }
+
+    /**
+     * Return a model for current Metabox
+     *
+     * @return Model
+     */
+    public function get_model(): ?Model
+    {
+        return $this->model;
     }
 }

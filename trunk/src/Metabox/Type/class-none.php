@@ -52,4 +52,14 @@ class None extends Metabox {
 	protected function get_meta_table_name(): string {
 		return '';
 	}
+
+    /**
+     * Display metadata metabox.
+     *
+     * @return void
+     */
+    public function display(): void
+    {
+       ;
+    }
 }

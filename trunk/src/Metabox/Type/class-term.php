@@ -6,16 +6,22 @@ use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
 
 use const ARRAY_A;
 
+use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
+
 /**
  * This class manages `Display Metadata` term metabox.
  */
 final class Term extends Metabox {
-
-    protected const TITLE = 'Term information';
-	/**
-	 * @var string Field name where meta is saved for item_id
-	 */
-    public const FIELD_META_ID = 'term_id';
+    /**
+     * Metabox constructor
+     *
+     * @return void
+     */
+    public function __construct(int $item_id = 0, ?Model $model = null)
+    {
+        $this->item_id = $item_id;
+        $this->model = $model ?? new Model\Term_Model($item_id);
+    }
 
     /**
      * Register a metabox in order to display it later.
@@ -24,7 +30,7 @@ final class Term extends Metabox {
      */
     public function register(): void
     {
-        $term = $this->get_item_properties();
+        $term = $this->get_model()->get_item_properties();
 
         if ( empty( $term[ 'term_id' ] ) ) {
             return;
@@ -46,23 +52,12 @@ final class Term extends Metabox {
     }
 
     /**
-     * Retrieve item properties/fields. E.g: term_id, name, ...
+     * Return a model for current Metabox
      *
-     * @return array
+     * @return Model
      */
-    public function get_item_properties(): array
+    public function get_model(): Model
     {
-        return get_term( $this->item_id, '', ARRAY_A ) ?: [];
+        return new Model\Term_Model($this->item_id);
     }
-
-	/**
-	 * Retrieve metadata table name for current WordPress
-	 *
-	 * @return string table name.
-	 */
-	protected function get_meta_table_name(): string {
-		global $wpdb;
-
-		return $wpdb->termmeta;
-	}
 }
