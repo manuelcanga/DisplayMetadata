@@ -3,22 +3,23 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 
+use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
+
 /**
  * This class manages `Display Metadata` metaboxes.
  */
-abstract class Metabox
+abstract class Metabox_Type
 {
     protected const NEEDED_CAPABILITY = 'display_metadata_metabox';
-
     /**
-     * @var Model Metabox database access.
+     * @var Metabox_Model Metabox database access.
      */
-    protected Model $model;
+    protected Metabox_Model $model;
 
-    /**
-     * @var string $item_id ID from user, post or term.
-     */
-    protected $item_id;
+    public function __construct(Metabox_Model $metabox_model)
+    {
+        $this->model = $metabox_model;
+    }
 
     /**
      * Register a metabox in order to display it later.
@@ -52,15 +53,10 @@ abstract class Metabox
     /**
      * Return a model for current Metabox
      *
-     * @return Model
+     * @return Metabox_Model
      */
-    public function get_model(): ?Model
+    public function get_model(): Metabox_Model
     {
         return $this->model;
-    }
-
-    private function __clone()
-    {
-        // not cloning please
     }
 }

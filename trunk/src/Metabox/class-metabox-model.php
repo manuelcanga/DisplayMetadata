@@ -9,7 +9,7 @@ use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
 /**
  * Class Model
  */
-abstract class Model
+abstract class Metabox_Model
 {
     protected const TITLE = '';
 
@@ -24,7 +24,7 @@ abstract class Model
      * @param int $item_id
      * @return void
      */
-    public function __construct(int $item_id)
+    public function __construct(int $item_id = 0)
     {
         $this->item_id = $item_id;
     }
@@ -35,6 +35,13 @@ abstract class Model
      * @return array
      */
     abstract public function get_item_properties(): array;
+
+    /**
+     * Retrieve metadata table name for current WordPress
+     *
+     * @return string table name.
+     */
+    abstract protected function get_meta_table_name(): string;
 
     /**
      * Retrieve metadatas from table name using field and current item value.
@@ -58,12 +65,9 @@ SQL;
         return $wpdb->get_results($query, ARRAY_A) ?: [];
     }
 
-    /**
-     * Retrieve metadata table name for current WordPress
-     *
-     * @return string table name.
-     */
-    abstract protected function get_meta_table_name(): string;
+    public function get_item_id(): int {
+        return $this->item_id;
+    }
 
     /**
      * Retrieve titlte for current metabox

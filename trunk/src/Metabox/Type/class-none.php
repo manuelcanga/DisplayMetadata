@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
 
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Type;
 
 /**
  * This is a NoOp class.
  */
-class None extends Metabox
+class None extends Metabox_Type
 {
     /**
      * Nothing to do.
@@ -53,6 +53,7 @@ class None extends Metabox
      */
     public function display(): void
     {
+        ;
     }
 
     /**

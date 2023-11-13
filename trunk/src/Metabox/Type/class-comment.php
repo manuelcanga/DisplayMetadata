@@ -3,25 +3,13 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
 
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
-use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Type;
 
 /**
  * This class manages `Display Metadata` comment metabox.
  */
-final class Comment extends Metabox
+final class Comment extends Metabox_Type
 {
-    /**
-     * Metabox constructor
-     *
-     * @return void
-     */
-    public function __construct(int $item_id = 0, ?Model $model = null)
-    {
-        $this->item_id = $item_id;
-        $this->model = $model ?? new Model\Comment_Model($item_id);
-    }
-
     /**
      * Register a metabox in order to display it later.
      *

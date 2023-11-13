@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Model;
 
-use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Model;
 
 use function json_decode;
 use function json_encode;
@@ -12,7 +12,7 @@ use function json_encode;
 /**
  * Class User_Model
  */
-class User_Model extends Model
+class User_Model extends Metabox_Model
 {
 
     protected const TITLE = 'User information';

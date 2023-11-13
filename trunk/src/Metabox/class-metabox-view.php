@@ -15,13 +15,13 @@ class Metabox_View
 {
     public const VIEWS_PATH = Plugin::PATH . '/../views';
 
-    private Model $metabox_model;
+    private Metabox_Model $metabox_model;
 
     /**
-     * @param Model $metabox_model
+     * @param Metabox_Model $metabox_model
      * @return void
      */
-    public function __construct(Model $metabox_model)
+    public function __construct(Metabox_Model $metabox_model)
     {
         $this->metabox_model = $metabox_model;
     }

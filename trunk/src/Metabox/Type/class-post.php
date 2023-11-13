@@ -3,25 +3,13 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
 
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
-use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Type;
 
 /**
  * This class manages `Display Metadata` post metabox.
  */
-final class Post extends Metabox
+final class Post extends Metabox_Type
 {
-    /**
-     * Metabox constructor
-     *
-     * @return void
-     */
-    public function __construct(int $item_id = 0, ?Model $model = null)
-    {
-        $this->item_id = $item_id;
-        $this->model = $model ?? new Model\Post_Model($item_id);
-    }
-
     /**
      * Register a metabox in order to display it later.
      *
@@ -31,7 +19,7 @@ final class Post extends Metabox
     {
         add_meta_box(
             'trasweb_metadata_metabox',     // Unique ID
-            $this->model->get_title(),                 // Box title
+            $this->get_model()->get_title(),                 // Box title
             [$this, 'display'],                     // Content callback
             $this->get_accepted_cpt()          // Post type
         );

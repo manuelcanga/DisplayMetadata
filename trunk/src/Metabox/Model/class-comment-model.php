@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Model;
 
-use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Model;
 
 /**
  * Class Comment_Model
  */
-class Comment_Model extends Model
+class Comment_Model extends Metabox_Model
 {
     protected const TITLE = 'Comment information';
     /**
      * @var string Field name where meta is saved for item_id
      */
     protected const FIELD_META_ID = 'comment_id';
-
 
     /**
      * Retrieve item properties/fields. E.g: comment_ID, comment_approved, ...

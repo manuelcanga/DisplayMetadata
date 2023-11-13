@@ -3,25 +3,13 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
 
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
-use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Type;
 
 /**
  * This class manages `Display Metadata` user metabox.
  */
-final class User extends Metabox
+final class User extends Metabox_Type
 {
-    /**
-     * Metabox constructor
-     *
-     * @return void
-     */
-    public function __construct(int $item_id = 0, ?Model $model = null)
-    {
-        $this->item_id = $item_id;
-        $this->model = $model ?? new Model\User_Model($item_id);
-    }
-
     /**
      * Register a metabox in order to display it later.
      *
@@ -43,15 +31,5 @@ final class User extends Metabox
         }
 
         return 'user-edit' === $screen_slug || 'profile' === $screen_slug;
-    }
-
-    /**
-     * Return a model for current Metabox
-     *
-     * @return Model
-     */
-    public function get_model(): Model
-    {
-        return new Model\User_Model($this->item_id);
     }
 }

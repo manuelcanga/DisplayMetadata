@@ -3,25 +3,13 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
 
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox;
-use Trasweb\Plugins\DisplayMetadata\Metabox\Model;
+use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Type;
 
 /**
  * This class manages `Display Metadata` term metabox.
  */
-final class Term extends Metabox
+final class Term extends Metabox_Type
 {
-    /**
-     * Metabox constructor
-     *
-     * @return void
-     */
-    public function __construct(int $item_id = 0, ?Model $model = null)
-    {
-        $this->item_id = $item_id;
-        $this->model = $model ?? new Model\Term_Model($item_id);
-    }
-
     /**
      * Register a metabox in order to display it later.
      *
@@ -36,16 +24,6 @@ final class Term extends Metabox
         }
 
         add_action($term['taxonomy'] . '_edit_form', [$this, 'display']);
-    }
-
-    /**
-     * Return a model for current Metabox
-     *
-     * @return Model
-     */
-    public function get_model(): Model
-    {
-        return new Model\Term_Model($this->item_id);
     }
 
     /**
