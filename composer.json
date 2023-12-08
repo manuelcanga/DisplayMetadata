@@ -1,0 +1,21 @@
+{
+    "name": "manuel/display-metadata",
+    "description": "This is a WordPress plugin which shows post/term/user properties and metadata in a metabox in its edition form",
+    "type": "project",
+    "license": "GPLv3",
+    "autoload-dev": {
+        "psr-4": {
+            "Trasweb\\Plugins\\DisplayMetadata\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Manuel Canga",
+            "email": "holamundo@manuelcanga.dev"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^10"
+    }
+}
