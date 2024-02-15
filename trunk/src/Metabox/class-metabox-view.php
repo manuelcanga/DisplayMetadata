@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 
+use Trasweb\Plugins\DisplayMetadata\Model\Abstract_Model;
 use Trasweb\Plugins\DisplayMetadata\Plugin;
 
 use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
@@ -15,15 +16,15 @@ class Metabox_View
 {
     public const VIEWS_PATH = Plugin::PATH . '/../views';
 
-    private Metabox_Model $metabox_model;
+    private Abstract_Model $abstract_model;
 
     /**
-     * @param Metabox_Model $metabox_model
+     * @param Abstract_Model $abstract_model
      * @return void
      */
-    public function __construct(Metabox_Model $metabox_model)
+    public function __construct(Abstract_Model $abstract_model)
     {
-        $this->metabox_model = $metabox_model;
+        $this->abstract_model = $abstract_model;
     }
 
 
@@ -31,7 +32,7 @@ class Metabox_View
     {
         $metabox_type = sanitize_key($metabox_type);
 
-        $metabox_title = $this->metabox_model->get_title();
+        $metabox_title = $this->abstract_model->get_title();
         $metadata_list = $this->get_metadata_list();
 
         include $metabox_path . "/{$metabox_type}.php";
@@ -44,8 +45,8 @@ class Metabox_View
      */
     public function get_metadata_list(): Metadata_Iterator
     {
-        $item_properties = $this->metabox_model->get_item_properties();
-        $item_metadata = $this->metabox_model->get_item_metadata();
+        $item_properties = $this->abstract_model->get_item_properties();
+        $item_metadata = $this->abstract_model->get_item_metadata();
 
         $item_vars = [
             __('Properties', PLUGIN_NAME) => $item_properties,

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Trasweb\Plugins\DisplayMetadata\Metabox;
+namespace Trasweb\Plugins\DisplayMetadata\Model;
 
 use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
 
 /**
  * Class Model
  */
-abstract class Metabox_Model
+abstract class Abstract_Model
 {
     protected const TITLE = '';
 

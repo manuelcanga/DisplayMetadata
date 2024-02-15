@@ -6,7 +6,7 @@ namespace Trasweb\Plugins\DisplayMetadata;
 use Trasweb\Plugins\DisplayMetadata\Framework\Autoload;
 use Trasweb\Plugins\DisplayMetadata\Framework\Screen;
 use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Factory;
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Model;
+use Trasweb\Plugins\DisplayMetadata\Model\Abstract_Model;
 use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_VIew;
 
 /**
@@ -99,13 +99,13 @@ final class Plugin
     /**
      * Display a metabox
      *
-     * @param Metabox_Model $metabox
+     * @param Abstract_Model $metabox
      * @param string $metabox_type
      *
      * @return void
      */
-    public function display_metabox(Metabox_Model $metabox_model, string $metabox_type = 'simple-metabox')
+    public function display_metabox(Abstract_Model $abstract_model, string $metabox_type = 'simple-metabox')
     {
-        (new Metabox_View($metabox_model))->display($metabox_type);
+        (new Metabox_View($abstract_model))->display($metabox_type);
     }
 }

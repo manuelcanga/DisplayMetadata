@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Trasweb\Plugins\DisplayMetadata\Metabox\Model;
-
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Model;
+namespace Trasweb\Plugins\DisplayMetadata\Model;
 
 /**
  * Class Term_Model
  */
-class Term_Model extends Metabox_Model
+class Term_Model extends Abstract_Model
 {
     protected const TITLE = 'Term information';
     /**

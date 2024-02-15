@@ -2,32 +2,34 @@
 
 declare(strict_types=1);
 
-namespace Trasweb\Plugins\DisplayMetadata\Metabox\Model;
+namespace Trasweb\Plugins\DisplayMetadata\Model;
 
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Model;
+use function json_decode;
+use function json_encode;
 
 /**
- * Class Post_Model
+ * Class User_Model
  */
-class Post_Model extends Metabox_Model
+class User_Model extends Abstract_Model
 {
-    protected const TITLE = 'Post information';
+
+    protected const TITLE = 'User information';
 
     /**
      * @var string Field name where meta is saved for item_id
      */
-    protected const FIELD_META_ID = 'post_id';
+    public const FIELD_META_ID = 'user_id';
+
 
     /**
-     * Retrieve item properties/fields. E.g: ID, post_title, ...
+     * Retrieve item properties/fields. E.g: ID, user_login, ...
      *
      * @return array
      */
     public function get_item_properties(): array
     {
-        return get_post($this->item_id, ARRAY_A) ?: [];
+        return json_decode(json_encode(get_user_by('id', $this->item_id)), true);
     }
-
 
     /**
      * Retrieve metadata table name for current WordPress
@@ -38,7 +40,6 @@ class Post_Model extends Metabox_Model
     {
         global $wpdb;
 
-        return $wpdb->postmeta;
+        return $wpdb->usermeta;
     }
-
 }
