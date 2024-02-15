@@ -26,7 +26,7 @@ if (!is_admin()) {
 
 (static function () {
     include_once __DIR__ . '/src/class-plugin.php';
-    include_once __DIR__ . '/src/Framework/class-autoload.php';
+    include_once __DIR__ . '/src/Helper/class-autoload.php';
 
     define(__NAMESPACE__ . '\PLUGIN_NAME', basename(__DIR__));
     define(__NAMESPACE__ . '\PLUGIN_TITLE', __('Display metadata', PLUGIN_NAME));

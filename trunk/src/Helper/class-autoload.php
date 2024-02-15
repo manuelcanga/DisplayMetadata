@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Trasweb\Plugins\DisplayMetadata\Framework;
+namespace Trasweb\Plugins\DisplayMetadata\Helper;
 
 /**
  * Class Autoload. Autoload filename in WP style( class-{Name_Class}.php ).

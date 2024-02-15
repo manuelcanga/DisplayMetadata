@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata;
 
-use Trasweb\Plugins\DisplayMetadata\Framework\Autoload;
-use Trasweb\Plugins\DisplayMetadata\Framework\Screen;
+use Trasweb\Plugins\DisplayMetadata\Helper\Autoload;
+use Trasweb\Plugins\DisplayMetadata\Helper\Screen;
 use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Factory;
 use Trasweb\Plugins\DisplayMetadata\Model\Abstract_Model;
 use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_VIew;
