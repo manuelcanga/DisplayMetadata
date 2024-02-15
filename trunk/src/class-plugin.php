@@ -5,9 +5,9 @@ namespace Trasweb\Plugins\DisplayMetadata;
 
 use Trasweb\Plugins\DisplayMetadata\Helper\Autoload;
 use Trasweb\Plugins\DisplayMetadata\Helper\Screen;
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Factory;
+use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_Factory;
 use Trasweb\Plugins\DisplayMetadata\Model\Abstract_Model;
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_VIew;
+use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_VIew;
 
 /**
  * Class Plugin. Initialize and configure plugin

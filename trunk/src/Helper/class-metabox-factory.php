@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Trasweb\Plugins\DisplayMetadata\Metabox;
+namespace Trasweb\Plugins\DisplayMetadata\Helper;
 
 use Trasweb\Plugins\DisplayMetadata\Type;
 use Trasweb\Plugins\DisplayMetadata\Model;

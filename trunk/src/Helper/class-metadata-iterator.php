@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Trasweb\Plugins\DisplayMetadata\Metabox;
+namespace Trasweb\Plugins\DisplayMetadata\Helper;
 
 use ArrayIterator;
 use Trasweb\Plugins\DisplayMetadata\Plugin;
@@ -14,7 +14,7 @@ use function ob_get_clean;
 /**
  * Iterator for metadata list.
  *
- * @package Trasweb\Plugins\DisplayMetadata\Metabox
+ * @package Trasweb\Plugins\DisplayMetadata\Helper
  */
 class Metadata_Iterator extends ArrayIterator
 {
