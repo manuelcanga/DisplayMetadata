@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Helper;
 
-use Trasweb\Plugins\DisplayMetadata\Type;
 use Trasweb\Plugins\DisplayMetadata\Model;
+use Trasweb\Plugins\DisplayMetadata\Type;
 
 /**
  * This class instances typed metabox classes.
@@ -13,7 +13,7 @@ class Metabox_Factory
 {
     private const DEFAULT_METABOX = Type\None::class;
     /**
-     * array<string, class-string>
+     * array<string,array{type:class-string,model:class-string}>
      */
     private const DEFAULT_METABOX_TYPES = [
         'post' => [
@@ -72,7 +72,7 @@ class Metabox_Factory
      *
      * @param array<string, mixed> $metabox_types
      *
-     * @return array<string, class-string>
+     * @return array<string,array{type: class-string, model:class-string}>
      */
     private function check_metabox_types(array $metabox_types): array
     {

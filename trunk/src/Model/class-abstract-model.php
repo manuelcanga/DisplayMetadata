@@ -46,7 +46,7 @@ abstract class Abstract_Model
     /**
      * Retrieve metadatas from table name using field and current item value.
      *
-     * @return array<meta_key: string, meta_value:string>
+     * @return array{meta_key: string, meta_value:string}
      */
     public function get_item_metadata(): array
     {
@@ -54,13 +54,13 @@ abstract class Abstract_Model
 
         $table_name = $this->get_meta_table_name();
         $field = static::FIELD_META_ID;
-        $value = (int)$this->item_id;
+        $value = $this->get_item_id();
 
         $query = <<<SQL
-SELECT meta_key, meta_value
- FROM {$table_name}
- WHERE {$field} = {$value}
-SQL;
+        SELECT meta_key, meta_value
+         FROM {$table_name}
+         WHERE {$field} = {$value}
+        SQL;
 
         return $wpdb->get_results($query, ARRAY_A) ?: [];
     }

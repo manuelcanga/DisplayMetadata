@@ -24,7 +24,7 @@ if (!is_admin()) {
     return;
 }
 
-(static function () {
+(static function (): void {
     include_once __DIR__ . '/src/class-plugin.php';
     include_once __DIR__ . '/src/Helper/class-autoload.php';
 

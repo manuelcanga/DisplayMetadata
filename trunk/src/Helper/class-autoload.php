@@ -83,9 +83,7 @@ final class Autoload
         $snake_case_name = strtolower(str_replace('_', '-', $class_name));
 
         // wpo_checker => class-wpo-checker.php.
-        $file_name = "class-{$snake_case_name}";
-
-        return $file_name;
+        return $file_name = "class-{$snake_case_name}";
     }
 
     /**

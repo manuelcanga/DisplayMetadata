@@ -19,9 +19,7 @@ final class Plugin
     public const NAMESPACE = __NAMESPACE__;
     public const VIEWS_PATH = self::PATH . '/../views';
     public const ASSETS_PATH = self::PATH . '/../assets';
-
-
-    private $screen_vars;
+    private array $screen_vars;
 
     /**
      * Plugin constructor.
@@ -57,7 +55,6 @@ final class Plugin
         }
 
         $autoload = new  Autoload(self::NAMESPACE, self::PATH);
-
         spl_autoload_register([$autoload, 'find_class']);
 
         add_action('trasweb_metabox_display', [$this, 'display_metabox'], 10, 2);
@@ -106,6 +103,6 @@ final class Plugin
      */
     public function display_metabox(Abstract_Model $metabox_model, string $metabox_type = 'simple-metabox')
     {
-        (new Metabox_View($metabox_model))->display($metabox_type);
+        (new Metabox_View($metabox_model, self::VIEWS_PATH))->display($metabox_type);
     }
 }
