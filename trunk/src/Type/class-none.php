@@ -1,14 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
-
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Type;
+namespace Trasweb\Plugins\DisplayMetadata\Type;
 
 /**
  * This is a NoOp class.
  */
-class None extends Metabox_Type
+class None extends Abstract_Type
 {
     /**
      * Nothing to do.

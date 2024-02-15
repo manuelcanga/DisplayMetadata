@@ -16,15 +16,15 @@ class Metabox_View
 {
     public const VIEWS_PATH = Plugin::PATH . '/../views';
 
-    private Abstract_Model $abstract_model;
+    private Abstract_Model $metabox_model;
 
     /**
-     * @param Abstract_Model $abstract_model
+     * @param Abstract_Model $metabox_model
      * @return void
      */
-    public function __construct(Abstract_Model $abstract_model)
+    public function __construct(Abstract_Model $metabox_model)
     {
-        $this->abstract_model = $abstract_model;
+        $this->abstract_model = $metabox_model;
     }
 
 

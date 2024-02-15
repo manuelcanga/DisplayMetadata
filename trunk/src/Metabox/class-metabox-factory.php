@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Metabox;
 
-use Trasweb\Plugins\DisplayMetadata\Metabox\Type as MetaboxType;
+use Trasweb\Plugins\DisplayMetadata\Type;
 use Trasweb\Plugins\DisplayMetadata\Model;
 
 /**
@@ -11,25 +11,25 @@ use Trasweb\Plugins\DisplayMetadata\Model;
  */
 class Metabox_Factory
 {
-    private const DEFAULT_METABOX = MetaboxType\None::class;
+    private const DEFAULT_METABOX = Type\None::class;
     /**
      * array<string, class-string>
      */
     private const DEFAULT_METABOX_TYPES = [
         'post' => [
-            'type' => MetaboxType\Post::class,
+            'type' => Type\Post::class,
             'model' => Model\Post_Model::class,
         ],
         'tag_ID' => [
-            'type' => MetaboxType\Term::class,
+            'type' => Type\Term::class,
             'model' => Model\Term_Model::class,
         ],
         'user_id' => [
-            'type' => MetaboxType\User::class,
+            'type' => Type\User::class,
             'model' => Model\User_Model::class,
         ],
         'c' => [
-            'type' => MetaboxType\Comment::class,
+            'type' => Type\Comment::class,
             'model' => Model\Comment_Model::class,
         ],
     ];
@@ -76,7 +76,7 @@ class Metabox_Factory
      */
     private function check_metabox_types(array $metabox_types): array
     {
-        $type_checker = static fn($metabox_type) => is_a($metabox_type['type'], Metabox_Type::class, allow_string: true);
+        $type_checker = static fn($metabox_type) => is_a($metabox_type['type'], Type\Abstract_Type::class, allow_string: true);
         $model_checker = static fn($metabox_type) => is_a($metabox_type['model'], Model\Abstract_Model::class, allow_string: true);
 
         return array_filter(array_filter($metabox_types, $type_checker), $model_checker);
@@ -85,9 +85,9 @@ class Metabox_Factory
     /**
      * Retrieve an instance according to screen_vars.
      *
-     * @return Metabox_Type
+     * @return Type\Abstract_Type
      */
-    final public function get_current_metabox(): Metabox_Type
+    final public function get_current_metabox(): Type\Abstract_Type
     {
         $current_metabox = new (self::DEFAULT_METABOX)(new Model\Custom_Model());
 
@@ -95,11 +95,11 @@ class Metabox_Factory
             $item_id = (int)( $this->screen_vars[$item_id_key] ?? 0 );
 
             $metabox_type = $metabox['type'] ?? null;
-            $abstract_model = $metabox['model'] ?? null;
+            $metabox_model = $metabox['model'] ?? null;
 
-            if ($item_id && $metabox_type && $abstract_model ) {
-                $abstract_model = new $abstract_model($item_id);
-                $current_metabox = new $metabox_type($abstract_model);
+            if ($item_id && $metabox_type && $metabox_model ) {
+                $metabox_model = new $metabox_model($item_id);
+                $current_metabox = new $metabox_type($metabox_model);
                 break;
             }
         }

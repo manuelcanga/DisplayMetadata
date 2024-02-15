@@ -104,8 +104,8 @@ final class Plugin
      *
      * @return void
      */
-    public function display_metabox(Abstract_Model $abstract_model, string $metabox_type = 'simple-metabox')
+    public function display_metabox(Abstract_Model $metabox_model, string $metabox_type = 'simple-metabox')
     {
-        (new Metabox_View($abstract_model))->display($metabox_type);
+        (new Metabox_View($metabox_model))->display($metabox_type);
     }
 }

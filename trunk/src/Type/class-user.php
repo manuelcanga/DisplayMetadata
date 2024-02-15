@@ -1,14 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Trasweb\Plugins\DisplayMetadata\Metabox\Type;
-
-use Trasweb\Plugins\DisplayMetadata\Metabox\Metabox_Type;
+namespace Trasweb\Plugins\DisplayMetadata\Type;
 
 /**
  * This class manages `Display Metadata` user metabox.
  */
-final class User extends Metabox_Type
+final class User extends Abstract_Type
 {
     /**
      * Register a metabox in order to display it later.
