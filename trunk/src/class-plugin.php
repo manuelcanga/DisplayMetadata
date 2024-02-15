@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata;
 
-use Trasweb\Plugins\DisplayMetadata\Helper\Autoload;
 use Trasweb\Plugins\DisplayMetadata\Helper\Screen;
 use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_Factory;
 use Trasweb\Plugins\DisplayMetadata\Model\Abstract_Model;
@@ -53,9 +52,6 @@ final class Plugin
         if (defined('IS_PROFILE_PAGE') && IS_PROFILE_PAGE) {
             $this->screen_vars['user_id'] = get_current_user_id();
         }
-
-        $autoload = new  Autoload(self::NAMESPACE, self::PATH);
-        spl_autoload_register([$autoload, 'find_class']);
 
         add_action('trasweb_metabox_display', [$this, 'display_metabox'], 10, 2);
     }

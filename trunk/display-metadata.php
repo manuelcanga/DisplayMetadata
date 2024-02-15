@@ -16,6 +16,9 @@ namespace Trasweb\Plugins\DisplayMetadata;
  * Domain Path: /languages
 */
 
+
+use Trasweb\Autoload;
+
 if (!defined('ABSPATH')) {
     die('Hello, World!');
 }
@@ -25,11 +28,11 @@ if (!is_admin()) {
 }
 
 (static function (): void {
-    include_once __DIR__ . '/src/class-plugin.php';
-    include_once __DIR__ . '/src/Helper/class-autoload.php';
+    include_once __DIR__ . '/src/vendor/Trasweb/class-autoload.php';
 
     define(__NAMESPACE__ . '\PLUGIN_NAME', basename(__DIR__));
-    define(__NAMESPACE__ . '\PLUGIN_TITLE', __('Display metadata', PLUGIN_NAME));
+
+    spl_autoload_register((new  Autoload(__NAMESPACE__, __DIR__.'/src'))->find_class(...));
 
     ${'display-metadata'} = new Plugin($_GET ?: []);
 
