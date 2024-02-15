@@ -72,7 +72,7 @@ class Metabox_Factory
      *
      * @param array<string, mixed> $metabox_types
      *
-     * @return <string, class-string>
+     * @return array<string, class-string>
      */
     private function check_metabox_types(array $metabox_types): array
     {
