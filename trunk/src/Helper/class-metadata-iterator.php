@@ -26,9 +26,9 @@ class Metadata_Iterator extends ArrayIterator
     /**
      * Retrieve meta name
      *
-     * @return int|string|null
+     * @return string
      */
-    public function key()
+    public function key(): string
     {
         $key = parent::key();
         $value = parent::current();
@@ -44,9 +44,9 @@ class Metadata_Iterator extends ArrayIterator
     /**
      * Retrieve meta value
      *
-     * @return $this|mixed|string
+     * @return \Stringable|string
      */
-    public function current()
+    public function current(): \Stringable|string
     {
         $meta_value = maybe_unserialize(parent::current());
 
