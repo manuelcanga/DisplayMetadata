@@ -14,13 +14,15 @@ use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
 class Metabox_View
 {
     private string $view_path;
+    private string $assets_path;
 
     /**
      * @param string $view_path
      */
-    public function __construct(string $view_path)
+    public function __construct(string $view_path, string $assets_path)
     {
         $this->view_path = $view_path;
+        $this->assets_path = $assets_path;
     }
 
     public function display(Abstract_Model $metabox_model, string $metabox_type = 'metabox')
@@ -48,6 +50,16 @@ class Metabox_View
             __('Metadata', PLUGIN_NAME) => $item_metadata,
         ];
 
-        return Metadata_Iterator::from_vars_list($item_vars);
+        return Metadata_Iterator::from_vars_list($item_vars, 1, $this);
+    }
+
+    /**
+     * @param string $asset_subpath
+     *
+     * @return string
+     */
+    private function composeAssetPath(string $asset_subpath = ''): string
+    {
+        return $this->assets_path . $asset_subpath;
     }
 }

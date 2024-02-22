@@ -38,7 +38,7 @@ class Metadata_Iterator extends ArrayIterator
             $key = $value['meta_key'];
         }
 
-        return htmlentities((string)$key);
+        return esc_html((string)$key);
     }
 
     /**
@@ -70,7 +70,7 @@ class Metadata_Iterator extends ArrayIterator
             return 'NULL';
         }
 
-        return make_clickable(htmlentities((string)$meta_value));
+        return make_clickable(esc_html((string)$meta_value));
     }
 
     /**
