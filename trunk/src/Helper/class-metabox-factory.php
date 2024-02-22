@@ -5,7 +5,7 @@ namespace Trasweb\Plugins\DisplayMetadata\Helper;
 
 use Trasweb\Plugins\DisplayMetadata\Model;
 use Trasweb\Plugins\DisplayMetadata\Type;
-use Trasweb\Plugins\DisplayMetadata\Type\Abstract_Type;
+use Trasweb\Plugins\DisplayMetadata\Type\Metabox_Type;
 
 /**
  * This class instances typed metabox classes.
@@ -77,7 +77,7 @@ class Metabox_Factory
      */
     private function check_metabox_types(array $metabox_types): array
     {
-        $type_checker = static fn($metabox_type) => is_a($metabox_type['type'], Type\Abstract_Type::class, allow_string: true);
+        $type_checker = static fn($metabox_type) => is_a($metabox_type['type'], Type\Metabox_Type::class, allow_string: true);
         $model_checker = static fn($metabox_type) => is_a($metabox_type['model'], Model\Abstract_Model::class, allow_string: true);
 
         return array_filter(array_filter($metabox_types, $type_checker), $model_checker);
@@ -87,9 +87,9 @@ class Metabox_Factory
      * Retrieve an instance according to screen_vars.
      *
      * @param Metabox_View $metabox_View
-     * @return Abstract_Type
+     * @return Metabox_Type
      */
-    final public function get_current_metabox(Metabox_View $metabox_View): Type\Abstract_Type
+    final public function get_current_metabox(Metabox_View $metabox_View): Type\Metabox_Type
     {
 
         $current_metabox = new (self::DEFAULT_METABOX)(new Model\Custom_Model(), $metabox_View);

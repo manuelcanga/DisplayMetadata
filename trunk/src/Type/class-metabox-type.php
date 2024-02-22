@@ -9,7 +9,7 @@ use Trasweb\Plugins\DisplayMetadata\Model\Abstract_Model;
 /**
  * This class manages `Display Metadata` metaboxes.
  */
-abstract class Abstract_Type
+abstract class Metabox_Type
 {
     protected const NEEDED_CAPABILITY = 'display_metadata_metabox';
     /**
@@ -18,6 +18,11 @@ abstract class Abstract_Type
     protected Abstract_Model $model;
     protected Metabox_View $metabox_view;
 
+    /**
+     * @param Abstract_Model $metabox_model
+     * @param Metabox_View $metabox_view
+     * @return void
+     */
     public function __construct(Abstract_Model $metabox_model, Metabox_View $metabox_view)
     {
         $this->model = $metabox_model;

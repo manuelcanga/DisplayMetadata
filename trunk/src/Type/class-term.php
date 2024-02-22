@@ -6,7 +6,7 @@ namespace Trasweb\Plugins\DisplayMetadata\Type;
 /**
  * This class manages `Display Metadata` term metabox.
  */
-final class Term extends Abstract_Type
+final class Term extends Metabox_Type
 {
     /**
      * Register a metabox in order to display it later.

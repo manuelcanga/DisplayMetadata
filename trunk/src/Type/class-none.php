@@ -6,7 +6,7 @@ namespace Trasweb\Plugins\DisplayMetadata\Type;
 /**
  * This is a NoOp class.
  */
-class None extends Abstract_Type
+class None extends Metabox_Type
 {
     /**
      * Nothing to do.

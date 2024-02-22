@@ -6,7 +6,7 @@ namespace Trasweb\Plugins\DisplayMetadata\Type;
 /**
  * This class manages `Display Metadata` post metabox.
  */
-final class Post extends Abstract_Type
+final class Post extends Metabox_Type
 {
     /**
      * Register a metabox in order to display it later.

@@ -6,7 +6,7 @@ namespace Trasweb\Plugins\DisplayMetadata\Type;
 /**
  * This class manages `Display Metadata` comment metabox.
  */
-final class Comment extends Abstract_Type
+final class Comment extends Metabox_Type
 {
     /**
      * Register a metabox in order to display it later.

@@ -5,7 +5,7 @@ namespace Trasweb\Plugins\DisplayMetadata\UserCase;
 
 use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_Factory;
 use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_View;
-use Trasweb\Plugins\DisplayMetadata\Type\Abstract_Type;
+use Trasweb\Plugins\DisplayMetadata\Type\Metabox_Type;
 use Trasweb\Screen;
 
 /**
@@ -20,7 +20,9 @@ class Register_Metabox
     /**
      * Plugin constructor.
      *
-     * @param array $screen_vars Params( normally $_GET ) from current screen.
+     * @param Metabox_Factory $metabox_factory
+     * @param Metabox_View $metabox_view
+     * @param Screen $screen
      */
     public function __construct(Metabox_Factory $metabox_factory, Metabox_View $metabox_view, Screen $screen)
     {
@@ -45,9 +47,9 @@ class Register_Metabox
     /**
      * Retrieve object of Metabox factory.
      *
-     * @return Abstract_Type
+     * @return Metabox_Type
      */
-    protected function get_current_metabox(): Abstract_Type
+    protected function get_current_metabox(): Metabox_Type
     {
         return $this->metabox_factory->get_current_metabox($this->metabox_view);
     }

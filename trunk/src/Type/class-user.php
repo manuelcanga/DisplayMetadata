@@ -6,7 +6,7 @@ namespace Trasweb\Plugins\DisplayMetadata\Type;
 /**
  * This class manages `Display Metadata` user metabox.
  */
-final class User extends Abstract_Type
+final class User extends Metabox_Type
 {
     /**
      * Register a metabox in order to display it later.
