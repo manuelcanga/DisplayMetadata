@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Trasweb\Plugins\DisplayMetadata\Helper;
 
 use ArrayIterator;
-use Trasweb\Plugins\DisplayMetadata\Plugin;
+use Trasweb\Plugins\DisplayMetadata\Display_Metadata;
 
 use function is_object;
 use function json_decode;
@@ -19,7 +19,7 @@ use function ob_get_clean;
 class Metadata_Iterator extends ArrayIterator
 {
 
-    protected const META_LIST_VIEW = Plugin::VIEWS_PATH . '/meta_list.php';
+    protected const META_LIST_VIEW = Display_Metadata::VIEWS_PATH . '/meta_list.php';
 
     private $depth;
 

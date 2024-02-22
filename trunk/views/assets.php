@@ -1,12 +1,12 @@
 <?php
 
-use Trasweb\Plugins\DisplayMetadata\Plugin;
+use Trasweb\Plugins\DisplayMetadata\Display_Metadata;
 
 ?>
 
 <style>
-    <?= require Plugin::ASSETS_PATH . '/display_metadata.css' ?>
+    <?= require Display_Metadata::ASSETS_PATH . '/display_metadata.css' ?>
 </style>
 <script>
-    <?= require Plugin::ASSETS_PATH . '/display_metadata.js' ?>
+    <?= require Display_Metadata::ASSETS_PATH . '/display_metadata.js' ?>
 </script>

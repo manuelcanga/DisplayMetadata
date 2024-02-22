@@ -52,6 +52,6 @@ final class Post extends Abstract_Type
      */
     public function display(): void
     {
-        do_action('trasweb_metabox_display', $this->get_model());
+        $this->metabox_view->display($this->get_model(), 'simple-metabox');
     }
 }

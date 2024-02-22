@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Type;
 
+use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_View;
 use Trasweb\Plugins\DisplayMetadata\Model\Abstract_Model;
 
 /**
@@ -15,10 +16,12 @@ abstract class Abstract_Type
      * @var Abstract_Model Metabox database access.
      */
     protected Abstract_Model $model;
+    protected Metabox_View $metabox_view;
 
-    public function __construct(Abstract_Model $metabox_model)
+    public function __construct(Abstract_Model $metabox_model, Metabox_View $metabox_view)
     {
         $this->model = $metabox_model;
+        $this->metabox_view = $metabox_view;
     }
 
     /**
@@ -47,7 +50,7 @@ abstract class Abstract_Type
      */
     public function display(): void
     {
-        do_action('trasweb_metabox_display', $this->get_model(), 'metabox');
+        $this->metabox_view->display($this->get_model(), 'metabox');
     }
 
     /**

@@ -18,6 +18,7 @@ final class Comment extends Abstract_Type
         add_action('add_meta_boxes_comment', [$this, 'display']);
     }
 
+
     /**
      * @inheritDoc
      */

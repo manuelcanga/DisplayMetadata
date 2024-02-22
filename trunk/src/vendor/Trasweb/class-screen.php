@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Trasweb\Plugins\DisplayMetadata\Helper;
+namespace Trasweb;
 
 use WP_Screen;
+
+use const ABSPATH;
 
 /**
  * Class Screen
