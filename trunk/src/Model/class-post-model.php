@@ -7,7 +7,7 @@ namespace Trasweb\Plugins\DisplayMetadata\Model;
 /**
  * Class Post_Model
  */
-class Post_Model extends Abstract_Model
+class Post_Model extends Metabox_Model
 {
     protected const TITLE = 'Post information';
 

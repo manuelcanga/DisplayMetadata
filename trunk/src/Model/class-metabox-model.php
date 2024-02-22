@@ -9,7 +9,7 @@ use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
 /**
  * Class Model
  */
-abstract class Abstract_Model
+abstract class Metabox_Model
 {
     protected const TITLE = '';
 

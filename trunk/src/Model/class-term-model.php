@@ -7,7 +7,7 @@ namespace Trasweb\Plugins\DisplayMetadata\Model;
 /**
  * Class Term_Model
  */
-class Term_Model extends Abstract_Model
+class Term_Model extends Metabox_Model
 {
     protected const TITLE = 'Term information';
     /**

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Trasweb\Plugins\DisplayMetadata\Helper;
 
 use Trasweb\Parser;
-use Trasweb\Plugins\DisplayMetadata\Model\Abstract_Model;
+use Trasweb\Plugins\DisplayMetadata\Model\Metabox_Model;
 
 use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
 
@@ -25,12 +25,12 @@ class Metabox_View
     }
 
     /**
-     * @param Abstract_Model $metabox_model
+     * @param Metabox_Model $metabox_model
      *
      * @param string $metabox_type
      * @return void
      */
-    public function display(Abstract_Model $metabox_model, string $metabox_type = 'metabox')
+    public function display(Metabox_Model $metabox_model, string $metabox_type = 'metabox')
     {
         $metabox_type = sanitize_key($metabox_type);
 
@@ -47,7 +47,7 @@ class Metabox_View
      *
      * @return Metadata_Iterator
      */
-    public function get_metadata_list(Abstract_Model $metabox_model): Metadata_Iterator
+    public function get_metadata_list(Metabox_Model $metabox_model): Metadata_Iterator
     {
         $item_properties = $metabox_model->get_item_properties();
         $item_metadata = $metabox_model->get_item_metadata();

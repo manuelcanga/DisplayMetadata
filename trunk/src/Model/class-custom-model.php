@@ -7,7 +7,7 @@ namespace Trasweb\Plugins\DisplayMetadata\Model;
 /**
  * Class Custom_Model
  */
-class Custom_Model extends Abstract_Model
+class Custom_Model extends Metabox_Model
 {
     protected const TITLE = 'Custom information';
     /**

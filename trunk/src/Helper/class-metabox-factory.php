@@ -78,7 +78,7 @@ class Metabox_Factory
     private function check_metabox_types(array $metabox_types): array
     {
         $type_checker = static fn($metabox_type) => is_a($metabox_type['type'], Type\Metabox_Type::class, allow_string: true);
-        $model_checker = static fn($metabox_type) => is_a($metabox_type['model'], Model\Abstract_Model::class, allow_string: true);
+        $model_checker = static fn($metabox_type) => is_a($metabox_type['model'], Model\Metabox_Model::class, allow_string: true);
 
         return array_filter(array_filter($metabox_types, $type_checker), $model_checker);
     }

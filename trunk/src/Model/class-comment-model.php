@@ -6,7 +6,7 @@ namespace Trasweb\Plugins\DisplayMetadata\Model;
 /**
  * Class Comment_Model
  */
-class Comment_Model extends Abstract_Model
+class Comment_Model extends Metabox_Model
 {
     protected const TITLE = 'Comment information';
     /**

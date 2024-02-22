@@ -10,7 +10,7 @@ use function json_encode;
 /**
  * Class User_Model
  */
-class User_Model extends Abstract_Model
+class User_Model extends Metabox_Model
 {
 
     protected const TITLE = 'User information';

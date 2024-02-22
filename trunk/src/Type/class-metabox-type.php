@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Trasweb\Plugins\DisplayMetadata\Type;
 
 use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_View;
-use Trasweb\Plugins\DisplayMetadata\Model\Abstract_Model;
+use Trasweb\Plugins\DisplayMetadata\Model\Metabox_Model;
 
 /**
  * This class manages `Display Metadata` metaboxes.
@@ -13,17 +13,17 @@ abstract class Metabox_Type
 {
     protected const NEEDED_CAPABILITY = 'display_metadata_metabox';
     /**
-     * @var Abstract_Model Metabox database access.
+     * @var Metabox_Model Metabox database access.
      */
-    protected Abstract_Model $model;
+    protected Metabox_Model $model;
     protected Metabox_View $metabox_view;
 
     /**
-     * @param Abstract_Model $metabox_model
+     * @param Metabox_Model $metabox_model
      * @param Metabox_View $metabox_view
      * @return void
      */
-    public function __construct(Abstract_Model $metabox_model, Metabox_View $metabox_view)
+    public function __construct(Metabox_Model $metabox_model, Metabox_View $metabox_view)
     {
         $this->model = $metabox_model;
         $this->metabox_view = $metabox_view;
@@ -61,9 +61,9 @@ abstract class Metabox_Type
     /**
      * Return a model for current Metabox
      *
-     * @return Abstract_Model
+     * @return Metabox_Model
      */
-    public function get_model(): Abstract_Model
+    public function get_model(): Metabox_Model
     {
         return $this->model;
     }
