@@ -17,6 +17,7 @@ final class Display_Metadata
 {
     private const VIEWS_SUBPATH = '/views';
     private const ASSETS_SUBPATH = '/assets';
+    private const CONFIG_METABOX_TYPES = '/config/metabox-types.conf.php';
     private array $screen_vars;
     private string $plugin_dir;
 
@@ -43,7 +44,10 @@ final class Display_Metadata
     {
         $parser = new Parser($this->plugin_dir . self::VIEWS_SUBPATH, $this->plugin_dir . self::ASSETS_SUBPATH);
         $metabox_view = new Metabox_View($parser);
-        $metabox_factory = new Metabox_Factory($this->screen_vars);
+
+        $metabox_types = include $this->plugin_dir.self::CONFIG_METABOX_TYPES;
+        $metabox_factory = new Metabox_Factory($this->screen_vars, $metabox_types);
+
         $screen = new Screen();
 
         $register = new Register_Metabox($metabox_factory, $metabox_view, $screen);

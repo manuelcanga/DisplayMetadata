@@ -16,24 +16,6 @@ class Metabox_Factory
     /**
      * array<string,array{type:class-string,model:class-string}>
      */
-    private const DEFAULT_METABOX_TYPES = [
-        'post' => [
-            'type' => Type\Post::class,
-            'model' => Model\Post_Model::class,
-        ],
-        'tag_ID' => [
-            'type' => Type\Term::class,
-            'model' => Model\Term_Model::class,
-        ],
-        'user_id' => [
-            'type' => Type\User::class,
-            'model' => Model\User_Model::class,
-        ],
-        'c' => [
-            'type' => Type\Comment::class,
-            'model' => Model\Comment_Model::class,
-        ],
-    ];
     private array $metabox_types_by_screen_var_key;
     /**
      * @var array<string, int>
@@ -46,10 +28,7 @@ class Metabox_Factory
      * @param array $metabox_types_by_screen_var_key
      * @return void
      */
-    public function __construct(
-        array $screen_vars,
-        array $metabox_types_by_screen_var_key = self::DEFAULT_METABOX_TYPES
-    ) {
+    public function __construct(array $screen_vars, array $metabox_types_by_screen_var_key) {
         $this->screen_vars = $this->check_screen_vars($screen_vars);
         $this->metabox_types_by_screen_var_key = $this->check_metabox_types($metabox_types_by_screen_var_key);
     }
