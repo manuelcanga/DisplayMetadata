@@ -22,7 +22,7 @@ class Register_Metabox
      *
      * @param array $screen_vars Params( normally $_GET ) from current screen.
      */
-    public function __construct(Metabox_Factory $metabox_factory, Screen $screen, Metabox_View $metabox_view)
+    public function __construct(Metabox_Factory $metabox_factory, Metabox_View $metabox_view, Screen $screen)
     {
         $this->metabox_factory = $metabox_factory;
         $this->screen = $screen;

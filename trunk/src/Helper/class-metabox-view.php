@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Helper;
 
+use Trasweb\Parser;
 use Trasweb\Plugins\DisplayMetadata\Model\Abstract_Model;
 
 use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
@@ -13,18 +14,22 @@ use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
  */
 class Metabox_View
 {
-    private string $view_path;
-    private string $assets_path;
+    private Parser $parser;
 
     /**
      * @param string $view_path
      */
-    public function __construct(string $view_path, string $assets_path)
+    public function __construct(Parser $parser)
     {
-        $this->view_path = $view_path;
-        $this->assets_path = $assets_path;
+        $this->parser = $parser;
     }
 
+    /**
+     * @param Abstract_Model $metabox_model
+     *
+     * @param string $metabox_type
+     * @return void
+     */
     public function display(Abstract_Model $metabox_model, string $metabox_type = 'metabox')
     {
         $metabox_type = sanitize_key($metabox_type);
@@ -32,7 +37,9 @@ class Metabox_View
         $metabox_title = $metabox_model->get_title();
         $metadata_list = $this->get_metadata_list($metabox_model);
 
-        include $this->view_path . "/{$metabox_type}.php";
+        $vars = compact('metabox_type', 'metabox_title', 'metadata_list');
+
+        echo $this->parser->parse_view($metabox_type, $vars);
     }
 
     /**
@@ -50,16 +57,6 @@ class Metabox_View
             __('Metadata', PLUGIN_NAME) => $item_metadata,
         ];
 
-        return Metadata_Iterator::from_vars_list($item_vars, 1, $this);
-    }
-
-    /**
-     * @param string $asset_subpath
-     *
-     * @return string
-     */
-    private function composeAssetPath(string $asset_subpath = ''): string
-    {
-        return $this->assets_path . $asset_subpath;
+        return Metadata_Iterator::from_vars_list($item_vars, $this->parser);
     }
 }

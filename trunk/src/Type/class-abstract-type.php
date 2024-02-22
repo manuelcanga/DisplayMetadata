@@ -50,7 +50,7 @@ abstract class Abstract_Type
      */
     public function display(): void
     {
-        $this->metabox_view->display($this->get_model(), 'metabox');
+        $this->metabox_view->display($this->get_model());
     }
 
     /**

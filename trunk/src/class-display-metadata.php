@@ -4,25 +4,29 @@ declare(strict_types=1);
 namespace Trasweb\Plugins\DisplayMetadata;
 
 use Trasweb\Autoload;
-use Trasweb\Plugins\DisplayMetadata\UserCase\Register_Metabox;
-use Trasweb\Screen;
+use Trasweb\Parser;
 use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_Factory;
 use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_View;
+use Trasweb\Plugins\DisplayMetadata\UserCase\Register_Metabox;
+use Trasweb\Screen;
 
 /**
  * Class Plugin. Initialize and configure plugin
  */
 final class Display_Metadata
 {
-    public const PATH = __DIR__;
-    public const NAMESPACE = __NAMESPACE__;
-    public const VIEWS_PATH = self::PATH . '/../views';
     private const VIEWS_SUBPATH = '/views';
     private const ASSETS_SUBPATH = '/assets';
-    private array $screen_vars = [];
+    private array $screen_vars;
     private string $plugin_dir;
 
-    public function __construct(string $plugin_dir, $screen_vars)
+    /**
+     * @param string $plugin_dir
+     * @param array $screen_vars
+     *
+     * @return void
+     */
+    public function __construct(string $plugin_dir, array $screen_vars)
     {
         $this->fix_profile_admin_pages_screen_vars($screen_vars);
 
@@ -32,15 +36,17 @@ final class Display_Metadata
 
     /**
      * Run plugin
+     *
      * @return void
      */
     public function run(): void
     {
-        $metabox_view = new Metabox_View($this->plugin_dir.self::VIEWS_SUBPATH, $this->plugin_dir.self::ASSETS_SUBPATH);
+        $parser = new Parser($this->plugin_dir . self::VIEWS_SUBPATH, $this->plugin_dir . self::ASSETS_SUBPATH);
+        $metabox_view = new Metabox_View($parser);
         $metabox_factory = new Metabox_Factory($this->screen_vars);
         $screen = new Screen();
 
-        $register = new Register_Metabox($metabox_factory, $screen, $metabox_view);
+        $register = new Register_Metabox($metabox_factory, $metabox_view, $screen);
         $register->__invoke();
     }
 
@@ -53,6 +59,7 @@ final class Display_Metadata
     {
         include_once $this->plugin_dir . '/src/vendor/Trasweb/class-autoload.php';
         include_once $this->plugin_dir . '/src/vendor/Trasweb/class-screen.php';
+        include_once $this->plugin_dir . '/src/vendor/Trasweb/class-parser.php';
 
         define(__NAMESPACE__ . '\PLUGIN_NAME', basename($this->plugin_dir));
         spl_autoload_register((new  Autoload(__NAMESPACE__, __DIR__))->find_class(...));

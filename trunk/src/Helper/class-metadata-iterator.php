@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace Trasweb\Plugins\DisplayMetadata\Helper;
 
 use ArrayIterator;
-use Trasweb\Plugins\DisplayMetadata\Display_Metadata;
+use Trasweb\Parser;
 
 use function is_object;
 use function json_decode;
 use function json_encode;
-use function ob_get_clean;
 
 /**
  * Iterator for metadata list.
@@ -18,10 +17,10 @@ use function ob_get_clean;
  */
 class Metadata_Iterator extends ArrayIterator
 {
+    protected const META_LIST_VIEW = 'meta_list';
 
-    protected const META_LIST_VIEW = Display_Metadata::VIEWS_PATH . '/meta_list.php';
-
-    private $depth;
+    private int $depth;
+    private Parser $parser;
 
     /**
      * Retrieve meta name
@@ -63,7 +62,7 @@ class Metadata_Iterator extends ArrayIterator
         if (is_array($meta_value)) {
             ksort($meta_value);
 
-            return Metadata_Iterator::from_vars_list($meta_value, $this->depth + 1);
+            return Metadata_Iterator::from_vars_list($meta_value, $this->parser, $this->depth + 1);
         }
 
         if (is_null($meta_value)) {
@@ -77,18 +76,23 @@ class Metadata_Iterator extends ArrayIterator
      * Named constructor.
      *
      * @param array $vars_list List of vars.
+     * @param Parser $parser
      * @param integer $depth Current depth for these vars.
      *
      * @return static
      */
-    public static function from_vars_list(array $vars_list, int $depth = 1): self
+    public static function from_vars_list(array $vars_list, Parser $parser, int $depth = 1): self
     {
         $iterator = new self($vars_list, ArrayIterator::STD_PROP_LIST);
+        $iterator->parser = $parser;
         $iterator->depth = $depth;
 
         return $iterator;
     }
 
+    /**
+     * @return string
+     */
     public function get_attributes(): string
     {
         $attrs[] = (1 === $this->get_depth()) ? 'meta_headers' : 'meta_item';
@@ -121,13 +125,6 @@ class Metadata_Iterator extends ArrayIterator
      */
     public function __toString()
     {
-        ob_start();
-        (static function (Metadata_Iterator $metadata_list) {
-            include static::META_LIST_VIEW;
-        })(
-            $this
-        );
-
-        return ob_get_clean() ?: '';
+        return $this->parser->parse_view(static::META_LIST_VIEW, ['metadata_list' => $this]);
     }
 }
