@@ -15,7 +15,7 @@ final class Comment extends Metabox_Type
      */
     public function register(): void
     {
-        add_action('add_meta_boxes_comment', [$this, 'display']);
+        add_action('add_meta_boxes_comment', $this->display(...));
     }
 
 

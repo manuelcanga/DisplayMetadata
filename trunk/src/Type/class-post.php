@@ -18,7 +18,7 @@ final class Post extends Metabox_Type
         add_meta_box(
             'trasweb_metadata_metabox',     // Unique ID
             $this->get_model()->get_title(),                 // Box title
-            [$this, 'display'],                     // Content callback
+            $this->display(...),                     // Content callback
             $this->get_accepted_cpt()          // Post type
         );
     }
@@ -50,7 +50,7 @@ final class Post extends Metabox_Type
      *
      * @return void
      */
-    public function display(): void
+    protected function display(): void
     {
         $this->metabox_view->display($this->get_model(), 'simple-metabox');
     }

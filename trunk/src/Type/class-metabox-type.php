@@ -53,7 +53,7 @@ abstract class Metabox_Type
      *
      * @return void
      */
-    public function display(): void
+    protected function display(): void
     {
         $this->metabox_view->display($this->get_model());
     }
@@ -63,7 +63,7 @@ abstract class Metabox_Type
      *
      * @return Metabox_Model
      */
-    public function get_model(): Metabox_Model
+    protected function get_model(): Metabox_Model
     {
         return $this->model;
     }

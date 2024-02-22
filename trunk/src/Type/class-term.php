@@ -21,7 +21,7 @@ final class Term extends Metabox_Type
             return;
         }
 
-        add_action($term['taxonomy'] . '_edit_form', [$this, 'display']);
+        add_action($term['taxonomy'] . '_edit_form',  $this->display(...));
     }
 
     /**

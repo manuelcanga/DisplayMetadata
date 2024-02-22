@@ -49,7 +49,7 @@ class None extends Metabox_Type
      *
      * @return void
      */
-    public function display(): void
+    protected function display(): void
     {
         ;
     }

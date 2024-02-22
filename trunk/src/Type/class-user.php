@@ -15,8 +15,8 @@ final class User extends Metabox_Type
      */
     public function register(): void
     {
-        add_action('edit_user_profile', [$this, 'display']);
-        add_action('show_user_profile', [$this, 'display']);
+        add_action('edit_user_profile', $this->display(...));
+        add_action('show_user_profile', $this->display(...));
     }
 
     /**
