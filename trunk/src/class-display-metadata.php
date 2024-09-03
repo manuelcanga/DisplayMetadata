@@ -1,38 +1,48 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata;
-
-use Trasweb\Autoload;
-use Trasweb\Parser;
-use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_Factory;
-use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_View;
-use Trasweb\Plugins\DisplayMetadata\UserCase\Register_Metabox;
-use Trasweb\Screen;
 
 /**
  * Class Plugin. Initialize and configure plugin
  */
 final class Display_Metadata
 {
-    private const VIEWS_SUBPATH = '/views';
-    private const ASSETS_SUBPATH = '/assets';
-    private const CONFIG_METABOX_TYPES = '/config/metabox-types.conf.php';
-    private array $screen_vars;
-    private string $plugin_dir;
+    private static array $plugin_config;
+    private static array $plugin_services;
 
     /**
-     * @param string $plugin_dir
-     * @param array $screen_vars
+     * @param array $plugin_config
+     * @param array $plugin_services
      *
-     * @return void
      */
-    public function __construct(string $plugin_dir, array $screen_vars)
+    public function __construct(array $plugin_config, array $plugin_services)
     {
-        $this->fix_profile_admin_pages_screen_vars($screen_vars);
+        static::$plugin_config = $plugin_config;
+        static::$plugin_services = $plugin_services;
+    }
 
-        $this->plugin_dir = $plugin_dir;
-        $this->screen_vars = $screen_vars;
+    public static function dir(): string
+    {
+        return static::config('plugin.dir');
+    }
+
+    public static function config(string $key_dot_notation, string|int|null $default_value = null): mixed
+    {
+        $keys = explode('.', $key_dot_notation);
+
+        $config_value = static::$plugin_config;
+        foreach ($keys as $next_key) {
+            $config_value = $config_value[$next_key] ?? $default_value;
+        }
+
+        return $config_value;
+    }
+
+    public static function service(string $service_name, ...$extra_args): object
+    {
+        return static::$plugin_services[$service_name](...$extra_args);
     }
 
     /**
@@ -42,15 +52,7 @@ final class Display_Metadata
      */
     public function run(): void
     {
-        $parser = new Parser($this->plugin_dir . self::VIEWS_SUBPATH, $this->plugin_dir . self::ASSETS_SUBPATH);
-        $metabox_view = new Metabox_View($parser);
-
-        $metabox_types = include $this->plugin_dir.self::CONFIG_METABOX_TYPES;
-        $metabox_factory = new Metabox_Factory($this->screen_vars, $metabox_types);
-
-        $screen = new Screen();
-
-        $register = new Register_Metabox($metabox_factory, $metabox_view, $screen);
+        $register = static::service('metabox_register');
         $register->__invoke();
     }
 
@@ -61,23 +63,8 @@ final class Display_Metadata
      */
     public function bootstrap(): void
     {
-        include_once $this->plugin_dir . '/src/vendor/Trasweb/class-autoload.php';
-        include_once $this->plugin_dir . '/src/vendor/Trasweb/class-screen.php';
-        include_once $this->plugin_dir . '/src/vendor/Trasweb/class-parser.php';
+        define(__NAMESPACE__ . '\PLUGIN_NAME', static::config('plugin.name'));
 
-        define(__NAMESPACE__ . '\PLUGIN_NAME', basename($this->plugin_dir));
-        spl_autoload_register((new  Autoload(__NAMESPACE__, __DIR__))->find_class(...));
-    }
-
-    /**
-     * @param array $screen_vars Vars by reference from global environment.
-     *
-     * @return void
-     */
-    private function fix_profile_admin_pages_screen_vars(array &$screen_vars): void
-    {
-        if (defined('IS_PROFILE_PAGE') && IS_PROFILE_PAGE) {
-            $screen_vars['user_id'] = get_current_user_id();
-        }
+        spl_autoload_register(static::service('autoload', __NAMESPACE__, __DIR__)->find_class(...));
     }
 }

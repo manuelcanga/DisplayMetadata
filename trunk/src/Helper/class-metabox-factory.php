@@ -22,12 +22,6 @@ class Metabox_Factory
      */
     private array $screen_vars;
 
-    /**
-     * @param array $screen_vars Vars from query string.
-     *
-     * @param array $metabox_types_by_screen_var_key
-     * @return void
-     */
     public function __construct(array $screen_vars, array $metabox_types_by_screen_var_key) {
         $this->screen_vars = $this->check_screen_vars($screen_vars);
         $this->metabox_types_by_screen_var_key = $this->check_metabox_types($metabox_types_by_screen_var_key);
@@ -68,9 +62,8 @@ class Metabox_Factory
      * @param Metabox_View $metabox_View
      * @return Metabox_Type
      */
-    final public function get_current_metabox(Metabox_View $metabox_View): Type\Metabox_Type
+    final public function instance_current_metabox(Metabox_View $metabox_View): Type\Metabox_Type
     {
-
         $current_metabox = new (self::DEFAULT_METABOX)(new Model\Custom_Model(), $metabox_View);
 
         foreach ($this->metabox_types_by_screen_var_key as $item_id_key => $metabox) {

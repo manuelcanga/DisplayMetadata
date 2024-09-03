@@ -51,7 +51,7 @@ class Register_Metabox
      */
     protected function get_current_metabox(): Metabox_Type
     {
-        return $this->metabox_factory->get_current_metabox($this->metabox_view);
+        return $this->metabox_factory->instance_current_metabox($this->metabox_view);
     }
 
     /**

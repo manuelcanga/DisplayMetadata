@@ -25,9 +25,8 @@ if (!is_admin()) {
 }
 
 add_action('admin_init', static function (): void {
-    include_once __DIR__ . '/src/class-display-metadata.php';
+    $plugin_services = include __DIR__ . '/config/services.conf.php';
 
-    ${'display-metadata'} = new Display_Metadata(__DIR__, $_GET ?: []);
-    ${'display-metadata'}->bootstrap();
+    ${'display-metadata'} = $plugin_services['plugin'](base_dir: __DIR__, services: $plugin_services);
     ${'display-metadata'}->run();
 });
