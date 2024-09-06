@@ -63,6 +63,10 @@ final class Display_Metadata
      */
     public function bootstrap(): void
     {
+        if(defined(__NAMESPACE__ . '\PLUGIN_NAME')){
+            return ;
+        }
+
         define(__NAMESPACE__ . '\PLUGIN_NAME', static::config('plugin.name'));
 
         spl_autoload_register(static::service('autoload', __NAMESPACE__, __DIR__)->find_class(...));

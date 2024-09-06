@@ -2,13 +2,10 @@
 
 declare(strict_types=1);
 
-use Trasweb\Plugins\DisplayMetadata\Display_Metadata;
-
 $plugin_dir = __DIR__ . '/../trunk';
 
-require_once $plugin_dir . '/src/class-display-metadata.php';
+$plugin_services = include $plugin_dir . '/config/services.conf.php';
 
-${'display-metadata'} = new Display_Metadata($plugin_dir, $_GET ?: []);
-${'display-metadata'}->bootstrap();
+${'display-metadata'} = $plugin_services['plugin'](base_dir: $plugin_dir, services: $plugin_services);
 
 // Throw tests with  vendor/bin/phpunit --bootstrap tests/bootstrap.php tests
