@@ -26,7 +26,10 @@ jobs:
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
-          
+
+    - name: PHP Lint
+      run: find trunk/src/ -name "*.php" -print0 | while IFS= read -r -d '' file; do php -l "$file" || exit 1; done
+
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       
