@@ -18,22 +18,31 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 ## Summary
 
-Shows metas( fields, custom fields and protected metas ) in a metabox for posts( any CPT ), terms( any taxonomy ),
-comments and users. Metas are displayed for humans( organized and unserialized ). This metabox only will be displayed
-per either administrator users or users with `display_metadata_metabox` capability.
+Displays metadata in a metabox on the creation/editing pages for posts (any CPT), terms (any taxonomy), and users.
+The metadata is shown in a human-readable format, organized and unserialized. This metabox will only be visible
+to administrator users or users with the `display_metadata_metabox` capability.
 
 ## Description
 
-As a developer you normally need know about a value of some meta( or properties ) of a post, term o user.
+As a developer, you often need to access and review the values of metadata (or properties) attached to posts, terms,
+users, or comments. Whether it's for debugging or optimizing custom functionalities, having a clear view of this data
+is essential for ensuring your code interacts correctly with the underlying WordPress objects.
 
-As a sysadmin maybe you need know about which meta are created in posts/terms/comments/users in order to remove which
-are unnecessary.
+As a sysadmin, managing and cleaning up unnecessary meta fields is crucial for keeping the database lean and efficient.
+By understanding which meta fields are currently in use across posts, terms, comments, and users, you can make informed
+decisions about which metadata to remove, optimizing performance and preventing clutter in your system.
 
-As a plugin author you need check if you plugin is adding meta rightly.
+As a plugin author, it's important to verify that your plugin is creating and managing meta fields properly.
+The Display Meta plugin allows you to inspect whether your plugin is adding the correct metadata and helps ensure 
+compatibility with other plugins that may also modify metadata.
 
-As a theme author you need know about which meta is available in order to can use they in your themes.
+As a theme author, knowing which meta fields are available is key to leveraging them effectively in your theme designs.
+Whether you want to display custom fields in a template or use metadata for styling purposes, having direct access to
+this information will enable you to create more dynamic and responsive themes.
 
-In all these cases( and others ), you can use Display Meta plugin.
+In all of these cases (and many more), the Display Meta plugin simplifies the process by displaying all relevant metadata
+in a human-readable format, right within the WordPress admin interface. With this tool, you can easily view, organize,
+and manage metadata without having to dig through the database or write custom queries.
 
 ## Thanks
 
@@ -48,14 +57,13 @@ In all these cases( and others ), you can use Display Meta plugin.
 
 ## Installation
 
-1. Login to the /wp-admin/ of your WP website.
-1. Go to the *Plugins* section.
-1. Select the *Add New* top sub-menu item.
-1. Search for **Display Metadata** and click the *Search Plugins* button.
-1. Click the *Install Now* link for this plugin.
-1. Click the *Activate Plugin* button.
-1. **Now, this plugin add a new metabox on editing form of posts( any CPT ), terms( any taxonomy ), comments and users
-   **.
+1. Log in to the `/wp-admin/` dashboard of your WordPress website.
+2. Go to the **Plugins** section.
+3. Select the **Add New** sub-menu item.
+4. In the search bar, type **Display Metadata** and click the **Search Plugins** button.
+5. Find the plugin and click the **Install Now** button.
+6. After installation, click the **Activate Plugin** button.
+7. Once activated, this plugin will add a new metabox to the editing form of posts (any CPT), terms (any taxonomy), comments, and users.
 
 ## Changelog
 

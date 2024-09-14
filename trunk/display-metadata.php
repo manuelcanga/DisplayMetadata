@@ -6,7 +6,7 @@ namespace Trasweb\Plugins\DisplayMetadata;
 /*
  * Plugin Name: Display Metadata
  * Plugin URI: https://github.com/manuelcanga/DisplayMetadata
- * Description: Shows metas in a metabox for posts( any CPT ), terms( any taxonomy ), comments and users. Metadata are displayed for humans( organized and unserialized ). This metabox only will be displayed per either administrator users or users with `display_metadata_metabox` capability.
+ * Description: Displays metadata in a metabox on the creation/editing pages for posts (any CPT), terms (any taxonomy), and users. The metadata is shown in a human-readable format, organized and unserialized. This metabox will only be visible to administrator users or users with the `display_metadata_metabox` capability.
  * Version: 0.4.1
  * Author: Manuel Canga
  * Author URI: https://manuelcanga.dev
