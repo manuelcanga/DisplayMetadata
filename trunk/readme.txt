@@ -1,6 +1,6 @@
 === Display post meta, term meta, comment meta, and user meta ===
 Contributors: trasweb
-Tags: development, metabox, debug, metadata
+Tags: metabox, metadata, debug, custom post types, taxonomy, admin tools, custom fields, database management
 Requires at least: 4.9.0
 Tested up to: 6.0.1
 Requires PHP: 8.1

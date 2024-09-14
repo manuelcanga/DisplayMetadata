@@ -2,7 +2,7 @@
 
 Contributors: trasweb
 
-Tags: development, metabox, debug, metadata
+Tags: metabox, metadata, debug, custom post types, taxonomy, admin tools, custom fields, database management
 
 Requires at least: 4.9.0
 
