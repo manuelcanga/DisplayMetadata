@@ -27,11 +27,17 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
 
-    - name: PHP Lint
+    - name: PHP Lint in trunk/src/ directory
       run: find trunk/src/ -name "*.php" -print0 | while IFS= read -r -d '' file; do php -l "$file" || exit 1; done
+
+    - name: PHP Lint trunk/config/ directory
+      run: find trunk/config/ -name "*.php" -print0 | while IFS= read -r -d '' file; do php -l "$file" || exit 1; done
+
+    - name: PHP Lint tests/ directory
+      run: find tests/ -name "*.php" -print0 | while IFS= read -r -d '' file; do php -l "$file" || exit 1; done
 
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       
     - name: Execute tests (Smoking Tests and unit tests) via PHPUnit
-      run: vendor/bin/phpunit  --bootstrap tests/bootstrap.php tests --testdox  --coverage-text tests
+      run: vendor/bin/phpunit --testdox  --coverage-text
