@@ -8,6 +8,10 @@ $plugin_dir = __DIR__ . '/../trunk';
  * @const \Trasweb\Plugins\DisplayMetadata\Tests\PLUGIN_DIR
  */
 define(__NAMESPACE__.'\PLUGIN_DIR', $plugin_dir);
+/**
+ * @const ABSPATH
+ */
+define('ABSPATH', __DIR__.'/../../../');
 
 $plugin_services = include $plugin_dir . '/config/services.conf.php';
 
