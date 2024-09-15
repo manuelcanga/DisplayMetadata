@@ -1,4 +1,4 @@
-name: PHP Composer
+name: Linter and smoking/unit tests
 
 on: push
 
