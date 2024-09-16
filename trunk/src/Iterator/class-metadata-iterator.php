@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Trasweb\Plugins\DisplayMetadata\Helper;
+namespace Trasweb\Plugins\DisplayMetadata\Iterator;
 
 use ArrayIterator;
 use Trasweb\Parser;

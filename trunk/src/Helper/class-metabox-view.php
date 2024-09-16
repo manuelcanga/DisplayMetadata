@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Trasweb\Plugins\DisplayMetadata\Helper;
 
 use Trasweb\Parser;
+use Trasweb\Plugins\DisplayMetadata\Iterator\Metadata_Iterator;
 use Trasweb\Plugins\DisplayMetadata\Model\Metabox_Model;
 
 use const Trasweb\Plugins\DisplayMetadata\PLUGIN_NAME;
