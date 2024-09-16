@@ -14,6 +14,7 @@ return [
     'assets' => [
         'subpath' => '/assets',
     ],
+    'default-metabox' => Type\None::class,
     'metabox-types' => [
         'post' => [
             'type' => Type\Post::class,

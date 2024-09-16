@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata\Helper;
 
+use Trasweb\Plugins\DisplayMetadata\Dto\Id_Url_Params;
+use Trasweb\Plugins\DisplayMetadata\Iterator\Metabox_Types_Iterator;
 use Trasweb\Plugins\DisplayMetadata\Model;
 use Trasweb\Plugins\DisplayMetadata\Type;
 use Trasweb\Plugins\DisplayMetadata\Type\Metabox_Type;
@@ -12,48 +14,14 @@ use Trasweb\Plugins\DisplayMetadata\Type\Metabox_Type;
  */
 class Metabox_Factory
 {
-    private const DEFAULT_METABOX = Type\None::class;
-    /**
-     * array<string,array{type:class-string,model:class-string}>
-     */
-    private array $metabox_types_by_screen_var_key;
-    /**
-     * @var array<string, int>
-     */
-    private array $screen_vars;
+    private Metabox_Types_Iterator $metabox_types;
 
-    public function __construct(array $screen_vars, array $metabox_types_by_screen_var_key) {
-        $this->screen_vars = $this->check_screen_vars($screen_vars);
-        $this->metabox_types_by_screen_var_key = $this->check_metabox_types($metabox_types_by_screen_var_key);
-    }
+    private Id_Url_Params $id_params;
 
-    /**
-     * Screen vars should be numeric (they, which we use, are ids)
-     *
-     * @param array<string, mixed> $screen_vars
-     *
-     * @return array<string, int>
-     */
-    private function check_screen_vars(array $screen_vars): array
+    public function __construct(Id_Url_Params $id_params, Metabox_Types_Iterator $metabox_types)
     {
-        $screen_var_checker = fn($item_id) => absint($item_id ?? 0);
-
-        return array_filter(array_map($screen_var_checker, $screen_vars));
-    }
-
-    /**
-     * Metabox types should to be Metabox objects.
-     *
-     * @param array<string, mixed> $metabox_types
-     *
-     * @return array<string,array{type: class-string, model:class-string}>
-     */
-    private function check_metabox_types(array $metabox_types): array
-    {
-        $type_checker = static fn($metabox_type) => is_a($metabox_type['type'], Type\Metabox_Type::class, allow_string: true);
-        $model_checker = static fn($metabox_type) => is_a($metabox_type['model'], Model\Metabox_Model::class, allow_string: true);
-
-        return array_filter(array_filter($metabox_types, $type_checker), $model_checker);
+        $this->id_params = $id_params;
+        $this->metabox_types = $metabox_types;
     }
 
     /**
@@ -64,15 +32,13 @@ class Metabox_Factory
      */
     final public function instance_current_metabox(Metabox_View $metabox_View): Type\Metabox_Type
     {
-        $current_metabox = new (self::DEFAULT_METABOX)(new Model\Custom_Model(), $metabox_View);
+        $default_metabox = $this->metabox_types->get_default_metabox();
+        $current_metabox = new $default_metabox(new Model\Custom_Model(), $metabox_View);
 
-        foreach ($this->metabox_types_by_screen_var_key as $item_id_key => $metabox) {
-            $item_id = (int)( $this->screen_vars[$item_id_key] ?? 0 );
+        foreach ($this->metabox_types as $item_id_key => list('type' => $metabox_type, 'model' => $metabox_model)) {
+            $item_id = $this->id_params->get($item_id_key);
 
-            $metabox_type = $metabox['type'] ?? null;
-            $metabox_model = $metabox['model'] ?? null;
-
-            if ($item_id && $metabox_type && $metabox_model ) {
+            if ($item_id && $metabox_type && $metabox_model) {
                 $metabox_model = new $metabox_model($item_id);
                 $current_metabox = new $metabox_type($metabox_model, $metabox_View);
                 break;

@@ -5,8 +5,10 @@ declare(strict_types=1);
 use Trasweb\Autoload;
 use Trasweb\Parser;
 use Trasweb\Plugins\DisplayMetadata\Display_Metadata as Plugin;
+use Trasweb\Plugins\DisplayMetadata\Dto\Id_Url_Params;
 use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_Factory;
 use Trasweb\Plugins\DisplayMetadata\Helper\Metabox_View;
+use Trasweb\Plugins\DisplayMetadata\Iterator\Metabox_Types_Iterator;
 use Trasweb\Plugins\DisplayMetadata\UserCase\Register_Metabox;
 use Trasweb\Screen;
 
@@ -41,16 +43,13 @@ return [
     ),
 
     'metabox_factory' => static function (): Metabox_Factory {
-        $screen_vars = $_GET ?: [];
-
-        // fix profile admin pages screen vars
-        if (defined('IS_PROFILE_PAGE') && IS_PROFILE_PAGE) {
-            $screen_vars['user_id'] = get_current_user_id();
-        }
+        $metabox_types_config = Plugin::config('metabox-types');
+        $default_metabox = Plugin::Config('default-metabox');
+        $metabox_types = new Metabox_Types_Iterator($metabox_types_config, $default_metabox);
 
         return new Metabox_Factory(
-            $screen_vars,
-            Plugin::config('metabox-types'),
+            Id_Url_Params::create_from_globals(),
+            $metabox_types,
         );
     },
 

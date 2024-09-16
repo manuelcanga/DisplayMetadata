@@ -13,7 +13,7 @@ use const Trasweb\Plugins\DisplayMetadata\Tests\PLUGIN_DIR;
 class BasicConfigTest extends TestCase
 {
     private const CONFIG_FILE = PLUGIN_DIR.'/config/display-metadata.conf.php';
-    private const MINIMAL_KEYS = ['plugin', 'views', 'assets', 'metabox-types'];
+    private const MINIMAL_KEYS = ['plugin', 'views', 'assets', 'default-metabox', 'metabox-types'];
 
     /**
      * Check if file of basic config exits. Otherwise fail
