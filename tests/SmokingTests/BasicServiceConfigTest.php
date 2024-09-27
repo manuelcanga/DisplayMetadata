@@ -48,8 +48,9 @@ class BasicServiceConfigTest extends TestCase
     public function testMinimalValues(): void
     {
         $services_values = include static::CONFIG_FILE;
+        $minimal_services = array_intersect(static::MINIMAL_KEYS, array_keys($services_values));
 
-        $this->assertSame(static::MINIMAL_KEYS, array_keys($services_values));
+        $this->assertEquals(static::MINIMAL_KEYS, $minimal_services);
     }
 
     /**

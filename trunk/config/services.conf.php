@@ -42,16 +42,20 @@ return [
         parser: Plugin::service('parser'),
     ),
 
-    'metabox_factory' => static function (): Metabox_Factory {
-        $metabox_types_config = Plugin::config('metabox-types');
-        $default_metabox = Plugin::Config('default-metabox');
-        $metabox_types = new Metabox_Types_Iterator($metabox_types_config, $default_metabox);
+    'metabox_iterator' => static function (
+        ?array $metabox_types_config = null,
+        string $default_metabox = ''
+    ): Metabox_Types_Iterator {
+        $metabox_types_config = $metabox_types_config ?? Plugin::config('metabox-types');
+        $default_metabox = $default_metabox ?: Plugin::Config('default-metabox');
 
-        return new Metabox_Factory(
-            Id_Url_Params::create_from_globals(),
-            $metabox_types,
-        );
+        return new Metabox_Types_Iterator($metabox_types_config, $default_metabox);
     },
+
+    'metabox_factory' => static fn(): Metabox_Factory => new Metabox_Factory(
+        Id_Url_Params::create_from_globals(),
+        Plugin::service('metabox_iterator'),
+    ),
 
     'metabox_register' => static fn(): Register_Metabox => new Register_Metabox(
         Plugin::service('metabox_factory'),
