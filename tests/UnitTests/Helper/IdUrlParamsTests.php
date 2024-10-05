@@ -10,11 +10,11 @@ use Trasweb\Plugins\DisplayMetadata\Dto\Id_Url_Params;
 final class IdUrlParamsTests extends TestCase
 {
     /**
-     * Test constructor with valid parameters.
+     * Test the constructor with valid parameters.
      *
      * @group unit
      */
-    public function test_constructor_with_valid_params(): void
+    public function testConstructorWithValidParams(): void
     {
         // Arrange:
         $params = [
@@ -33,11 +33,11 @@ final class IdUrlParamsTests extends TestCase
     }
 
     /**
-     * Test constructor with empty parameters.
+     * Test the constructor with empty parameters.
      *
      * @group unit
      */
-    public function test_constructor_with_empty_params(): void
+    public function testConstructorWithEmptyParams(): void
     {
         // Arrange:
         $params = [];
@@ -50,11 +50,11 @@ final class IdUrlParamsTests extends TestCase
     }
 
     /**
-     * Test get method with default value.
+     * Test the get method with default value.
      *
      * @group unit
      */
-    public function test_get_with_default_value(): void
+    public function testGetWithDefaultValue(): void
     {
         // Arrange:
         $params = [
@@ -70,11 +70,11 @@ final class IdUrlParamsTests extends TestCase
     }
 
     /**
-     * Test create_from_globals method.
+     * Test the createFromGlobals method.
      *
      * @group unit
      */
-    public function test_create_from_globals(): void
+    public function testCreateFromGlobals(): void
     {
         // Arrange:
         $_GET = [
@@ -91,11 +91,11 @@ final class IdUrlParamsTests extends TestCase
     }
 
     /**
-     * Test create_from_globals method.
+     * Test the createFromGlobals method in profile page context.
      *
      * @group unit
      */
-    public function test_create_from_globals_in_profile_page(): void
+    public function testCreateFromGlobalsInProfilePage(): void
     {
         // Arrange:
         global $test_functions_values;
@@ -107,16 +107,16 @@ final class IdUrlParamsTests extends TestCase
         // Act:
         $idUrlParams = Id_Url_Params::create_from_globals();
 
-        // Assets:
+        // Asserts:
         $this->assertEquals(3234, $idUrlParams->get('user_id'));
     }
 
     /**
-     * Test expects only 'valid_id' and 'zero_value' keep theirs values.
+     * Test that only 'valid_id' and 'zero_value' retain their values.
      *
      * @group unit
      */
-    public function test_check_params_filtering(): void
+    public function testCheckParamsFiltering(): void
     {
         // Arrange:
         $params = [
@@ -128,7 +128,7 @@ final class IdUrlParamsTests extends TestCase
         // Act:
         $idUrlParams = new Id_Url_Params($params);
 
-        // Assets:
+        // Asserts:
         $this->assertEquals(111, $idUrlParams->get('valid_id'));
         $this->assertEquals(0, $idUrlParams->get('zero_value'));
         $this->assertEquals(0, $idUrlParams->get('invalid_id')); // Filtered

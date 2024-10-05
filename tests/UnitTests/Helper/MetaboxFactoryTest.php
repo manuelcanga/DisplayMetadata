@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace Trasweb\Plugins\DisplayMetadata\Tests\UnitTests\Helper;
 
 use PHPUnit\Framework\TestCase;
@@ -20,153 +19,152 @@ use Trasweb\Plugins\DisplayMetadata\Type\User;
 class MetaboxFactoryTest extends TestCase
 {
     /**
-     * Check when not ids is found in urls.
+     * Check when no IDs are found in URLs.
      * This should return the default metabox.
      *
      * @group unit
      *
      * @return void
      */
-    public function test_empty_id_params_when_instance_current_metabox()
+    public function testEmptyIdParamsWhenInstanceCurrentMetabox(): void
     {
         // Arrange:
         $id_params = new Id_Url_Params([]);
         $default_metabox = Plugin::config('default-metabox');
 
-        //Act
+        // Act:
         $instanced_metabox = $this->instanceMetabox($id_params);
 
-
-        // Assert
+        // Assert:
         $this->assertInstanceOf($default_metabox, $instanced_metabox);
     }
 
     /**
-     * Check when id to search doesn't exist in params.
+     * Check when the ID to search doesn't exist in params.
      * This should return the default metabox.
      *
      * @group unit
      *
      * @return void
      */
-    public function test_when_id_params_is_not_found_when_instance_current_metabox()
+    public function testWhenIdParamsIsNotFoundWhenInstanceCurrentMetabox(): void
     {
         // Arrange:
         $id_params = new Id_Url_Params(['this_id_exists' => 4]);
         $default_metabox = Plugin::config('default-metabox');
 
-        //Act
+        // Act:
         $instanced_metabox = $this->instanceMetabox($id_params);
 
-        // Assert
+        // Assert:
         $this->assertInstanceOf($default_metabox, $instanced_metabox);
     }
 
     /**
-     * Check when id of a post exists in params.
+     * Check when the ID of a post exists in params.
      * This should return the Post type metabox.
      *
      * @group unit
      *
      * @return void
      */
-    public function test_when_post_id_is_found()
+    public function testWhenPostIdIsFound(): void
     {
         // Arrange:
         $id_params = new Id_Url_Params(['post' => 10]);
 
-        // Act
+        // Act:
         $instanced_metabox = $this->instanceMetabox($id_params);
 
-        // Assert
+        // Assert:
         $this->assertInstanceOf(Post::class, $instanced_metabox);
     }
 
     /**
-     * Check when dangerous id of a post exists in params.
+     * Check when a dangerous ID of a post exists in params.
      * This should return the Default type metabox.
      *
      * @group unit
      *
      * @return void
      */
-    public function test_when_dangerous_post_id_is_found()
+    public function testWhenDangerousPostIdIsFound(): void
     {
         // Arrange:
         $id_params = new Id_Url_Params(['post' => '; - Select * FROM wp_users;']);
         $default_metabox = Plugin::config('default-metabox');
 
-        // Act
+        // Act:
         $instanced_metabox = $this->instanceMetabox($id_params);
 
-        // Assert
+        // Assert:
         $this->assertInstanceOf($default_metabox, $instanced_metabox);
     }
 
     /**
-     * Check when id of a term exists in params.
+     * Check when the ID of a term exists in params.
      * This should return the Term type metabox.
      *
      * @group unit
      *
      * @return void
      */
-    public function test_when_term_id_is_found()
+    public function testWhenTermIdIsFound(): void
     {
         // Arrange:
         $id_params = new Id_Url_Params(['tag_ID' => 10]);
 
-        // Act
+        // Act:
         $instanced_metabox = $this->instanceMetabox($id_params);
 
-        // Assert
+        // Assert:
         $this->assertInstanceOf(Term::class, $instanced_metabox);
     }
 
     /**
-     * Check when id of a user exists in params.
+     * Check when the ID of a user exists in params.
      * This should return the User type metabox.
      *
      * @group unit
      *
      * @return void
      */
-    public function test_when_user_id_is_found()
+    public function testWhenUserIdIsFound(): void
     {
         // Arrange:
         $id_params = new Id_Url_Params(['user_id' => 10]);
 
-        // Act
+        // Act:
         $instanced_metabox = $this->instanceMetabox($id_params);
 
-        // Assert
+        // Assert:
         $this->assertInstanceOf(User::class, $instanced_metabox);
     }
 
     /**
-     * Check when id of a comment exists in params.
+     * Check when the ID of a comment exists in params.
      * This should return the Comment type metabox.
      *
      * @group unit
      *
      * @return void
      */
-    public function test_when_comment_id_is_found()
+    public function testWhenCommentIdIsFound(): void
     {
         // Arrange:
         $id_params = new Id_Url_Params(['c' => 10]);
 
-        // Act
+        // Act:
         $instanced_metabox = $this->instanceMetabox($id_params);
 
-        // Assert
+        // Assert:
         $this->assertInstanceOf(Comment::class, $instanced_metabox);
     }
 
     /**
-     * Helper: Instance a Metabox_Factory using $id_params and retrieve current metabox
+     * Helper: Instance a Metabox_Factory using $id_params and retrieve the current metabox.
      *
-     * @param Id_Url_Params $id_params Values dof ids of current screen.
+     * @param Id_Url_Params $id_params Values of IDs for the current screen.
      *
      * @return Metabox_Type
      */
