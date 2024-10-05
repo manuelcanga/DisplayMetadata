@@ -17,6 +17,8 @@ class BasicEnvironmentTest extends TestCase
     /**
      * Test a minimal PHP version which plugin needs
      *
+     * @group smoking
+     *
      * @return void
      */
     public function testValidPHPVersion(): void
@@ -27,6 +29,8 @@ class BasicEnvironmentTest extends TestCase
 
     /**
      * Test a minimal WordPress version which plugin needs
+     *
+     * @group smoking
      *
      * @return void
      */

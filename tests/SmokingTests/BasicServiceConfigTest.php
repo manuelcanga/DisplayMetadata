@@ -33,6 +33,8 @@ class BasicServiceConfigTest extends TestCase
     /**
      * Check if file of basic config exits. Otherwise fail
      *
+     * @group smoking
+     *
      * @return void
      */
     public function testFileExists(): void
@@ -42,6 +44,8 @@ class BasicServiceConfigTest extends TestCase
 
     /**
      * Check if config has a minimal of basic keys
+     *
+     * @group smoking
      *
      * @return void
      */
@@ -55,6 +59,8 @@ class BasicServiceConfigTest extends TestCase
 
     /**
      * Check if instances of some services are rights.
+     *
+     * @group smoking
      *
      * @return void
      */

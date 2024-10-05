@@ -18,6 +18,8 @@ class BasicConfigTest extends TestCase
     /**
      * Check if file of basic config exits. Otherwise fail
      *
+     * @group smoking
+     *
      * @return void
      */
     public function testFileExists(): void
@@ -27,6 +29,8 @@ class BasicConfigTest extends TestCase
 
     /**
      * Check if config has a minimal of basic keys
+     *
+     * @group smoking
      *
      * @return void
      */
