@@ -24,7 +24,7 @@ class MetaboxViewTest extends TestCase
      *
      * @return void
      */
-    public function test_keys_are_sanitized_rightly(): void
+    public function testKeysAreSanitizedRightly(): void
     {
         // Arrange: Prepare property and metadata arrays with malicious code in the keys
         $property = ['property <script>alert("key");</script>' => 'Property keys are secure'];
@@ -45,7 +45,7 @@ class MetaboxViewTest extends TestCase
      *
      * @return void
      */
-    public function test_nested_keys_are_sanitized_rightly(): void
+    public function testNested_KeysAreSanitizedRightly(): void
     {
         // Arrange: Prepare nested arrays with malicious code in the keys
         $property = [
@@ -70,7 +70,7 @@ class MetaboxViewTest extends TestCase
      *
      * @return void
      */
-    public function test_serialized_keys_are_sanitized_rightly(): void
+    public function testSerialized_KeysAreSanitizedRightly(): void
     {
         // Arrange: Prepare property and metadata arrays with malicious code in the keys
         $property = ['s:39:"property <script>alert("key");</script>";' => 'Property keys are secure'];
@@ -91,7 +91,7 @@ class MetaboxViewTest extends TestCase
      *
      * @return void
      */
-    public function test_values_are_sanitized_rightly(): void
+    public function testValuesAreSanitizedRightly(): void
     {
         // Arrange: Prepare property and metadata arrays with malicious code in the values
         $property = ['Property' => 'property <script>alert("value");</script>'];
@@ -112,7 +112,7 @@ class MetaboxViewTest extends TestCase
      *
      * @return void
      */
-    public function test_nested_values_are_sanitized_rightly(): void
+    public function testNested_ValuesAreSanitizedRightly(): void
     {
         // Arrange: Prepare nested arrays with malicious code in the values
         $property = [
@@ -140,7 +140,7 @@ class MetaboxViewTest extends TestCase
      *
      * @return void
      */
-    public function test_serialized_values_are_sanitized_rightly(): void
+    public function testSerialized_ValuesAreSanitizedRightly(): void
     {
         // Arrange: Prepare property and metadata arrays with malicious code in the values
         $property = ['Property' => 's:41:"property <script>alert("value");</script>";'];
