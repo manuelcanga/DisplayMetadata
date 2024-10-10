@@ -44,7 +44,7 @@ abstract class Metabox_Model
     abstract protected function get_meta_table_name(): string;
 
     /**
-     * Retrieve metadatas from table name using field and current item value.
+     * Retrieve metadata from table name using field and current item value.
      *
      * @return array{meta_key: string, meta_value:string}
      */

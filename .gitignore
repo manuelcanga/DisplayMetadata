@@ -2,3 +2,4 @@
 .idea
 .svn
 /vendor/
+.phpunit.result.cache

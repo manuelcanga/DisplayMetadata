@@ -7,7 +7,7 @@ namespace Trasweb\Plugins\DisplayMetadata\Tests\UnitTests\Helper;
 use PHPUnit\Framework\TestCase;
 use Trasweb\Plugins\DisplayMetadata\Dto\Id_Url_Params;
 
-final class IdUrlParamsTests extends TestCase
+final class IdUrlParamsTest extends TestCase
 {
     /**
      * Test the constructor with valid parameters.

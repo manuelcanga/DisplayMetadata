@@ -15,7 +15,8 @@ class Custom_Model extends Metabox_Model
      */
     protected const FIELD_META_ID = 'custom_id';
     protected array $item_properties = [];
-    protected string $table_name = '';
+    protected array $item_metadata = [];
+    protected string $table_name = 'custom_table';
 
     /**
      * Set a custom properties
@@ -29,13 +30,34 @@ class Custom_Model extends Metabox_Model
     }
     
     /**
-     * Retrieve item properties/fields. E.g: comment_ID, comment_approved, ...
+     * Retrieve custom item properties/fields. E.g: comment_ID, comment_approved, ...
      *
      * @return array
      */
     public function get_item_properties(): array
     {
         return $this->item_properties;
+    }
+
+    /**
+     * Set a custom properties
+     *
+     * @param array{meta_key: string, meta_value:string} $new_properties
+     *
+     * @return void
+     */
+    public function set_item_metadata(array $item_metadata) {
+        $this->item_metadata = $item_metadata;
+    }
+
+    /**
+     * Retrieve custom metadata
+     *
+     * @return array{meta_key: string, meta_value:string}
+     */
+    public function get_item_metadata(): array
+    {
+        return $this->item_metadata;
     }
 
     /**

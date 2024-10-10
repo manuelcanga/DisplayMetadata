@@ -18,16 +18,9 @@ $plugin_services = include $plugin_dir . '/config/services.conf.php';
 ${'display-metadata'} = $plugin_services['plugin'](base_dir: $plugin_dir, services: $plugin_services);
 
 /**
- * @overridings of functions
+ * functions
  */
-$test_functions_values = [];
 
-function get_current_user_id()
-{
-    global $test_functions_values;
-
-    return $test_functions_values['get_current_user_id'];
-}
-
+require __DIR__.'/functions.php';
 
 // Throw tests with  vendor/bin/phpunit --testdox
