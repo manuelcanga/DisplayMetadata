@@ -1,12 +1,13 @@
-<?php declare( strict_types = 1 );
+<?php
+declare(strict_types=1);
 
 namespace Trasweb\Plugins\DisplayMetadata;
 
 /*
  * Plugin Name: Display Metadata
- * Plugin URI: https://github.com/trasweb/DisplayMetadata
- * Description: Shows metas in a metabox for posts( any CPT ), terms( any taxonomy ), comments and users. Metadata are displayed for humans( organized and unserialized ). This metabox only will be displayed per either administrator users or users with `display_metadata_metabox` capability.
- * Version: 0.3
+ * Plugin URI: https://github.com/manuelcanga/DisplayMetadata
+ * Description: Displays metadata in a metabox on the creation/editing pages for posts (any CPT), terms (any taxonomy), and users. The metadata is shown in a human-readable format, organized and unserialized. This metabox will only be visible to administrator users or users with the `display_metadata_metabox` capability.
+ * Version: 1.0.0
  * Author: Manuel Canga
  * Author URI: https://manuelcanga.dev
  * License: GPL3
@@ -15,18 +16,17 @@ namespace Trasweb\Plugins\DisplayMetadata;
  * Domain Path: /languages
 */
 
-if ( ! defined( 'ABSPATH' ) ) {
-    die( 'Hello, World!' );
+if (!defined('ABSPATH')) {
+    die('Hello, World!');
 }
 
-if ( ! is_admin() ) {
+if (!is_admin()) {
     return;
 }
 
-( static function () {
-    include_once __DIR__ . '/class-plugin.php';
+add_action('admin_init', static function (): void {
+    $plugin_services = include __DIR__ . '/config/services.conf.php';
 
-    ${'display-metadata'} = new Plugin( $_GET ?: [] );
-
-    add_action( 'admin_init', ${'display-metadata'} );
-} )();
+    ${'display-metadata'} = $plugin_services['plugin'](base_dir: __DIR__, services: $plugin_services);
+    ${'display-metadata'}->run();
+});

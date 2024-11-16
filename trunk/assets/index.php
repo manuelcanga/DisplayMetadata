@@ -1,1 +1,2 @@
-<?php die("Hello, World!");
+<?php
+die("Hello, World!");

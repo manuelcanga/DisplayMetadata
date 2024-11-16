@@ -60,7 +60,7 @@
 }
 
 #trasweb-metadata-metabox .depth_1 table {
-	padding: 13px 0 13px 5px;
+    padding: 13px 0 13px 5px;
 }
 
 #trasweb-metadata-metabox td.meta_key {
@@ -71,7 +71,7 @@
     padding-right: 3px;
 }
 
-#trasweb-metadata-metabox .meta_item > td.meta_key:hover{
+#trasweb-metadata-metabox .meta_item > td.meta_key:hover {
     position: relative;
     background-clip: padding-box; /* fix bug with borders in position relative */
 }
@@ -101,7 +101,7 @@
     color: #333;
 }
 
-#trasweb-metadata-metabox .meta_item > td.meta_value:hover{
+#trasweb-metadata-metabox .meta_item > td.meta_value:hover {
     position: relative;
     background-clip: padding-box; /* fix bug with borders in position relative */
 }
@@ -128,4 +128,3 @@
     text-align: center;
     font-size: 10px;
 }
-
