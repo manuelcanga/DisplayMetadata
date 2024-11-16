@@ -1,0 +1,97 @@
+version: "3.2"
+
+services:
+  wordpress:
+    build:
+      context: WordPress
+      args:
+        WORDPRESS_VERSION: 6.7.0
+        PHP_VERSION: 8.1
+    environment:
+      VIRTUAL_HOST: "localhost"
+      WORDPRESS_DB_HOST: "mysql"
+      WORDPRESS_DB_NAME: "wordpress"
+      WORDPRESS_DB_PASSWORD: "manuelcanga.dev"
+      WORDPRESS_DB_USER: "root"
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_LANG', "es_ES");
+        define('FS_METHOD', 'direct');
+        define('WP_DEBUG', true);
+        define('SAVEQUERIES', true);
+        define('WP_DEBUG_DISPLAY', true);
+    depends_on:
+      - mysql
+    networks:
+      - front
+      - back
+    volumes:
+      - ../trunk/:/var/www/html/wp-content/plugins/display-metadata
+      - wordpress:/var/www/html
+
+  wp-cli:
+    image: "wordpress:cli"
+    container_name: wp_cli
+    environment:
+      VIRTUAL_HOST: "localhost"
+      WORDPRESS_DB_HOST: "mysql"
+      WORDPRESS_DB_NAME: "wordpress"
+      WORDPRESS_DB_PASSWORD: "manuelcanga.dev"
+      WORDPRESS_DB_USER: "root"
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_LANG', "es_ES");
+        define('FS_METHOD', 'direct');
+        define('WP_DEBUG', true);
+        define('SAVEQUERIES', true);
+        define('WP_DEBUG_DISPLAY', true);
+
+    depends_on:
+      - mysql
+      - wordpress
+    networks:
+      - back
+    working_dir: /var/www/html
+    volumes:
+      - wordpress:/var/www/html
+      - ./WordPress/bin/install.sh:/bin/install.sh
+      - ../trunk/:/var/www/html/wp-content/plugins/display-metadata
+
+  mysql:
+    image: "mysql:latest"
+    environment:
+      MYSQL_DATABASE: "wordpress"
+      MYSQL_ROOT_PASSWORD: "manuelcanga.dev"
+    ports:
+      - 33060:3306
+    networks:
+      - back
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: "mysql"
+      MYSQL_ROOT_PASSWORD: "manuelcanga.dev"
+    ports:
+      - '8181:80'
+    depends_on:
+      - mysql
+    restart: always
+    networks:
+      - back
+
+  proxy:
+    image: "jwilder/nginx-proxy:alpine"
+    ports:
+      - "80:80"
+    networks:
+      front:
+        aliases:
+          - "${DOCKER_DEV_DOMAIN:-localhost}"
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+
+networks:
+  front: {}
+  back: {}
+
+volumes:
+  wordpress: {}
