@@ -2,9 +2,9 @@
 Contributors: trasweb
 Tags: metabox, metadata, debug, custom post types, taxonomy, admin tools, custom fields, database management
 Requires at least: 4.9.0
-Tested up to: 6.0.1
+Tested up to: 6.7.0
 Requires PHP: 8.1
-Stable tag: 0.4.1
+Stable tag: 1.0.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -43,10 +43,6 @@ and manage metadata without having to dig through the database or write custom q
 
 * Codection for [reviewing](https://codection.com/plugin-para-visualizar-metadatos-en-wordpress/) this plugin.
 
-* [Javier Esteban – @nobnob](https://profiles.wordpress.org/nobnob/) and [Yordan Soares – @yordansoares](https://profiles.wordpress.org/yordansoares/) for theirs translations.
-
-* This plugin is inspired on [David Navia's](https://profiles.wordpress.org/davidnaviaweb/) code, [Post Meta Viewer](https://es.wordpress.org/plugins/post-meta-viewer/) and [JS Morisset's](https://profiles.wordpress.org/jsmoriss/) plugins.
-
 == Send me bugs or improvements ==
 
 If you’re interested in contributing to Display Metadata, head to the [Display Metadata GitHub Repository](https://github.com/manuelcanga/DisplayMetadata/).
@@ -70,6 +66,20 @@ If you’re interested in contributing to Display Metadata, head to the [Display
 == Changelog ==
 More detailed changes in [Display Metadata GitHub Repository](https://github.com/manuelcanga/DisplayMetadata/).
 
+= 1.0 / 2024-11-16
+
+* Fixed security issue.
+* Added support for recent PHP versions (starting from 8.1).
+* Added unit and functional tests to the deployment workflow.
+* Improved code readability.
+
+= 0.4 / 2022-07-25
+
+* Fix warning with PHP 8.0
+* Test with WP 6.0.1 version.
+* Better meta names when keys are repeated.
+
+
 = 0.3 / 2021-07-17
 
 * Better hover
@@ -89,6 +99,10 @@ More detailed changes in [Display Metadata GitHub Repository](https://github.com
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.0 =
+
+Best version ever. Install it
 
 = 0.1 =
 
